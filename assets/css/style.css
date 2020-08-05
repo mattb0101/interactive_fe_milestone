@@ -159,3 +159,191 @@ body {
 #twenty-four {
     grid-area: 6 / 7;
 }
+
+/*----------------------------------Inner Board Spaces----------*/
+
+#inner-java {
+    grid-area: 5 / 5 / span 2 / span 2;
+}
+
+#inner-enrol {
+    grid-area: 5 / 2 / span 2 / span 3;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+#inner-html {
+    grid-area: 2 / 2 / span 2 / span 2;
+}
+
+#inner-css {
+    grid-area: 2 / 5 / span 2 / span 2;
+}
+
+#inner-java, #inner-html, #inner-css {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.inner-move-space {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);
+    text-align: center;
+    border-radius: 5px;
+}
+
+#ij-one, #ij-two, #ij-three, #ij-seven, #ie-five,
+#ie-six, #ih-one, #ih-two,
+#ih-three, #ic-four, #ic-seven {
+    border-bottom: 2px solid #000;
+    border-top: 2px solid #000;
+}
+
+#ij-five, #ij-nine, #ie-one, #ie-two, #ie-three,
+#ie-eight, #ie-eleven, #ih-five,
+#ih-eight, #ic-one, #ic-two {
+    border-right: 2px solid #000;
+    border-left: 2px solid #000;
+}
+
+#ij-four, #ie-seven{
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+}
+
+#ij-six, #ie-nine, #ih-seven,
+#ic-three, #ic-six{
+    border-bottom: 2px solid #000;
+    border-left: 2px solid #000;
+}
+
+#ij-eight, #ie-four, #ie-ten,
+#ih-six, #ic-five{
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+}
+
+#ih-four{
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
+}
+
+    /*---------------Inner Java-----------*/
+
+#ij-one {
+    grid-area: 1 / 4;
+}
+#ij-two {
+    grid-area: 1 / 3;
+}
+#ij-three {
+    grid-area: 1 / 2;
+}
+#ij-four {
+    grid-area: 1 / 1;
+}
+#ij-five {
+    grid-area: 2 / 1;
+}
+#ij-six {
+    grid-area: 3 / 1;
+}
+#ij-seven {
+    grid-area: 3 / 2;
+}
+#ij-eight {
+    grid-area: 3 / 3;
+}
+#ij-nine {
+    grid-area: 4 / 3;
+}
+    /*---------------Inner Enrol-----------*/
+
+#ie-one {
+    grid-area: 4 / 5;
+}
+#ie-two {
+    grid-area: 3 / 5;
+}
+#ie-three {
+    grid-area: 2 / 5;
+}
+#ie-four {
+    grid-area: 1 / 5;
+}
+#ie-five {
+    grid-area: 1 / 4;
+}
+#ie-six {
+    grid-area: 1 / 3;
+}
+#ie-seven {
+    grid-area: 1 / 2;
+}
+#ie-eight {
+    grid-area: 2 / 2;
+}
+#ie-nine {
+    grid-area: 3 / 2;
+}
+#ie-ten {
+    grid-area: 3 / 3;
+}
+#ie-eleven {
+    grid-area: 4 / 3;
+}
+
+    /*---------------Inner HTML-----------*/
+
+#ih-one {
+    grid-area: 4 / 1;
+}
+#ih-two {
+    grid-area: 4 / 2;
+}
+#ih-three {
+    grid-area: 4 / 3;
+}
+#ih-four {
+    grid-area: 4 / 4;
+}
+#ih-five {
+    grid-area: 3 / 4;
+}
+#ih-six {
+    grid-area: 2 / 4;
+}
+#ih-seven {
+    grid-area: 2 / 3;
+}
+#ih-eight {
+    grid-area: 1 / 3;
+}
+
+    /*---------------Inner CSS-----------*/
+
+#ic-one {
+    grid-area: 1 / 1;
+}
+#ic-two {
+    grid-area: 2 / 1;
+}
+#ic-three {
+    grid-area: 3 / 1;
+}
+#ic-four {
+    grid-area: 3 / 2;
+}
+#ic-five {
+    grid-area: 3 / 3;
+}
+#ic-six {
+    grid-area: 4 / 3;
+}
+#ic-seven {
+    grid-area: 4 / 4;
+}
