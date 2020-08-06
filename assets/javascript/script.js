@@ -3,7 +3,7 @@ $(function() {
     $("#1>div").append(counter);
 });
 
-function rollDice() {
+function rollDice(dTotal) {
     var die1 = document.getElementById("die-one");
     var die2 = document.getElementById("die-two");
     var total = document.getElementById("roll");
@@ -24,6 +24,9 @@ function moveCounter() {
     var nextSpace = Number(currentSpace) + Number(diceRoll);
     var counter = '<div id="counter"></div>';
     
+    if (nextSpace > 24) {
+        nextSpace = (nextSpace - 24);
+    }
     document.getElementById("counter").remove();
 
     $("#" + nextSpace + ">div").append(counter);
