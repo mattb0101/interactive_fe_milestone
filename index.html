@@ -6,81 +6,91 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Board Game</title>
 	<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="assets/javascript/script.js"></script>
 </head>
 
 <body>
+    <div class="actions">
+        <div id="die-one" class="dice">0</div>
+        <div id="die-two" class="dice">0</div>
+        <button onclick="rollDice()">Roll dice!</button>
+        <button onclick="moveCounter()">Move</button>
+        <h2 id="roll"></h2>
+    </div>
 	<div class="container">
 		<div class="board">
-			<div id="one" class="move-space">
-                <div>Pay Day</div>
+			<div id="1" class="move-space 1">
+                <div>Pay Day
+                </div>
             </div>
-            <div id="two" class="move-space">
+            <div id="2" class="move-space 2">
                 <div>2</div>
             </div>
-            <div id="three" class="move-space">
+            <div id="3" class="move-space">
                 <div>3</div>
             </div>
-            <div id="four" class="move-space">
+            <div id="4" class="move-space">
                 <div>4</div>
             </div>
-            <div id="five" class="move-space">
+            <div id="5" class="move-space">
                 <div>5</div>
             </div>
-            <div id="six" class="move-space">
+            <div id="6" class="move-space">
                 <div>6</div>
             </div>
-            <div id="seven" class="move-space">
+            <div id="7" class="move-space">
                 <div>7</div>
             </div>
-            <div id="eight" class="move-space">
+            <div id="8" class="move-space">
                 <div>8</div>
             </div>
-            <div id="nine" class="move-space">
+            <div id="9" class="move-space">
                 <div>9</div>
             </div>
-            <div id="ten" class="move-space">
+            <div id="10" class="move-space">
                 <div>10</div>
             </div>
-            <div id="eleven" class="move-space">
+            <div id="11" class="move-space">
                 <div>11</div>
             </div>
-            <div id="twelve" class="move-space">
+            <div id="12" class="move-space">
                 <div>12</div>
             </div>
-            <div id="thirteen" class="move-space">
+            <div id="13" class="move-space">
                 <div>13</div>
             </div>
-            <div id="fourteen" class="move-space">
+            <div id="14" class="move-space">
                 <div>14</div>
             </div>
-            <div id="fifteen" class="move-space">
+            <div id="15" class="move-space">
                 <div>15</div>
             </div>
-            <div id="sixteen" class="move-space">
+            <div id="16" class="move-space">
                 <div>16</div>
             </div>
-            <div id="seventeen" class="move-space">
+            <div id="17" class="move-space">
                 <div>17</div>
             </div>
-            <div id="eighteen" class="move-space">
+            <div id="18" class="move-space">
                 <div>18</div>
             </div>
-            <div id="nineteen" class="move-space">
+            <div id="19" class="move-space">
                 <div>19</div>
             </div>
-            <div id="twenty" class="move-space">
+            <div id="20" class="move-space">
                 <div>20</div>
             </div>
-            <div id="twenty-one" class="move-space">
+            <div id="21" class="move-space">
                 <div>21</div>
             </div>
-            <div id="twenty-two" class="move-space">
+            <div id="22" class="move-space">
                 <div>22</div>
             </div>
-            <div id="twenty-three" class="move-space">
+            <div id="23" class="move-space">
                 <div>23</div>
             </div>
-            <div id="twenty-four" class="move-space">
+            <div id="24" class="move-space">
                 <div>24</div>
             </div>
             <div id="inner-java">
