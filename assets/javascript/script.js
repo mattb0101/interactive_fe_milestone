@@ -1,7 +1,32 @@
+//------------------Global Variables----------------//
+
+var playerOneMove;
+var playerTwoMove;
+
+
+//--------------------Turn Counter------------------//
+
+var totalRounds;
+
+//---------------------Element Rewrites------------//
+
+
+//---------------------Start Up--------------------//
+
 $(function() {
-    var counter = '<div id="counter"></div>';
-    $("#1>div").append(counter);
+    var playerOne = '<div id="player-one">1</div>';
+    var playerTwo = '<div id="player-two">2</div>';
+    // var playerThree = '<div id="player-three">3</div>';
+    // var playerFour = '<div id="player-four">4</div>';
+    $("#1>div").append(playerOne);
+    $("#1>div").append(playerTwo);
+    // $("#1>div").append(playerThree);
+    // $("#1>div").append(playerFour);
 });
+
+
+
+
 
 function rollDice(dTotal) {
     var die1 = document.getElementById("die-one");
@@ -19,15 +44,53 @@ function rollDice(dTotal) {
 // https://stackoverflow.com/questions/27842138/get-id-of-parent-element-on-click - This helped
 
 function moveCounter() {
-    var currentSpace = $("#counter").parent().parent().attr("id");
+    var i = 0;
+    var players = ["one", "two"]; 
+    var currentSpace = $("#player-one").parent().parent().attr("id");
     var diceRoll = document.querySelector("#roll").innerText;
     var nextSpace = Number(currentSpace) + Number(diceRoll);
-    var counter = '<div id="counter"></div>';
+    var playerOne = `<div id="player-one">1</div>`;
     
     if (nextSpace > 24) {
         nextSpace = (nextSpace - 24);
     }
-    document.getElementById("counter").remove();
+    document.getElementById("player-one").remove();
 
-    $("#" + nextSpace + ">div").append(counter);
+    $("#" + nextSpace + ">div").append(playerOne);
 }
+
+// https://stackoverflow.com/questions/52486241/show-array-increment-one-by-one-elements-upon-onclick-function - This helped.
+
+// var i = 0
+// var players = ["player-one", "two", "three", "four"];
+
+//     function currentPlayer() {
+//         if (i >= players.length) i = 0;
+
+//         document.getElementById("current-player").innerHTML = players[i];
+//         i++;
+
+//         function addCurrentPlayerClass() {
+//         var current = document.getElementById("player-one");
+//         current.classList.add("current");
+//         }
+//     }
+
+// var modal = document.getElementById("modal");
+// var btn = document.getElementById("route-choose");
+
+// var close = document.getElementById("no")
+// var closeToo = document.getElementById("yes")
+
+
+// btn.onclick = function() {
+//     modal.style.display = "block";
+// }
+
+// close.onclick = function() {
+//     modal.style.display = "none";
+// }
+// closeToo.onclick = function() {
+//     modal.style.display = "none";
+// }
+

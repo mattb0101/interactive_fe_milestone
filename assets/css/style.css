@@ -48,6 +48,7 @@ body {
     border-radius: 10px;
     height: 90%;
     width: 90%;
+    position: relative;
 }
 
 /* https://css-tricks.com/ids-cannot-start-with-a-number/  - This helped*/
@@ -378,11 +379,99 @@ body {
 
 /*-----------------------Counters----------*/
 
-#counter {
+#player-one {
+    /* display: inline-block; */
+    position: absolute;
+    top: 25%;
+    left: 25%;
     height: 30px;
     width: 30px;
     background-color: #000;
     z-index: 99;
     border-radius: 50%;
     color: #fff;
+}
+
+#player-two {
+    /* display: inline-block; */
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    height: 30px;
+    width: 30px;
+    background-color: #000;
+    z-index: 99;
+    border-radius: 50%;
+    color: #fff;
+}
+
+#player-three {
+    /* display: inline-block; */
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    height: 30px;
+    width: 30px;
+    background-color: #000;
+    z-index: 99;
+    border-radius: 50%;
+    color: #fff;
+}
+
+#player-four {
+    /* display: inline-block; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 30px;
+    width: 30px;
+    background-color: #000;
+    z-index: 99;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.current {
+    background-color: red;
+}
+
+
+/*----------------Player Turn--------*/
+
+.player-turn {
+    height: 10vh;
+    width: 50%;
+    color: #fff;
+}
+
+.player-turn button {
+    height: 20px;
+    margin-top: 20px;
+}
+
+/*---------------Choosing Route-------*/
+
+#inner-route {
+    height: 20px;
+    width: 50px;
+}
+
+.choose-route {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color:  rgba(0,0,0,0.5);
+    color: #fff;
+}
+
+.route-content {
+    background-color: #000763;
+    height: 30vh;
+    width: 30vw;
+    margin: 20% auto;
 }
