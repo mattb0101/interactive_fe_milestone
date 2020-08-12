@@ -475,3 +475,55 @@ body {
     width: 30vw;
     margin: 20% auto;
 }
+
+/*---------------Game Intro-------*/
+
+.intro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color:  rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+    color: #fff;
+}
+
+#rules-content, #players {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000763;
+    height: 40vh;
+    width: 40vw;
+    border-radius: 20px;
+}
+
+#players {
+    display: none;
+}
+
+#rules-content>h2, #players>h2 {
+    margin-top: 10px;
+}
+
+#rules-content>p, #players>p {
+    height: 75%;
+    margin: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+#play-btn, #go-btn {
+    background-color: green;
+    border-radius: 5px;
+    font-size: 2rem;
+    padding: 5px;
+    margin-bottom: 20px;
+}

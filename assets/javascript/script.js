@@ -3,7 +3,6 @@
 var playerOneMove;
 var playerTwoMove;
 
-
 //--------------------Turn Counter------------------//
 
 var totalRounds;
@@ -15,18 +14,32 @@ var totalRounds;
 
 $(function() {
     var playerOne = '<div id="player-one">1</div>';
-    var playerTwo = '<div id="player-two">2</div>';
+    // var playerTwo = '<div id="player-two">2</div>';
     // var playerThree = '<div id="player-three">3</div>';
     // var playerFour = '<div id="player-four">4</div>';
     $("#1>div").append(playerOne);
-    $("#1>div").append(playerTwo);
+    // $("#1>div").append(playerTwo);
     // $("#1>div").append(playerThree);
     // $("#1>div").append(playerFour);
 });
 
+var startUp = document.getElementById("rules");
+var rules = document.getElementById("rules-content");
+var playerMenu = document.getElementById("players");
+var playBtn = document.getElementById("play-btn");
+var goBtn = document.getElementById("go-btn");
+
+playBtn.onclick = function() {
+    rules.style.display = "none";
+    playerMenu.style.display = "flex";
+};
+
+goBtn.onclick = function() {
+    startUp.style.display = "none";
+}
 
 
-
+//---------------------Game Play--------------------//
 
 function rollDice(dTotal) {
     var die1 = document.getElementById("die-one");
@@ -44,8 +57,8 @@ function rollDice(dTotal) {
 // https://stackoverflow.com/questions/27842138/get-id-of-parent-element-on-click - This helped
 
 function moveCounter() {
-    var i = 0;
-    var players = ["one", "two"]; 
+    // var i = 0;
+    // var players = ["one", "two"]; 
     var currentSpace = $("#player-one").parent().parent().attr("id");
     var diceRoll = document.querySelector("#roll").innerText;
     var nextSpace = Number(currentSpace) + Number(diceRoll);
