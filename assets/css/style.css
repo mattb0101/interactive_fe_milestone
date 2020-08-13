@@ -8,7 +8,7 @@
 
 body {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 500px repeat(2, 1fr);
     max-height: 100vh;
     background: linear-gradient(20deg, #000763, #1620a6);
 }
@@ -32,7 +32,8 @@ body {
 .container {
     grid-area: 1 / 2 / span 1 / span 2;
     display: flex;
-    height: 90vh;
+    height: 90vmin;
+    width: 90vmin;
     margin: 5vh 2vw;
     background-color: #000;
     border-radius: 10px;
@@ -237,6 +238,21 @@ body {
     padding: 10px;
 }
 
+/*-----------------------Opp and Exp Cards----------*/
+
+.cards {
+    grid-area: 2 / 1;
+    color: #fff;
+}
+
+/*-----------------------Succession Formula----------*/
+
+.success-formula {
+    grid-area: 3 / 1;
+    color: #fff;
+}
+
+
 /*-----------------------Counters----------*/
 
 #player-one {
@@ -354,7 +370,7 @@ body {
     color: #fff;
 }
 
-#rules-content, #players {
+#rules-content, #players, #formula {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -365,22 +381,22 @@ body {
     border-radius: 20px;
 }
 
-#players {
+#players, #formula {
     display: none;
 }
 
-#rules-content>h2, #players>h2 {
+#rules-content>h2, #players>h2, #formula>h2 {
     margin-top: 10px;
 }
 
-#rules-content>p, #players>p {
+#rules-content>p, #players>p, #formula>p {
     height: 75%;
     margin: 10px;
     width: 100%;
     text-align: center;
 }
 
-#play-btn, #go-btn {
+#play-btn, #go-btn, #next-btn {
     background-color: green;
     border-radius: 5px;
     font-size: 2rem;

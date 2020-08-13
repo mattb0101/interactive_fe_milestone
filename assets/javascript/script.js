@@ -25,9 +25,11 @@ $(function() {
 
 var startUp = document.getElementById("rules");
 var rules = document.getElementById("rules-content");
+var success = document.getElementById("formula");
 var playerMenu = document.getElementById("players");
 var playBtn = document.getElementById("play-btn");
 var goBtn = document.getElementById("go-btn");
+var nextBtn = document.getElementById("next-btn");
 
 playBtn.onclick = function() {
     rules.style.display = "none";
@@ -35,8 +37,14 @@ playBtn.onclick = function() {
 };
 
 goBtn.onclick = function() {
+    playerMenu.style.display = "none";
+    success.style.display = "flex"
+}
+
+nextBtn.onclick = function() {
     startUp.style.display = "none";
 }
+
 
 
 //---------------------Game Play--------------------//
