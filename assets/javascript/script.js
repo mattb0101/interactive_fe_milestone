@@ -1,11 +1,19 @@
+$(document).ready(function() {
+
 //------------------Global Variables----------------//
 
 var playerOneMove;
-var playerTwoMove;
+var playerOne = '<div id="player-one">1</div>';
+
+var currFame = 0;
+var currHappy = 0;
+var currMoney = 0;
+
 
 //--------------------Turn Counter------------------//
 
-var totalRounds;
+// $("#2>div, #5>div, #15>div, #18>div").html("Opportunity Arises").css({"writing-mode": "vertical-rl", "text-orientation": "mixed"});
+$("#8>div, #10>div, #21>div, #24>div").html("Opportunity Arises");
 
 //---------------------Element Rewrites------------//
 
@@ -13,14 +21,7 @@ var totalRounds;
 //---------------------Start Up--------------------//
 
 $(function() {
-    var playerOne = '<div id="player-one">1</div>';
-    // var playerTwo = '<div id="player-two">2</div>';
-    // var playerThree = '<div id="player-three">3</div>';
-    // var playerFour = '<div id="player-four">4</div>';
     $("#1>div").append(playerOne);
-    // $("#1>div").append(playerTwo);
-    // $("#1>div").append(playerThree);
-    // $("#1>div").append(playerFour);
 });
 
 
@@ -37,8 +38,22 @@ $("#go-btn").click(function() {
 });
 
 $("#next-btn").click(function() {
+    console.log();
+    if(Number($(".fame").val()) + Number($(".happiness").val()) + Number($(".money").val()) != 60) {
+    
+        $(".check-message").html("Your formula doesnt equal 60!");
+    } else {
     $("#rules").fadeOut("slow");
-    });
+    $(".heart").html("Happiness: " + $(".happiness").val());
+    $(".star").html("Fame: " + $(".fame").val());
+    $(".dollar").html("Money: " + $(".money").val());
+    }
+});
+
+$(".current-star").html("Fame: " + currFame);
+$(".current-dollar").html("Money: " + currMoney);
+$(".current-heart").html("Happiness: " + currHappy);
+
 
 
 
@@ -110,3 +125,5 @@ function moveCounter() {
 //     modal.style.display = "none";
 // }
 
+
+});

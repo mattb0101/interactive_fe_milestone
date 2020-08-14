@@ -29,6 +29,12 @@
       <div id="formula">
         <h2>Succession Formula</h2>
         <p>Choose your winning formula</p>
+        <div class="player-formula">
+            <input class="fame" type="number" placeholder="Fame">
+            <input class="money" type="number" placeholder="Money">
+            <input class="happiness" type="number" placeholder="Happiness">
+        </div>
+        <span class="check-message"></span>
         <button id="next-btn">Next</button>
       </div>
     </div>
@@ -47,15 +53,26 @@
           <button onclick="moveCounter()">Move</button>
         </div>
       </div>
+
       <div class="cards">
-        <div>Opportunity</div>
-        <div>Experience</div>
+        <div class="opp-cards">Opportunity Cards</div>
+        <div class="exp-cards">Experience Cards</div>
       </div>
 
       <div class="success-formula">
-        <div>Heart</div>
-        <div>Star</div>
-        <div>Money</div>
+        <h2>Succession Formula</h2>
+        <h3>Target</h3>
+        <div class="target">
+            <div class="star"></div>
+            <div class="dollar"></div>
+            <div class="heart"></div>
+        </div>
+        <h3>Current</h3>
+        <div class="current">
+            <div class="current-star"></div>
+            <div class="current-dollar"></div>
+            <div class="current-heart"></div>
+        </div>
       </div>
 
       <!-- <div class="player-turn">
