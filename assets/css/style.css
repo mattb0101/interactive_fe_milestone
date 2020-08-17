@@ -6,7 +6,6 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Baloo Tamma 2", cursive, sans-serif;
-    color: #fff;
 }
 
 body {
@@ -30,6 +29,14 @@ body {
     transform: rotate(-4deg);
     height: 30%;
     z-index: -1;
+}
+
+.reset {
+    background-color: green;
+    border-radius: 5px;
+    font-size: 2rem;
+    padding: 5px;
+    margin-bottom: 20px;
 }
 
 .container {
@@ -244,11 +251,6 @@ body {
     grid-area: 1 / 2;
 }
 
-.dice-container, .btn-container {
-    display: flex;
-    flex-direction: row;
-}
-
 .dice {
     height: 50px;
     width: 50px;
@@ -273,9 +275,9 @@ body {
     font-size: 1.2rem;
 }
 
-#roll {
+.turn-count {
     color: #fff;
-    padding: 10px;
+    font-size: 1em;
 }
 
 /*-----------------------Opp and Exp Cards----------*/
@@ -332,6 +334,7 @@ body {
     width: 90%;
     margin-left: 5%;
     text-align: center;
+    color: #fff;
 }
 .study {
     grid-area: 1 / 1;
@@ -489,7 +492,7 @@ td {
     text-align: center;
 }
 
-#play-btn, #go-btn, #next-btn {
+#play-btn, #go-btn, #next-btn, #skip-btn {
     background-color: green;
     border-radius: 5px;
     font-size: 2rem;
