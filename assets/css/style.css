@@ -364,11 +364,11 @@ td {
 
 /*-----------------------Counters----------*/
 
-#player-one {
-    /* display: inline-block; */
-    position: absolute;
+#player-one, #comp-one {
+    display: block;
+    /* position: fixed; */
     top: 25%;
-    left: 25%;
+    left: 55%;
     height: 30px;
     width: 30px;
     background-color: #000;
@@ -376,76 +376,40 @@ td {
     border-radius: 50%;
     color: #fff;
 }
-
-/* #player-two {
-    /* display: inline-block; */
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    height: 30px;
-    width: 30px;
-    background-color: #000;
-    z-index: 99;
-    border-radius: 50%;
-    color: #fff;
-}
-
-#player-three {
-    /* display: inline-block; */
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    height: 30px;
-    width: 30px;
-    background-color: #000;
-    z-index: 99;
-    border-radius: 50%;
-    color: #fff;
-}
-
-#player-four {
-    /* display: inline-block; */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 30px;
-    width: 30px;
-    background-color: #000;
-    z-index: 99;
-    border-radius: 50%;
-    color: #fff;
-} */
-
-
 
 /*----------------Player Turn--------*/
 
+.current-turn {
+    color: #fff;
+}
 
 /*---------------Choosing Route-------*/
 
-#inner-route {
-    height: 20px;
-    width: 50px;
-}
-
-.choose-route {
+#choose-enrol {
     display: none;
     position: fixed;
-    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     overflow: hidden;
     background-color:  rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
     color: #fff;
 }
 
-.route-content {
+.enrol-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #000763;
-    height: 30vh;
-    width: 30vw;
-    margin: 20% auto;
+    height: 40vh;
+    width: 40vw;
+    border-radius: 20px;
 }
 
 /*---------------Game Intro-------*/

@@ -3,7 +3,8 @@ $(document).ready(function () {
 
   var playerOneMove;
   var playerOne = '<div id="player-one">1</div>';
-  var turnCounter = 1;
+  var compOne = '<div id="comp-one">C</div>';
+  var turn = "";
 
   var currFame = 0;
   var currHappy = 0;
@@ -11,21 +12,26 @@ $(document).ready(function () {
 
   //--------------------Turn Counter------------------//
 
-  $(".reset").on("click", function() {
-        location.reload();
-  });
-
   // $("#2>div, #5>div, #15>div, #18>div").html("Opportunity Arises").css({"writing-mode": "vertical-rl", "text-orientation": "mixed"});
-  $("#8>div, #10>div, #21>div, #24>div").html("Opportunity Arises");
+  //   $("#8>div, #10>div, #21>div, #24>div").html("Opportunity Arises");
 
   //---------------------Element Rewrites------------//
 
   //---------------------Start Up--------------------//
 
-  $("#1>div").append(playerOne);
+  $(".reset").on("click", function () {
+    location.reload();
+  });
+
+  function currTurn(x) {
+    return $(".current-turn").text(x);
+  }
+
+  $("#4>div").append(playerOne, compOne);
 
   $("#skip-btn").click(function () {
     $("#rules").fadeOut("slow");
+    setTurn();
   });
 
   $("#play-btn").click(function () {
@@ -54,6 +60,7 @@ $(document).ready(function () {
       $(".star").html("Fame: " + $(".fame").val());
       $(".dollar").html("Money: " + $(".money").val());
     }
+    setTurn();
   });
 
   $(".current-star").html("Fame: " + currFame);
@@ -61,31 +68,100 @@ $(document).ready(function () {
   $(".current-heart").html("Happiness: " + currHappy);
 
   //---------------------Game Play--------------------//
-//   if($("#player-one").parent().parent().attr("id") == 4) {
-//       console.log("Do you want to enter the inner sanctum!?");
-//   } else {
-//       console.log("Normal play");
-//   };
+  //   if($("#player-one").parent().parent().attr("id") == 4) {
+  //       console.log("Do you want to enter the inner sanctum!?");
+  //   } else {
+  //       console.log("Normal play");
+  //   };
 
-    $(".roll-btn").on("click", function () {
-    var diceRoll = Math.floor(Math.random() * 6) + 1;
-    // use .this instead of the player and create an array of the players!
-    var currentSpace = $("#player-one").parent().parent().attr("id");
-    var nextSpace = Number(currentSpace) + Number(diceRoll);
+  //---------Setting Turn-----------//
 
-    $("#die-one").html(diceRoll);
-
-    if (nextSpace > 24) {
-      nextSpace = nextSpace - 24;
+  function setTurn() {
+    var r = Math.floor(Math.random() * 2 + 1);
+    if (r == 1) {
+      turn = "Player";
+      currTurn("Player's turn now!");
+    } else {
+      turn = "Comp1";
+      currTurn("Comp 1's turn now!");
     }
+    startTurn();
+  }
 
-    $("#player-one").remove();
+  //---------------------Game Play--------------------//
 
-    $("#" + nextSpace + ">div").append(playerOne);
+  function startTurn() {
 
-    turnCounter++;
+    console.log(turn);
 
-    $(".turn-count").html("Turn: " + turnCounter);
+    if (turn == "Player") {
+      var currentSpace = $("#player-one").parent().parent().attr("id");
+        if (currentSpace==4) {
+            $("#choose-enrol").slideToggle("slow").css("display", "flex");
+            $(".enrol-no").on("click", function() {
+                $("#choose-enrol").fadeOut("slow");
+            });
+        } 
+    } else if (turn == "Comp1") {
+        var currentSpace = $("#comp-one").parent().parent().attr("id");
+        if (currentSpace==4) {
+            $("#choose-enrol").slideToggle("slow").css("display", "flex");
+            $(".enrol-no").on("click", function() {
+                $("#choose-enrol").fadeOut("slow");
+            });
+        }
+    }; 
+};
+
+
+    $(".roll-btn").on("click", function() {
+        var id = function() {
+                if(turn == "Player") {
+                    return "#player-one";
+                } else {
+                    return "#comp-one";
+                }
+        };
+            var diceRoll = Math.floor(Math.random() * 6) +1;
+            var currentSpace = $(id).parent().parent().attr("id");
+            var nextSpace = Number(currentSpace) + Number(diceRoll);
+            
+            $("#die-one").html(diceRoll);
+             if (nextSpace > 24) {
+                 nextSpace = nextSpace - 24;
+             }
+             $(id).remove();
+             if (turn == "Player") {
+                $("#" + nextSpace + ">div").append(playerOne);
+             } else {
+                 $("#" + nextSpace + ">div").append(compOnne);
+             }
+             
+            //  turn = "Comp1";
+            //  currTurn("Comp 1's turn now!");
     });
-  });
+             
 
+
+
+
+//   $(".roll-btn").on("click", function () {
+//     var diceRoll = Math.floor(Math.random() * 6) + 1;
+//     // use .this instead of the player and create an array of the players!
+//     var currentSpace = $("#player-one").parent().parent().attr("id");
+//     var nextSpace = Number(currentSpace) + Number(diceRoll);
+
+//     $("#die-one").html(diceRoll);
+//         if (nextSpace > 24) {
+//             nextSpace = nextSpace - 24;
+//         }
+//     $("#player-one").remove();
+//     $("#" + nextSpace + ">div").append(playerOne);
+//     turn = "Comp1";
+//     currTurn("Comp 1's turn now!");
+//   });
+
+
+
+
+}); // keep this as it closes full statement

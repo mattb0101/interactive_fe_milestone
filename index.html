@@ -42,12 +42,13 @@
 		</div>
 
 		<h1 class="game-title">Time for a change!</h1>
-        <button class="reset">RESET</button>
+		<button class="reset">RESET</button>
 
 		<div class="ie-container">
 			<div class="dice-roll">
-                <div class="turn-count">Turn: 1</div>
-                <div id="die-one" class="dice">0</div>
+				<div class="current-turn"></div>
+				<div class="turn-count">Turn: 1</div>
+				<div id="die-one" class="dice">0</div>
 				<button class="roll-btn">Roll</button>
 			</div>
 
@@ -133,6 +134,14 @@
 		</div>
 
 		<div class="container">
+            <div id="choose-enrol">
+				<div class="enrol-content">
+					<h2>Enrol</h2>
+					<p>Would you Like to Enrol?</p>
+					<button class="enrol-yes">Yes</button>
+					<button class="enrol-no">No</button>
+				</div>
+			</div>
 			<div class="board">
 				<div id="1" class="move-space 1">
 					<div>Pay Day</div>
@@ -206,17 +215,7 @@
 				<div id="24" class="move-space">
 					<div>24</div>
 				</div>
-				<div id="inner-java">
-					<div id="ij-one" class="inner-move-space">1</div>
-					<div id="ij-two" class="inner-move-space">2</div>
-					<div id="ij-three" class="inner-move-space">3</div>
-					<div id="ij-four" class="inner-move-space">4</div>
-					<div id="ij-five" class="inner-move-space">5</div>
-					<div id="ij-six" class="inner-move-space">6</div>
-					<div id="ij-seven" class="inner-move-space">7</div>
-					<div id="ij-eight" class="inner-move-space">8</div>
-					<div id="ij-nine" class="inner-move-space">9</div>
-				</div>
+
 				<div id="inner-enrol">
 					<div id="ie-one" class="inner-move-space">1</div>
 					<div id="ie-two" class="inner-move-space">2</div>
@@ -230,6 +229,7 @@
 					<div id="ie-ten" class="inner-move-space">10</div>
 					<div id="ie-eleven" class="inner-move-space">11</div>
 				</div>
+
 				<div id="inner-html">
 					<div id="ih-one" class="inner-move-space">1</div>
 					<div id="ih-two" class="inner-move-space">2</div>
@@ -240,6 +240,7 @@
 					<div id="ih-seven" class="inner-move-space">7</div>
 					<div id="ih-eight" class="inner-move-space">8</div>
 				</div>
+
 				<div id="inner-css">
 					<div id="ic-one" class="inner-move-space">1</div>
 					<div id="ic-two" class="inner-move-space">2</div>
@@ -248,6 +249,18 @@
 					<div id="ic-five" class="inner-move-space">5</div>
 					<div id="ic-six" class="inner-move-space">6</div>
 					<div id="ic-seven" class="inner-move-space">7</div>
+				</div>
+
+				<div id="inner-java">
+					<div id="ij-one" class="inner-move-space">1</div>
+					<div id="ij-two" class="inner-move-space">2</div>
+					<div id="ij-three" class="inner-move-space">3</div>
+					<div id="ij-four" class="inner-move-space">4</div>
+					<div id="ij-five" class="inner-move-space">5</div>
+					<div id="ij-six" class="inner-move-space">6</div>
+					<div id="ij-seven" class="inner-move-space">7</div>
+					<div id="ij-eight" class="inner-move-space">8</div>
+					<div id="ij-nine" class="inner-move-space">9</div>
 				</div>
 			</div>
 		</div>
