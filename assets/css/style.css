@@ -185,32 +185,32 @@ body {
     border-radius: 5px;
 }
 
-#ij-one, #ij-two, #ij-three, #ij-seven, #ie-five,
-#ie-six, #ih-one, #ih-two,
+#ij-one, #ij-two, #ij-three, #ij-seven, [id="29"],
+[id="30"], #ih-one, #ih-two,
 #ih-three, #ic-four, #ic-seven {
     border-bottom: 2px solid #000;
     border-top: 2px solid #000;
 }
 
-#ij-five, #ij-nine, #ie-one, #ie-two, #ie-three,
-#ie-eight, #ie-eleven, #ih-five,
+#ij-five, #ij-nine, [id="25"], [id="26"], [id="27"],
+[id="32"], [id="35"], #ih-five,
 #ih-eight, #ic-one, #ic-two {
     border-right: 2px solid #000;
     border-left: 2px solid #000;
 }
 
-#ij-four, #ie-seven{
+#ij-four, [id="31"]{
     border-top: 2px solid #000;
     border-left: 2px solid #000;
 }
 
-#ij-six, #ie-nine, #ih-seven,
+#ij-six, [id="33"], #ih-seven,
 #ic-three, #ic-six{
     border-bottom: 2px solid #000;
     border-left: 2px solid #000;
 }
 
-#ij-eight, #ie-four, #ie-ten,
+#ij-eight, [id="28"], [id="34"],
 #ih-six, #ic-five{
     border-top: 2px solid #000;
     border-right: 2px solid #000;
