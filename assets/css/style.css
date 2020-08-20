@@ -364,8 +364,8 @@ td {
 
 /*-----------------------Counters----------*/
 
-#player-one, #comp-one {
-    display: block;
+#player-one, #comp-one, #comp-two, #comp-three {
+    display: inline-block;
     /* position: fixed; */
     top: 25%;
     left: 55%;

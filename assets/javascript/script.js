@@ -1,9 +1,10 @@
 $(document).ready(function () {
   //------------------Global Variables----------------//
 
-  var playerOneMove;
   var playerOne = '<div id="player-one">1</div>';
-  var compOne = '<div id="comp-one">C</div>';
+  var compOne = '<div id="comp-one">C1</div>';
+  var compTwo = '<div id="comp-two">C2</div>';
+  var compThree = '<div id="comp-three">C3</div>';
   var turn = "";
 
   var currFame = 0;
@@ -27,7 +28,7 @@ $(document).ready(function () {
     return $(".current-turn").text(x);
   }
 
-  $("#4>div").append(playerOne, compOne);
+  $("#1>div").append(playerOne, compOne, compTwo, compThree);
 
   $("#skip-btn").click(function () {
     $("#rules").fadeOut("slow");
@@ -77,91 +78,133 @@ $(document).ready(function () {
   //---------Setting Turn-----------//
 
   function setTurn() {
-    var r = Math.floor(Math.random() * 2 + 1);
+    var r = Math.floor(Math.random() * 4 + 1);
     if (r == 1) {
       turn = "Player";
       currTurn("Player's turn now!");
-    } else {
+      playerOneTurn();
+    } else if (r == 2) {
       turn = "Comp1";
       currTurn("Comp 1's turn now!");
+      compOneTurn();
+    } else if (r == 3) {
+      turn = "Comp2";
+      currTurn("Comp 2's turn now!");
+      compTwoTurn();
+    } else if (r == 4) {
+      turn = "Comp3";
+      currTurn("Comp 3's turn now!");
+      compThreeTurn();
     }
-    startTurn();
   }
 
   //---------------------Game Play--------------------//
 
-  function startTurn() {
-
-    console.log(turn);
-
-    if (turn == "Player") {
+  function playerOneTurn() {
       var currentSpace = $("#player-one").parent().parent().attr("id");
-        if (currentSpace==4) {
-            $("#choose-enrol").slideToggle("slow").css("display", "flex");
-            $(".enrol-no").on("click", function() {
-                $("#choose-enrol").fadeOut("slow");
-            });
-        } 
+      if (currentSpace == 4) {
+        $("#choose-enrol").slideToggle("slow").css("display", "flex");
+        $(".enrol-no").on("click", function () {
+          $("#choose-enrol").fadeOut("slow");
+        });
+      }
+  }
+
+  function compOneTurn() {
+      var currentSpace = $("#comp-one").parent().parent().attr("id");
+      if (currentSpace == 4) {
+        $("#choose-enrol").slideToggle("slow").css("display", "flex");
+        $(".enrol-no").on("click", function () {
+          $("#choose-enrol").fadeOut("slow");
+        });
+      }
+    }
+
+  function compTwoTurn() {
+      var currentSpace = $("#comp-two").parent().parent().attr("id");
+      if (currentSpace == 4) {
+        $("#choose-enrol").slideToggle("slow").css("display", "flex");
+        $(".enrol-no").on("click", function () {
+          $("#choose-enrol").fadeOut("slow");
+        });
+      }
+  }
+
+  function compThreeTurn() {
+      var currentSpace = $("#comp-three").parent().parent().attr("id");
+      if (currentSpace == 4) {
+        $("#choose-enrol").slideToggle("slow").css("display", "flex");
+        $(".enrol-no").on("click", function () {
+          $("#choose-enrol").fadeOut("slow");
+        });
+      }
+  }
+
+
+
+
+
+  $(".roll-btn").on("click", function () {
+    if (turn == "Player") {
+      var diceRoll = Math.floor(Math.random() * 6) + 1;
+      // use .this instead of the player and create an array of the players!
+      var currentSpace = $("#player-one").parent().parent().attr("id");
+      var nextSpace = Number(currentSpace) + Number(diceRoll);
+
+      $("#die-one").html(diceRoll);
+      if (nextSpace > 24) {
+        nextSpace = nextSpace - 24;
+      }
+      $("#player-one").remove();
+      $("#" + nextSpace + ">div").append(playerOne);
+      turn = "Comp1";
+      currTurn("Comp 1's turn now!");
+      compOneTurn();
     } else if (turn == "Comp1") {
-        var currentSpace = $("#comp-one").parent().parent().attr("id");
-        if (currentSpace==4) {
-            $("#choose-enrol").slideToggle("slow").css("display", "flex");
-            $(".enrol-no").on("click", function() {
-                $("#choose-enrol").fadeOut("slow");
-            });
-        }
-    }; 
-};
+      var diceRoll = Math.floor(Math.random() * 6) + 1;
+      // use .this instead of the player and create an array of the players!
+      var currentSpace = $("#comp-one").parent().parent().attr("id");
+      var nextSpace = Number(currentSpace) + Number(diceRoll);
 
+      $("#die-one").html(diceRoll);
+      if (nextSpace > 24) {
+        nextSpace = nextSpace - 24;
+      }
+      $("#comp-one").remove();
+      $("#" + nextSpace + ">div").append(compOne);
+      turn = "Comp2";
+      currTurn("Comp 2's turn now!");
+      compTwoTurn();
+    } else if (turn == "Comp2") {
+      var diceRoll = Math.floor(Math.random() * 6) + 1;
+      // use .this instead of the player and create an array of the players!
+      var currentSpace = $("#comp-two").parent().parent().attr("id");
+      var nextSpace = Number(currentSpace) + Number(diceRoll);
 
-    $(".roll-btn").on("click", function() {
-        var id = function() {
-                if(turn == "Player") {
-                    return "#player-one";
-                } else {
-                    return "#comp-one";
-                }
-        };
-            var diceRoll = Math.floor(Math.random() * 6) +1;
-            var currentSpace = $(id).parent().parent().attr("id");
-            var nextSpace = Number(currentSpace) + Number(diceRoll);
-            
-            $("#die-one").html(diceRoll);
-             if (nextSpace > 24) {
-                 nextSpace = nextSpace - 24;
-             }
-             $(id).remove();
-             if (turn == "Player") {
-                $("#" + nextSpace + ">div").append(playerOne);
-             } else {
-                 $("#" + nextSpace + ">div").append(compOnne);
-             }
-             
-            //  turn = "Comp1";
-            //  currTurn("Comp 1's turn now!");
-    });
-             
+      $("#die-one").html(diceRoll);
+      if (nextSpace > 24) {
+        nextSpace = nextSpace - 24;
+      }
+      $("#comp-two").remove();
+      $("#" + nextSpace + ">div").append(compTwo);
+      turn = "Comp3";
+      currTurn("Comp 3's turn now!");
+      compThreeTurn();
+    } else if (turn == "Comp3") {
+      var diceRoll = Math.floor(Math.random() * 6) + 1;
+      // use .this instead of the player and create an array of the players!
+      var currentSpace = $("#comp-three").parent().parent().attr("id");
+      var nextSpace = Number(currentSpace) + Number(diceRoll);
 
-
-
-
-//   $(".roll-btn").on("click", function () {
-//     var diceRoll = Math.floor(Math.random() * 6) + 1;
-//     // use .this instead of the player and create an array of the players!
-//     var currentSpace = $("#player-one").parent().parent().attr("id");
-//     var nextSpace = Number(currentSpace) + Number(diceRoll);
-
-//     $("#die-one").html(diceRoll);
-//         if (nextSpace > 24) {
-//             nextSpace = nextSpace - 24;
-//         }
-//     $("#player-one").remove();
-//     $("#" + nextSpace + ">div").append(playerOne);
-//     turn = "Comp1";
-//     currTurn("Comp 1's turn now!");
-//   });
-
-
-
-
+      $("#die-one").html(diceRoll);
+      if (nextSpace > 24) {
+        nextSpace = nextSpace - 24;
+      }
+      $("#comp-three").remove();
+      $("#" + nextSpace + ">div").append(compThree);
+      turn = "Player";
+      currTurn("Players's turn now!");
+      playerOneTurn();
+    }
+  });
 }); // keep this as it closes full statement
