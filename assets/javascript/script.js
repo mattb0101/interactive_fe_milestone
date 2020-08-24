@@ -21,9 +21,9 @@ $(document).ready(function () {
 
   //---------------------Start Up--------------------//
 
-  $(".reset").on("click", function () {
-    location.reload();
-  });
+//   $(".reset").on("click", function () {
+//     location.reload();
+//   });
 
   function currTurn(x) {
     return $(".current-turn").text(x);

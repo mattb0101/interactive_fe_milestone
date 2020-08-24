@@ -5,6 +5,9 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Board Game</title>
+
+    <!-- Favicon Icon to stop the error message - https://www.favicon.cc/?action=icon&file_id=809023 -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAABEAAAAAEQAAEQAAAAAAAAAAAAAAAAABEAAAAAAAAAEQAAAAAAAAAAAAAAAAABEAABEAAAAAEQAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAP//AAD//wAA" rel="icon" type="image/x-icon" />
 	<!-- Load Jasmine Framework -->
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.5.0/jasmine.js" integrity="sha256-PePX8Jc4TIxzzVz0Qe4NsH3OUU8+Y49DBWvYgggNqkY=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.5.0/jasmine-html.js" integrity="sha256-qazAASTTgUrq9SOYkPSB3oEuqbhn+2j4kxGkVZ0GKjY=" crossorigin="anonymous"></script>
@@ -42,12 +45,10 @@
 		</div>
 
 		<h1 class="game-title">Time for a change!</h1>
-		<button class="reset">RESET</button>
 
 		<div class="ie-container">
 			<div class="dice-roll">
 				<div class="current-turn"></div>
-				<div class="turn-count">Turn: 1</div>
 				<div id="die-one" class="dice">0</div>
 				<button class="roll-btn">Roll</button>
 			</div>
@@ -118,20 +119,14 @@
 					<div class="current-heart"></div>
 				</div>
 			</div>
+		</div>
 
-			<!-- <div class="player-turn">
-			<button onclick="currentPlayer()">Player</button>
-			<p id="current-player"></p>
-		</div>
-        <button id="route-choose">test for route</button>
-        <div id="modal" class="choose-route">
-            <div class="route-content">
-                <p>Do you want to go inside?</p>
-                <button id="yes">Yes</button>
-                <button id="no">No</button>
-            </div>
-	    </div> -->
-		</div>
+        <div class="comp-container">
+            <h2>Computers</h2>
+            <div class="comp-one-record">Comp 1</div>
+            <div class="comp-two-record">Comp 2</div>
+            <div class="comp=three-record">Comp 3</div>
+        </div>
 
 		<div class="container">
             <div id="choose-enrol">
@@ -143,10 +138,10 @@
 				</div>
 			</div>
 			<div class="board">
-				<div id="1" class="move-space 1">
+				<div id="1" class="move-space">
 					<div>Pay Day</div>
 				</div>
-				<div id="2" class="move-space 2">
+				<div id="2" class="move-space">
 					<div>Opportunity Arises</div>
 				</div>
 				<div id="3" class="move-space">
