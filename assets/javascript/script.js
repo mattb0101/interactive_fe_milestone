@@ -29,8 +29,7 @@ $(document).ready(function () {
     return $(".current-turn").text(x);
   }
 
-  $("#1>div").append(compOne, compTwo, compThree);
-  $("#4>div").append(playerOne);
+  $("#1>div").append(playerOne, compOne, compTwo, compThree);
 
   $("#skip-btn").click(function () {
     $("#rules").fadeOut("slow");
@@ -70,12 +69,16 @@ $(document).ready(function () {
   $(".current-dollar").html("Money: " + currMoney);
   $(".current-heart").html("Happiness: " + currHappy);
 
-  //---------------------Game Play--------------------//
-  //   if($("#player-one").parent().parent().attr("id") == 4) {
-  //       console.log("Do you want to enter the inner sanctum!?");
-  //   } else {
-  //       console.log("Normal play");
-  //   };
+  //---------------------Opportunity Cards --------------------//
+
+  oppCardArray = [[1, "Enrol", "Normal Reqs"],[2, "HTML", "Expenses Paid"],[3, "HTML", "Normal Reqs"],[4, "CSS", "Expenses Paid"],[5, "CSS", "Normal Reqs"],[6, "JavaScript", "Expenses Paid"],[7, "JavaScript", "Normal Reqs"],[8, "Holiday", "Yet unknown"]]
+
+  
+
+  console.log(oppCardArray);
+  
+
+  playerOppCards = [];
 
   //---------Setting Turn-----------//
 
@@ -103,7 +106,6 @@ $(document).ready(function () {
   //---------------------Game Play--------------------//
 
   function playerOneTurn() {
-    console.log(path);
     var currentSpace = $("#player-one").parent().parent().attr("id");
     if (currentSpace == 4) {
       $("#choose-enrol").slideToggle("slow").css("display", "flex");
@@ -113,7 +115,6 @@ $(document).ready(function () {
       $(".enrol-yes").on("click", function () {
         $("#choose-enrol").fadeOut("slow");
         path = "inner-e";
-        console.log(path);
       });
     }
   }
@@ -164,7 +165,7 @@ $(document).ready(function () {
     } else if (path == "inner-e") {
            currentSpace = $("#player-one").parent().attr("id");
       };
-      
+      console.log(playerOppCards);
       console.log(currentSpace);
       var nextSpace = Number(currentSpace) + Number(diceRoll);
 
@@ -190,7 +191,16 @@ $(document).ready(function () {
           $("#player-one").remove();
           $("#" + nextSpace + ">div").append(playerOne);
           path = "outer";
-      } turn = "Comp1";
+      } 
+        if (nextSpace == 2 || nextSpace == 5 || nextSpace == 8 || nextSpace == 10 || nextSpace == 15 || nextSpace == 18 || nextSpace == 21 || nextSpace == 24 ) {
+            var randomOpp = Math.floor(Math.random() * oppCardArray.length);
+            playerOppCards.push(oppCardArray[randomOpp]);
+            console.log(randomOpp);
+            $(".opp-cards").append(`<div class="player-opp-card${playerOppCards[0][0]}">Testing</div>`);
+        }
+
+        console.log(playerOppCards);
+        turn = "Comp1";
         currTurn("Comp 1's turn now!");
         compOneTurn();
     }   

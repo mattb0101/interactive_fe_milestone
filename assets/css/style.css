@@ -284,15 +284,26 @@ body {
 
 .cards {
     grid-area: 2 / 2;
+    height: 100%;
     color: #fff;
 }
 
 .opp-cards, .exp-cards {
+    display: flex;
+    flex-direction: row;
     height: 40%;
     width: 80%;
     border: 2px dashed #fff;
     margin-left: 1vw;
     margin-bottom: 1vh;
+}
+
+/* https://stackoverflow.com/questions/5110249/wildcard-in-css-for-classes */
+
+[class^="player-opp-card"] {
+    height: 50px;
+    width: 50px;
+    background-color: #fff;
 }
 
 /*-----------------------Succession Formula----------*/
