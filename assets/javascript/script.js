@@ -29,7 +29,8 @@ $(document).ready(function () {
     return $(".current-turn").text(x);
   }
 
-  $("#1>div").append(playerOne, compOne, compTwo, compThree);
+  $("#1>div").append(compOne, compTwo, compThree);
+  $("#4>div").append(playerOne);
 
   $("#skip-btn").click(function () {
     $("#rules").fadeOut("slow");
@@ -108,11 +109,14 @@ $(document).ready(function () {
   function playerOneTurn() {
     var currentSpace = $("#player-one").parent().parent().attr("id");
     if (currentSpace == 4) {
+        $(".roll-btn").attr("disabled", true);
       $("#choose-enrol").slideToggle("slow").css("display", "flex");
       $(".enrol-no").on("click", function () {
+        $(".roll-btn").removeAttr("disabled");
         $("#choose-enrol").fadeOut("slow");
       });
       $(".enrol-yes").on("click", function () {
+        $(".roll-btn").removeAttr("disabled");
         $("#choose-enrol").fadeOut("slow");
         path = "inner-e";
       });
