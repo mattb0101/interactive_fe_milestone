@@ -112,82 +112,82 @@
 
     /*---------------Inner HTML-----------*/
 
-#ih-one {
+[id="36"] {
     grid-area: 4 / 1;
 }
-#ih-two {
+[id="37"] {
     grid-area: 4 / 2;
 }
-#ih-three {
+[id="38"] {
     grid-area: 4 / 3;
 }
-#ih-four {
+[id="39"] {
     grid-area: 4 / 4;
 }
-#ih-five {
+[id="40"] {
     grid-area: 3 / 4;
 }
-#ih-six {
+[id="41"] {
     grid-area: 2 / 4;
 }
-#ih-seven {
+[id="42"] {
     grid-area: 2 / 3;
 }
-#ih-eight {
+[id="43"] {
     grid-area: 1 / 3;
 }
 
     /*---------------Inner CSS-----------*/
 
-#ic-one {
+[id="44"] {
     grid-area: 1 / 1;
 }
-#ic-two {
+[id="45"] {
     grid-area: 2 / 1;
 }
-#ic-three {
+[id="46"] {
     grid-area: 3 / 1;
 }
-#ic-four {
+[id="47"] {
     grid-area: 3 / 2;
 }
-#ic-five {
+[id="48"] {
     grid-area: 3 / 3;
 }
-#ic-six {
+[id="49"] {
     grid-area: 4 / 3;
 }
-#ic-seven {
+[id="50"] {
     grid-area: 4 / 4;
 }
 
    /*---------------Inner Java-----------*/
 
-#ij-one {
+[id="51"] {
     grid-area: 1 / 4;
 }
-#ij-two {
+[id="52"] {
     grid-area: 1 / 3;
 }
-#ij-three {
+[id="53"] {
     grid-area: 1 / 2;
 }
-#ij-four {
+[id="54"] {
     grid-area: 1 / 1;
 }
-#ij-five {
+[id="55"] {
     grid-area: 2 / 1;
 }
-#ij-six {
+[id="56"] {
     grid-area: 3 / 1;
 }
-#ij-seven {
+[id="57"] {
     grid-area: 3 / 2;
 }
-#ij-eight {
+[id="58"] {
     grid-area: 3 / 3;
 }
-#ij-nine {
+[id="59"] {
     grid-area: 4 / 3;
 }
 

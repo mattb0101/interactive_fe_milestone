@@ -164,6 +164,7 @@ body {
     border-radius: 10px;
     border: 2px solid greenyellow;
     justify-content: center;
+    overflow: hidden;
 
 }
 
@@ -191,7 +192,8 @@ body {
 
 /*---------------Choosing Route-------*/
 
-#choose-enrol {
+#choose-enrol, #choose-html,
+#choose-css, #choose-javascript {
     display: none;
     position: absolute;
     justify-content: center;
@@ -207,7 +209,8 @@ body {
     color: #fff;
 }
 
-.enrol-content {
+.enrol-content, .html-content,
+.css-content, .javascript-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -257,38 +260,38 @@ body {
     border-radius: 5px;
 }
 
-#ij-one, #ij-two, #ij-three, #ij-seven, [id="29"],
-[id="30"], #ih-one, #ih-two,
-#ih-three, #ic-four, #ic-seven {
+[id="51"], [id="52"], [id="53"], [id="57"], [id="29"],
+[id="30"], [id="36"], [id="37"],
+[id="38"], [id="47"], [id="50"] {
     border-bottom: 2px solid #000;
     border-top: 2px solid #000;
 }
 
-#ij-five, #ij-nine, [id="25"], [id="26"], [id="27"],
-[id="32"], [id="35"], #ih-five,
-#ih-eight, #ic-one, #ic-two {
+[id="55"], [id="59"], [id="25"], [id="26"], [id="27"],
+[id="32"], [id="35"], [id="40"],
+[id="43"], [id="44"], [id="45"] {
     border-right: 2px solid #000;
     border-left: 2px solid #000;
 }
 
-#ij-four, [id="31"]{
+[id="54"], [id="31"]{
     border-top: 2px solid #000;
     border-left: 2px solid #000;
 }
 
-#ij-six, [id="33"], #ih-seven,
-#ic-three, #ic-six{
+[id="56"], [id="33"], [id="42"],
+[id="46"], [id="49"]{
     border-bottom: 2px solid #000;
     border-left: 2px solid #000;
 }
 
-#ij-eight, [id="28"], [id="34"],
-#ih-six, #ic-five{
+[id="58"], [id="28"], [id="34"],
+[id="41"], [id="48"]{
     border-top: 2px solid #000;
     border-right: 2px solid #000;
 }
 
-#ih-four{
+[id="39"]{
     border-bottom: 2px solid #000;
     border-right: 2px solid #000;
 }
@@ -444,6 +447,24 @@ td {
 }
 
 /*----------------Player Turn--------*/
+
+.player-turn-notice {
+    display: flex;
+    z-index: 999;
+    position: absolute;
+    top: 40vh;
+    left: 100%;    
+    justify-content: center;
+    align-items: center;
+    background-color: #000763;
+    height: 10vh;
+    width: 20vw;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+
 
 .current-turn {
     color: #fff;
