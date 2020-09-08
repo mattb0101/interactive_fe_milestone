@@ -32,7 +32,7 @@ $(document).ready(function () {
   }
 
   $("#1>div").append(compOne, compTwo, compThree);
-  $("#4>div").append(playerOne);
+  $("#23>div").append(playerOne);
   $(".roll-btn").attr("disabled", true);
 
   $("#skip-btn").click(function () {
@@ -228,7 +228,8 @@ $(document).ready(function () {
   $(".roll-btn").on("click", function () {
     if (turn == "Player") {
       var currentSpace = $("#player-one").parent().parent().attr("id");
-      var diceRoll = Math.floor(Math.random() * 6) + 1;
+      var diceRoll = 1;
+    //   Math.floor(Math.random() * 6) + 1;
 
       if (path == "inner-e" && currentSpace == 4) {
         currentSpace = $("#player-one").parent().parent().attr("id");
@@ -422,13 +423,81 @@ $(document).ready(function () {
       }
 
       if (nextSpace == 38) {
-        currHappy = currHappy * 0.5;
+        currHappy = Math.ceil(currHappy * 0.5);
         $(".current-heart").html("Happiness: " + currHappy);
       }
 
       if (nextSpace == 42) {
         currHappy = currHappy + 2;
         $(".current-heart").html("Happiness: " + currHappy);
+      }
+
+      // Actions for CSS section of board spaces
+
+      if (
+        nextSpace == 44 ||
+        nextSpace == 45 ||
+        nextSpace == 48 ||
+        nextSpace == 49
+      ) {
+        currFollow = currFollow + 1;
+        $(".current-star").html("Fame: " + currFollow);
+      }
+
+      if (nextSpace == 46) {
+        currFollow = currFollow + 3;
+        currIncome = currIncome + 1;
+        $(".current-star").html("Fame: " + currFollow);
+        //   Need to display income somewhere!
+      }
+
+      if (nextSpace == 47) {
+        currFollow = currFollow + 3;
+        $(".current-star").html("Fame: " + currFollow);
+      }
+
+      if (nextSpace == 50) {
+        currFollow = currFollow + 2;
+        currHappy = currHappy + 5;
+        $(".current-star").html("Fame: " + currFollow);
+        $(".current-heart").html("Happiness: " + currHappy);
+      }
+
+      // Actions for JavaScript section of board Spaces
+
+      if (
+        nextSpace == 51 ||
+        nextSpace == 53 ||
+        nextSpace == 55 ||
+        nextSpace == 56 ||
+        nextSpace == 59
+      ) {
+        currFollow = currFollow + 1;
+        $(".current-star").html("Fame: " + currFollow);
+      }
+
+      if (nextSpace == 52) {
+        currFollow = currFollow + 2;
+        currHappy = currHappy + 4;
+        $(".current-star").html("Fame: " + currFollow);
+        $(".current-heart").html("Happiness: " + currHappy);
+      }
+
+      if (nextSpace == 54) {
+          currFollow = currFollow + 4;
+        currIncome = currIncome + 1;
+        $(".current-star").html("Fame: " + currFollow);
+        //   Need to display income somewhere!
+      }
+
+      if (nextSpace == 57) {
+          currMoney = currMoney + 10;
+        $(".current-dollar").html("Money: " + currMoney * 1000);
+      }
+
+      if (nextSpace == 58) {
+          currFollow = currFollow + 4;
+        $(".current-star").html("Fame: " + currFollow);
       }
 
       setTimeout(() => {
