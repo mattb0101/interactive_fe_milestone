@@ -8,9 +8,11 @@ $(document).ready(function () {
   var turn = "";
   var path = "outer";
 
-  var currFame = 0;
+  var currFollow = 0;
   var currHappy = 0;
-  var currMoney = 0;
+  var currMoney = 1;
+
+  var currIncome = 1;
 
   //--------------------Turn Counter------------------//
 
@@ -29,7 +31,8 @@ $(document).ready(function () {
     return $(".current-turn").text(x);
   }
 
-  $("#1>div").append(playerOne, compOne, compTwo, compThree);
+  $("#1>div").append(compOne, compTwo, compThree);
+  $("#4>div").append(playerOne);
   $(".roll-btn").attr("disabled", true);
 
   $("#skip-btn").click(function () {
@@ -68,8 +71,8 @@ $(document).ready(function () {
     }, 500);
   });
 
-  $(".current-star").html("Fame: " + currFame);
-  $(".current-dollar").html("Money: " + currMoney);
+  $(".current-star").html("Fame: " + currFollow);
+  $(".current-dollar").html("Money: " + currMoney * 1000);
   $(".current-heart").html("Happiness: " + currHappy);
 
   //---------------------Opportunity Cards --------------------//
@@ -113,10 +116,11 @@ $(document).ready(function () {
     }
   }
 
+  //---------------------Board Space Effects----------//
+
   //---------------------Game Play--------------------//
 
   function playerOneTurn() {
-      
     $(".player-turn-notice")
       .removeAttr("style")
       .animate({ left: "-=73%" }, 500)
@@ -271,7 +275,6 @@ $(document).ready(function () {
         }
         $("#player-one").remove();
         $("#" + nextSpace + ">div").append(playerOne);
-
       } else if (path == "inner-e" && currentSpace == 4) {
         nextSpace = nextSpace + 20;
         $("#player-one").remove();
@@ -284,46 +287,42 @@ $(document).ready(function () {
         $("#player-one").remove();
         $("#" + nextSpace + ">div").append(playerOne);
         path = "outer";
-      
       } else if (path == "inner-h" && currentSpace == 11) {
-          nextSpace = nextSpace + 24;
-          $("#player-one").remove();
+        nextSpace = nextSpace + 24;
+        $("#player-one").remove();
         $("#" + nextSpace).append(playerOne);
       } else if (path == "inner-h" && nextSpace <= 43) {
-          $("#player-one").remove();
-            $("#" + nextSpace).append(playerOne);
+        $("#player-one").remove();
+        $("#" + nextSpace).append(playerOne);
       } else if (path == "inner-h" && nextSpace > 43) {
-          nextSpace = nextSpace - 29;
-          $("#player-one").remove();
+        nextSpace = nextSpace - 29;
+        $("#player-one").remove();
         $("#" + nextSpace + ">div").append(playerOne);
         path = "outer";
-
       } else if (path == "inner-c" && currentSpace == 17) {
-          nextSpace = nextSpace + 26; 
-          $("#player-one").remove();
-          $("#" + nextSpace).append(playerOne);
-      } else if (path == "inner-c" && nextSpace <=50) {
-          $("#player-one").remove();
-          $("#" + nextSpace).append(playerOne);
+        nextSpace = nextSpace + 26;
+        $("#player-one").remove();
+        $("#" + nextSpace).append(playerOne);
+      } else if (path == "inner-c" && nextSpace <= 50) {
+        $("#player-one").remove();
+        $("#" + nextSpace).append(playerOne);
       } else if (path == "inner-c" && nextSpace > 50) {
-          nextSpace = nextSpace - 30;
-          $("#player-one").remove();
-          $("#" + nextSpace  + ">div").append(playerOne);
-          path = "outer";
-
+        nextSpace = nextSpace - 30;
+        $("#player-one").remove();
+        $("#" + nextSpace + ">div").append(playerOne);
+        path = "outer";
       } else if (path == "inner-j" && currentSpace == 23) {
-          nextSpace = nextSpace + 27; 
-          $("#player-one").remove();
-          $("#" + nextSpace).append(playerOne);
-      } else if (path == "inner-j" && nextSpace <=59) {
-          $("#player-one").remove();
-          $("#" + nextSpace).append(playerOne);
+        nextSpace = nextSpace + 27;
+        $("#player-one").remove();
+        $("#" + nextSpace).append(playerOne);
+      } else if (path == "inner-j" && nextSpace <= 59) {
+        $("#player-one").remove();
+        $("#" + nextSpace).append(playerOne);
       } else if (path == "inner-j" && nextSpace > 59) {
-          nextSpace = nextSpace - 58;
-          $("#player-one").remove();
-          $("#" + nextSpace  + ">div").append(playerOne);
-          path = "outer";
-
+        nextSpace = nextSpace - 58;
+        $("#player-one").remove();
+        $("#" + nextSpace + ">div").append(playerOne);
+        path = "outer";
       }
       if (
         nextSpace == 2 ||
@@ -343,13 +342,100 @@ $(document).ready(function () {
         );
       }
 
-      console.log(playerOppCards);
+      if (
+        nextSpace == 3 ||
+        nextSpace == 6 ||
+        nextSpace == 12 ||
+        nextSpace == 16 ||
+        nextSpace == 20 ||
+        nextSpace == 22
+      ) {
+        currMoney = currMoney * 0.9;
+        $(".current-dollar").html("Money: " + currMoney * 1000);
+        console.log(currMoney);
+      }
+
+      if (nextSpace == 9) {
+        currMoney = currMoney * 0.75;
+        $(".current-dollar").html("Money: " + currMoney * 1000);
+      }
+
+      if (nextSpace == 14) {
+        currMoney = currMoney - currIncome * 0.5;
+        $(".current-dollar").html("Money: " + currMoney * 1000);
+      }
+      // Actions for Enroll section of board spaces
+      if (
+        nextSpace == 25 ||
+        nextSpace == 27 ||
+        nextSpace == 28 ||
+        nextSpace == 30 ||
+        nextSpace == 33 ||
+        nextSpace == 35
+      ) {
+        currFollow = currFollow + 1;
+        $(".current-star").html("Fame: " + currFollow);
+      }
+
+      if (nextSpace == 26) {
+        currHappy = currHappy + 2;
+        $(".current-heart").html("Happiness: " + currHappy);
+      }
+
+      if (nextSpace == 29) {
+        currHappy = currHappy + 4;
+        $(".current-heart").html("Happiness: " + currHappy);
+      }
+
+      if (nextSpace == 31) {
+        currIncome = currIncome + 0.5;
+        //   Need to display income somewhere!
+        console.log(currIncome);
+      }
+
+      if (nextSpace == 32) {
+        currMoney = currMoney * 0.5;
+        $(".current-dollar").html("Money: " + currMoney * 1000);
+      }
+
+      if (nextSpace == 34) {
+        currHappy = currHappy + 2;
+        $(".current-heart").html("Happiness: " + currHappy);
+      }
+
+      // Actions for HTML section of board spaces
+
+      if (
+        nextSpace == 36 ||
+        nextSpace == 39 ||
+        nextSpace == 40 ||
+        nextSpace == 41 ||
+        nextSpace == 43
+      ) {
+        currFollow = currFollow + 1;
+        $(".current-star").html("Fame: " + currFollow);
+      }
+
+      if (nextSpace == 37) {
+        currHappy = currHappy + 3;
+        $(".current-heart").html("Happiness: " + currHappy);
+      }
+
+      if (nextSpace == 38) {
+        currHappy = currHappy * 0.5;
+        $(".current-heart").html("Happiness: " + currHappy);
+      }
+
+      if (nextSpace == 42) {
+        currHappy = currHappy + 2;
+        $(".current-heart").html("Happiness: " + currHappy);
+      }
 
       setTimeout(() => {
         turn = "Comp1";
         currTurn("Comp 1's turn now!");
         compOneTurn();
-      }, 2000);      
+      }, 2000);
       $(".roll-btn").attr("disabled", true);
     } else if (turn == "Comp1") {
       var diceRoll = Math.floor(Math.random() * 6) + 1;
