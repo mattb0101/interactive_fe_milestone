@@ -1,3 +1,115 @@
+/*----------------------------------Game Board---------------*/
+
+.container {
+    position: relative;
+    grid-area: 1 / 2;
+    display: flex;
+    height: 90vmin;
+    width: 90vmin;
+    margin: 5vh 2vw;
+    background-color: #000;
+    border-radius: 10px;
+    border: 2px solid greenyellow;
+    justify-content: center;
+    overflow: hidden;
+
+}
+
+.board {
+    display: grid;
+    height: 90%;
+    width: 90%;
+    grid-template-columns: 1.5fr repeat(5, 1fr) 1.5fr;
+    grid-template-rows: 1.5fr repeat(5, 1fr) 1.5fr;
+    padding: 20px;
+    margin: auto;
+    background-color: grey;
+    border: 5px solid green;
+}
+
+.move-space {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 0;
+    background-color: #fafafa;
+    text-align: center;
+    border-radius: 10px;
+}
+
+/*---------------Choosing Route-------*/
+
+#choose-enrol, #choose-html,
+#choose-css, #choose-javascript {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; 
+    background-color:  rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+    color: #fff;
+}
+
+.enrol-content, .html-content,
+.css-content, .javascript-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000763;
+    height: 40vh;
+    width: 40vw;
+    border-radius: 20px;
+}
+
+/*----------------------------------Dice---------------*/
+
+.dice-roll {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    grid-area: 3 / 4 / span 2 / span 1;
+}
+
+.dice {
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    margin: 5px;
+    border: 2px solid #000;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 3px 3px darkred;
+}
+
+.dice-roll button {
+    height: 40px;
+    width: 75px;
+    margin-top: 50px;
+    background-color: green;
+    margin: 10px;
+    font-family: "Chelsea Market", cursive, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.current-turn {
+    color: #000;
+    font-weight: bold;
+}
+
+
 /*------------------------------------------Grid Board Spaces----------------*/
 
 [id='1'] {
@@ -266,4 +378,76 @@
 [id="23"], [id="24"] {
     border-left: 3px solid #000;
     border-right: 3px solid #000;
+}
+
+/*----------------------------------Inner Board Spaces Style----------*/
+
+#inner-java {
+    grid-area: 5 / 5 / span 2 / span 2;
+}
+
+#inner-enrol {
+    grid-area: 5 / 2 / span 2 / span 3;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+#inner-html {
+    grid-area: 2 / 2 / span 2 / span 2;
+}
+
+#inner-css {
+    grid-area: 2 / 5 / span 2 / span 2;
+}
+
+#inner-java, #inner-html, #inner-css {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.inner-move-space {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);
+    text-align: center;
+    border-radius: 5px;
+}
+
+[id="51"], [id="52"], [id="53"], [id="57"], [id="29"],
+[id="30"], [id="36"], [id="37"],
+[id="38"], [id="47"], [id="50"] {
+    border-bottom: 2px solid #000;
+    border-top: 2px solid #000;
+}
+
+[id="55"], [id="59"], [id="25"], [id="26"], [id="27"],
+[id="32"], [id="35"], [id="40"],
+[id="43"], [id="44"], [id="45"] {
+    border-right: 2px solid #000;
+    border-left: 2px solid #000;
+}
+
+[id="54"], [id="31"]{
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+}
+
+[id="56"], [id="33"], [id="42"],
+[id="46"], [id="49"]{
+    border-bottom: 2px solid #000;
+    border-left: 2px solid #000;
+}
+
+[id="58"], [id="28"], [id="34"],
+[id="41"], [id="48"]{
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+}
+
+[id="39"]{
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
 }

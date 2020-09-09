@@ -30,3 +30,11 @@ https://codepen.io/_Billy_Brown/pen/bzwtJ
 Last Child selector - https://www.w3schools.com/cssref/sel_last-child.asp
 Javascript timing events to allow some gap between events - https://www.w3schools.com/js/js_timing.asp
 
+
+<!-- Things needing to work on -->
+* Rules and intro texts
+* Income level somewhere
+* Opportunity and Experience cards and using them
+* screen showing up when landing on a space
+* Computer scores
+*

@@ -32,7 +32,7 @@ $(document).ready(function () {
   }
 
   $("#1>div").append(compOne, compTwo, compThree);
-  $("#23>div").append(playerOne);
+  $("#1>div").append(playerOne);
   $(".roll-btn").attr("disabled", true);
 
   $("#skip-btn").click(function () {
@@ -72,8 +72,10 @@ $(document).ready(function () {
   });
 
   $(".current-star").html("Fame: " + currFollow);
-  $(".current-dollar").html("Money: " + currMoney * 1000);
+  $(".current-dollar").html("Money: £" + currMoney * 1000);
   $(".current-heart").html("Happiness: " + currHappy);
+
+  $(".current-income").html("Income: £" + currIncome * 1000);
 
   //---------------------Opportunity Cards --------------------//
 
@@ -228,8 +230,7 @@ $(document).ready(function () {
   $(".roll-btn").on("click", function () {
     if (turn == "Player") {
       var currentSpace = $("#player-one").parent().parent().attr("id");
-      var diceRoll = 1;
-    //   Math.floor(Math.random() * 6) + 1;
+      var diceRoll = Math.floor(Math.random() * 6) + 1;
 
       if (path == "inner-e" && currentSpace == 4) {
         currentSpace = $("#player-one").parent().parent().attr("id");
