@@ -255,9 +255,6 @@ td {
     grid-area: 4 / 1;
 }
 
-
-
-
 /*-----------------------Counters----------*/
 
 #player-one, #comp-one, #comp-two, #comp-three {
@@ -293,3 +290,21 @@ td {
     font-size: 1.5em;
     text-transform: uppercase;
 }
+
+/* ----------------Next Space Info--------------- */
+
+.new-space-info {
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+    position: absolute;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #000763;
+    height: 30vh;
+    width: 20vw;
+    border-radius: 20px;
+    color: #fff;
+}
+

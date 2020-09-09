@@ -32,7 +32,7 @@ $(document).ready(function () {
   }
 
   $("#1>div").append(compOne, compTwo, compThree);
-  $("#1>div").append(playerOne);
+  $("#4>div").append(playerOne);
   $(".roll-btn").attr("disabled", true);
 
   $("#skip-btn").click(function () {
@@ -62,9 +62,9 @@ $(document).ready(function () {
       $(".check-message").html("Your formula doesnt equal 60!");
     } else {
       $("#rules").fadeOut("slow");
-      $(".heart").html("Happiness: " + $(".happiness").val());
+      $(".heart").html("Happiness: " + $(".happiness").val() + ' <i class="fas fa-heart"></i>');
       $(".star").html("Fame: " + $(".fame").val());
-      $(".dollar").html("Money: " + $(".money").val());
+      $(".dollar").html("Money: £" + $(".money").val());
     }
     setTimeout(() => {
       setTurn();
@@ -73,7 +73,7 @@ $(document).ready(function () {
 
   $(".current-star").html("Fame: " + currFollow);
   $(".current-dollar").html("Money: £" + currMoney * 1000);
-  $(".current-heart").html("Happiness: " + currHappy);
+  $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
 
   $(".current-income").html("Income: £" + currIncome * 1000);
 
@@ -133,17 +133,19 @@ $(document).ready(function () {
     var currentSpace = $("#player-one").parent().parent().attr("id");
 
     if (currentSpace == 4) {
-      $(".roll-btn").attr("disabled", true);
-      $("#choose-enrol").slideToggle("slow").css("display", "flex");
-      $(".enrol-no").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-enrol").fadeOut("slow");
-      });
-      $(".enrol-yes").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-enrol").fadeOut("slow");
-        path = "inner-e";
-      });
+      setTimeout(() => {
+        $(".roll-btn").attr("disabled", true);
+        $("#choose-enrol").slideToggle("slow").css("display", "flex");
+        $(".enrol-no").on("click", function () {
+          $(".roll-btn").removeAttr("disabled");
+          $("#choose-enrol").fadeOut("slow");
+        });
+        $(".enrol-yes").on("click", function () {
+          $(".roll-btn").removeAttr("disabled");
+          $("#choose-enrol").fadeOut("slow");
+          path = "inner-e";
+        });
+      }, 1750);
     }
     if (currentSpace == 11) {
       $(".roll-btn").attr("disabled", true);
@@ -227,10 +229,22 @@ $(document).ready(function () {
 
   // Rolling Dice so it affects correct player. Eventually this should be auto number rolling for the computers.
 
+  //   Button when next space moved into to pause the code before carrying on
+  $(".carry-on-btn").on("click", function () {
+    $(".new-space-info").slideToggle("slow");
+    setTimeout(() => {
+      turn = "Comp1";
+      currTurn("Comp 1's turn now!");
+      compOneTurn();
+    }, 1000);
+    $(".roll-btn").attr("disabled", true);
+  });
+
   $(".roll-btn").on("click", function () {
     if (turn == "Player") {
       var currentSpace = $("#player-one").parent().parent().attr("id");
-      var diceRoll = Math.floor(Math.random() * 6) + 1;
+      var diceRoll = 1;
+        //  Math.floor(Math.random() * 6) + 1;
 
       if (path == "inner-e" && currentSpace == 4) {
         currentSpace = $("#player-one").parent().parent().attr("id");
@@ -353,18 +367,18 @@ $(document).ready(function () {
         nextSpace == 22
       ) {
         currMoney = currMoney * 0.9;
-        $(".current-dollar").html("Money: " + currMoney * 1000);
+        $(".current-dollar").html("Money: £" + currMoney * 1000);
         console.log(currMoney);
       }
 
       if (nextSpace == 9) {
         currMoney = currMoney * 0.75;
-        $(".current-dollar").html("Money: " + currMoney * 1000);
+        $(".current-dollar").html("Money: £" + currMoney * 1000);
       }
 
       if (nextSpace == 14) {
         currMoney = currMoney - currIncome * 0.5;
-        $(".current-dollar").html("Money: " + currMoney * 1000);
+        $(".current-dollar").html("Money: £" + currMoney * 1000);
       }
       // Actions for Enroll section of board spaces
       if (
@@ -375,34 +389,67 @@ $(document).ready(function () {
         nextSpace == 33 ||
         nextSpace == 35
       ) {
-        currFollow = currFollow + 1;
-        $(".current-star").html("Fame: " + currFollow);
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currFollow = currFollow + 1;
+          $(".current-star").html("Fame: " + currFollow);
+          return;
+        }, 200);
       }
 
       if (nextSpace == 26) {
-        currHappy = currHappy + 2;
-        $(".current-heart").html("Happiness: " + currHappy);
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            `Make a friend with someone on the course - Gain 2 <i class="fas fa-heart"></i>'s `
+          );
+          currHappy = currHappy + 2;
+          $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+          return;
+        }, 200);
       }
 
       if (nextSpace == 29) {
-        currHappy = currHappy + 4;
-        $(".current-heart").html("Happiness: " + currHappy);
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html("Your new mentor is cute");
+          currHappy = currHappy + 4;
+          $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+          return;
+        }, 200);
       }
 
       if (nextSpace == 31) {
-        currIncome = currIncome + 0.5;
-        //   Need to display income somewhere!
-        console.log(currIncome);
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html("COVID course support - Your income increases by £500");
+          currIncome = currIncome + 0.5;
+          $(".current-income").html("Income: £" + currIncome * 1000);
+          return;
+        }, 200);
       }
 
       if (nextSpace == 32) {
-        currMoney = currMoney * 0.5;
-        $(".current-dollar").html("Money: " + currMoney * 1000);
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html("Over prepare by buying 3 new monitors - Lose 1/2 your cash on hand");
+          currMoney = currMoney * 0.5;
+          $(".current-dollar").html("Money: £" + currMoney * 1000);
+          return;
+        }, 200);
       }
 
       if (nextSpace == 34) {
-        currHappy = currHappy + 2;
-        $(".current-heart").html("Happiness: " + currHappy);
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html("Join a career support conference on Zoom");
+          currHappy = currHappy + 2;
+          $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+          return;
+        }, 200);
       }
 
       // Actions for HTML section of board spaces
@@ -420,17 +467,17 @@ $(document).ready(function () {
 
       if (nextSpace == 37) {
         currHappy = currHappy + 3;
-        $(".current-heart").html("Happiness: " + currHappy);
+        $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
       }
 
       if (nextSpace == 38) {
         currHappy = Math.ceil(currHappy * 0.5);
-        $(".current-heart").html("Happiness: " + currHappy);
+        $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
       }
 
       if (nextSpace == 42) {
         currHappy = currHappy + 2;
-        $(".current-heart").html("Happiness: " + currHappy);
+        $(".current-heart").html("Happiness: " + currHappy+ ' <i class="fas fa-heart"></i>');
       }
 
       // Actions for CSS section of board spaces
@@ -461,7 +508,7 @@ $(document).ready(function () {
         currFollow = currFollow + 2;
         currHappy = currHappy + 5;
         $(".current-star").html("Fame: " + currFollow);
-        $(".current-heart").html("Happiness: " + currHappy);
+        $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
       }
 
       // Actions for JavaScript section of board Spaces
@@ -481,32 +528,25 @@ $(document).ready(function () {
         currFollow = currFollow + 2;
         currHappy = currHappy + 4;
         $(".current-star").html("Fame: " + currFollow);
-        $(".current-heart").html("Happiness: " + currHappy);
+        $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
       }
 
       if (nextSpace == 54) {
-          currFollow = currFollow + 4;
+        currFollow = currFollow + 4;
         currIncome = currIncome + 1;
         $(".current-star").html("Fame: " + currFollow);
         //   Need to display income somewhere!
       }
 
       if (nextSpace == 57) {
-          currMoney = currMoney + 10;
-        $(".current-dollar").html("Money: " + currMoney * 1000);
+        currMoney = currMoney + 10;
+        $(".current-dollar").html("Money: £" + currMoney * 1000);
       }
 
       if (nextSpace == 58) {
-          currFollow = currFollow + 4;
+        currFollow = currFollow + 4;
         $(".current-star").html("Fame: " + currFollow);
       }
-
-      setTimeout(() => {
-        turn = "Comp1";
-        currTurn("Comp 1's turn now!");
-        compOneTurn();
-      }, 2000);
-      $(".roll-btn").attr("disabled", true);
     } else if (turn == "Comp1") {
       var diceRoll = Math.floor(Math.random() * 6) + 1;
       // use .this instead of the player and create an array of the players!
