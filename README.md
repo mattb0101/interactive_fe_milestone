@@ -4,6 +4,8 @@ Changed from 2 dies to one, makes it easier for inner and board not big enough t
 
 Put computer turns to Auto - but instantly happening, will look at trying to get a delay between functions.
 
+Lots of testing moving round and things that were happening on certain squares to stop play. Found it was certain squares didnt have a "Carry on" Button screen showing, so nothing moved this on to the next player! 
+
 
 
 Sources i used for things!

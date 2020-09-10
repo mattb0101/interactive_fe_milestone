@@ -184,6 +184,7 @@ td {
     height: 50px;
     width: 50px;
     background-color: #fff;
+    color: #000;
 }
 
 /*-----------------------Succession Formula----------*/
@@ -293,7 +294,7 @@ td {
 
 /* ----------------Next Space Info--------------- */
 
-.new-space-info {
+.new-space-info, .new-space-info-opp {
     display: none;
     flex-direction: column;
     z-index: 999;
