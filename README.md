@@ -33,8 +33,9 @@ Javascript timing events to allow some gap between events - https://www.w3school
 
 <!-- Things needing to work on -->
 * Rules and intro texts
-* Income level somewhere
+* Income level somewhere - DONE
 * Opportunity and Experience cards and using them
-* screen showing up when landing on a space
+* screen showing up when landing on a space - DONE
+    * Make these screens do something
 * Computer scores
-*
+

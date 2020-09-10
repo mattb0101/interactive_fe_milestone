@@ -11,8 +11,22 @@ $(document).ready(function () {
   var currFollow = 0;
   var currHappy = 0;
   var currMoney = 1;
-
   var currIncome = 1;
+
+  var currFollowC1 = 0;
+  var currHappyC1 = 0;
+  var currMoneyC1 = 1;
+  var currIncomeC1 = 1;
+
+  var currFollowC2 = 0;
+  var currHappyC2 = 0;
+  var currMoneyC2 = 1;
+  var currIncomeC2 = 1;
+
+  var currFollowC3 = 0;
+  var currHappyC3 = 0;
+  var currMoneyC3 = 1;
+  var currIncomeC3 = 1;
 
   //--------------------Turn Counter------------------//
 
@@ -32,7 +46,7 @@ $(document).ready(function () {
   }
 
   $("#1>div").append(compOne, compTwo, compThree);
-  $("#4>div").append(playerOne);
+  $("#1>div").append(playerOne);
   $(".roll-btn").attr("disabled", true);
 
   $("#skip-btn").click(function () {
@@ -63,19 +77,34 @@ $(document).ready(function () {
     } else {
       $("#rules").fadeOut("slow");
       $(".heart").html("Happiness: " + $(".happiness").val() + ' <i class="fas fa-heart"></i>');
-      $(".star").html("Fame: " + $(".fame").val());
-      $(".dollar").html("Money: £" + $(".money").val());
+      $(".star").html("Followers: " + $(".fame").val() + ' <i class="fas fa-star"></i>');
+      $(".dollar").html("Money: £" + $(".money").val() * 1000);
     }
     setTimeout(() => {
       setTurn();
     }, 500);
   });
 
-  $(".current-star").html("Fame: " + currFollow);
+  $(".current-star").html("Followers: " + currFollow + '<i class="fas fa-star"></i>');
   $(".current-dollar").html("Money: £" + currMoney * 1000);
   $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
-
   $(".current-income").html("Income: £" + currIncome * 1000);
+
+
+  $(".comp-one-star").html("Followers: " + currFollowC1 + '<i class="fas fa-star"></i>');
+  $(".comp-one-dollar").html("Money: £" + currMoneyC1 * 1000);
+  $(".comp-one-heart").html("Happiness: " + currHappyC1 + ' <i class="fas fa-heart"></i>');
+//   $(".comp-one-income").html("Income: £" + currIncome * 1000);
+
+$(".comp-two-star").html("Followers: " + currFollowC2 + '<i class="fas fa-star"></i>');
+  $(".comp-two-dollar").html("Money: £" + currMoneyC2 * 1000);
+  $(".comp-two-heart").html("Happiness: " + currHappyC2 + ' <i class="fas fa-heart"></i>');
+//   $(".comp-one-income").html("Income: £" + currIncome * 1000);
+
+$(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star"></i>');
+  $(".comp-three-dollar").html("Money: £" + currMoneyC3 * 1000);
+  $(".comp-three-heart").html("Happiness: " + currHappyC3 + ' <i class="fas fa-heart"></i>');
+//   $(".comp-one-income").html("Income: £" + currIncome * 1000);
 
   //---------------------Opportunity Cards --------------------//
 
@@ -118,11 +147,22 @@ $(document).ready(function () {
     }
   }
 
-  //---------------------Board Space Effects----------//
+  //---------------------Winning Check----------//
+
+  function winCheck() {
+      if (turn == "Player") {
+          if (1 == 2) {
+              console.log("check complete")
+          };
+      };
+  };
 
   //---------------------Game Play--------------------//
 
   function playerOneTurn() {
+    
+    winCheck();
+
     $(".player-turn-notice")
       .removeAttr("style")
       .animate({ left: "-=73%" }, 500)
@@ -395,7 +435,7 @@ $(document).ready(function () {
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 1;
-          $(".current-star").html("Fame: " + currFollow);
+          $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
           return;
         }, 200);
       }
@@ -462,7 +502,7 @@ $(document).ready(function () {
         nextSpace == 43
       ) {
         currFollow = currFollow + 1;
-        $(".current-star").html("Fame: " + currFollow);
+        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
       }
 
       if (nextSpace == 37) {
@@ -489,25 +529,25 @@ $(document).ready(function () {
         nextSpace == 49
       ) {
         currFollow = currFollow + 1;
-        $(".current-star").html("Fame: " + currFollow);
+        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
       }
 
       if (nextSpace == 46) {
         currFollow = currFollow + 3;
         currIncome = currIncome + 1;
-        $(".current-star").html("Fame: " + currFollow);
+        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
         //   Need to display income somewhere!
       }
 
       if (nextSpace == 47) {
         currFollow = currFollow + 3;
-        $(".current-star").html("Fame: " + currFollow);
+        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
       }
 
       if (nextSpace == 50) {
         currFollow = currFollow + 2;
         currHappy = currHappy + 5;
-        $(".current-star").html("Fame: " + currFollow);
+        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
         $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
       }
 
@@ -521,20 +561,20 @@ $(document).ready(function () {
         nextSpace == 59
       ) {
         currFollow = currFollow + 1;
-        $(".current-star").html("Fame: " + currFollow);
+        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
       }
 
       if (nextSpace == 52) {
         currFollow = currFollow + 2;
         currHappy = currHappy + 4;
-        $(".current-star").html("Fame: " + currFollow);
+        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
         $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
       }
 
       if (nextSpace == 54) {
         currFollow = currFollow + 4;
         currIncome = currIncome + 1;
-        $(".current-star").html("Fame: " + currFollow);
+        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
         //   Need to display income somewhere!
       }
 
@@ -545,7 +585,7 @@ $(document).ready(function () {
 
       if (nextSpace == 58) {
         currFollow = currFollow + 4;
-        $(".current-star").html("Fame: " + currFollow);
+        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
       }
     } else if (turn == "Comp1") {
       var diceRoll = Math.floor(Math.random() * 6) + 1;
