@@ -57,7 +57,7 @@ body {
     color: #fff;
 }
 
-#rules-content, #players, #formula {
+#rules-content, #players, #formula, #winner {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,7 +68,7 @@ body {
     border-radius: 20px;
 }
 
-#players, #formula {
+#players, #formula, #winner {
     display: none;
 }
 
@@ -83,7 +83,7 @@ body {
     text-align: center;
 }
 
-#play-btn, #go-btn, #next-btn, #skip-btn {
+.play-btn, .go-btn, .next-btn, .skip-btn, .reset-btn {
     background-color: green;
     border-radius: 5px;
     font-size: 2rem;

@@ -49,24 +49,24 @@ $(document).ready(function () {
   $("#1>div").append(playerOne);
   $(".roll-btn").attr("disabled", true);
 
-  $("#skip-btn").click(function () {
+  $(".skip-btn").click(function () {
     $("#rules").fadeOut("slow");
     setTurn();
   });
 
-  $("#play-btn").click(function () {
+  $(".play-btn").click(function () {
     $("#rules-content").slideToggle("slow", function () {
       $("#players").slideToggle("slow").css("display", "flex");
     });
   });
 
-  $("#go-btn").click(function () {
+  $(".go-btn").click(function () {
     $("#players").slideToggle("slow", function () {
       $("#formula").slideToggle("slow").css("display", "flex");
     });
   });
 
-  $("#next-btn").click(function () {
+  $(".next-btn").click(function () {
     if (
       Number($(".fame").val()) +
         Number($(".happiness").val()) +
@@ -75,9 +75,14 @@ $(document).ready(function () {
     ) {
       $(".check-message").html("Your formula doesnt equal 60!");
     } else {
+      $("#formula").css("display", "none");
       $("#rules").fadeOut("slow");
-      $(".heart").html("Happiness: " + $(".happiness").val() + ' <i class="fas fa-heart"></i>');
-      $(".star").html("Followers: " + $(".fame").val() + ' <i class="fas fa-star"></i>');
+      $(".heart").html(
+        "Happiness: " + $(".happiness").val() + ' <i class="fas fa-heart"></i>'
+      );
+      $(".star").html(
+        "Followers: " + $(".fame").val() + ' <i class="fas fa-star"></i>'
+      );
       $(".dollar").html("Money: £" + $(".money").val() * 1000);
     }
     setTimeout(() => {
@@ -85,26 +90,41 @@ $(document).ready(function () {
     }, 500);
   });
 
-  $(".current-star").html("Followers: " + currFollow + '<i class="fas fa-star"></i>');
+  $(".current-star").html(
+    "Followers: " + currFollow + '<i class="fas fa-star"></i>'
+  );
   $(".current-dollar").html("Money: £" + currMoney * 1000);
-  $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+  $(".current-heart").html(
+    "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+  );
   $(".current-income").html("Income: £" + currIncome * 1000);
 
-
-  $(".comp-one-star").html("Followers: " + currFollowC1 + '<i class="fas fa-star"></i>');
+  $(".comp-one-star").html(
+    "Followers: " + currFollowC1 + '<i class="fas fa-star"></i>'
+  );
   $(".comp-one-dollar").html("Money: £" + currMoneyC1 * 1000);
-  $(".comp-one-heart").html("Happiness: " + currHappyC1 + ' <i class="fas fa-heart"></i>');
-//   $(".comp-one-income").html("Income: £" + currIncome * 1000);
+  $(".comp-one-heart").html(
+    "Happiness: " + currHappyC1 + ' <i class="fas fa-heart"></i>'
+  );
+  //   $(".comp-one-income").html("Income: £" + currIncome * 1000);
 
-$(".comp-two-star").html("Followers: " + currFollowC2 + '<i class="fas fa-star"></i>');
+  $(".comp-two-star").html(
+    "Followers: " + currFollowC2 + '<i class="fas fa-star"></i>'
+  );
   $(".comp-two-dollar").html("Money: £" + currMoneyC2 * 1000);
-  $(".comp-two-heart").html("Happiness: " + currHappyC2 + ' <i class="fas fa-heart"></i>');
-//   $(".comp-one-income").html("Income: £" + currIncome * 1000);
+  $(".comp-two-heart").html(
+    "Happiness: " + currHappyC2 + ' <i class="fas fa-heart"></i>'
+  );
+  //   $(".comp-one-income").html("Income: £" + currIncome * 1000);
 
-$(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star"></i>');
+  $(".comp-three-star").html(
+    "Followers: " + currFollowC3 + '<i class="fas fa-star"></i>'
+  );
   $(".comp-three-dollar").html("Money: £" + currMoneyC3 * 1000);
-  $(".comp-three-heart").html("Happiness: " + currHappyC3 + ' <i class="fas fa-heart"></i>');
-//   $(".comp-one-income").html("Income: £" + currIncome * 1000);
+  $(".comp-three-heart").html(
+    "Happiness: " + currHappyC3 + ' <i class="fas fa-heart"></i>'
+  );
+  //   $(".comp-one-income").html("Income: £" + currIncome * 1000);
 
   //---------------------Opportunity Cards --------------------//
 
@@ -149,19 +169,25 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
 
   //---------------------Winning Check----------//
 
-  function winCheck() {
-      if (turn == "Player") {
-          if (1 == 2) {
-              console.log("check complete")
-          };
-      };
+  function winCheck(won) {
+    if (turn == "Player") {
+      if (currFollow == $(".fame").val()) {
+        $("#rules").css("display", "flex");
+        $("#winner").css("display", "flex");
+        won = 1
+      } else {
+          won = 0};
+    };
   };
+  
 
   //---------------------Game Play--------------------//
 
   function playerOneTurn() {
-    
-    winCheck();
+
+   if (won == 1) {
+       return;
+   };
 
     $(".player-turn-notice")
       .removeAttr("style")
@@ -284,7 +310,7 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
     if (turn == "Player") {
       var currentSpace = $("#player-one").parent().parent().attr("id");
       var diceRoll = 1;
-        //  Math.floor(Math.random() * 6) + 1;
+      //  Math.floor(Math.random() * 6) + 1;
 
       if (path == "inner-e" && currentSpace == 4) {
         currentSpace = $("#player-one").parent().parent().attr("id");
@@ -435,7 +461,9 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 1;
-          $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          );
           return;
         }, 200);
       }
@@ -447,7 +475,9 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
             `Make a friend with someone on the course - Gain 2 <i class="fas fa-heart"></i>'s `
           );
           currHappy = currHappy + 2;
-          $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+          $(".current-heart").html(
+            "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+          );
           return;
         }, 200);
       }
@@ -457,7 +487,9 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info>p").html("Your new mentor is cute");
           currHappy = currHappy + 4;
-          $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+          $(".current-heart").html(
+            "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+          );
           return;
         }, 200);
       }
@@ -465,7 +497,9 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
       if (nextSpace == 31) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html("COVID course support - Your income increases by £500");
+          $(".new-space-info>p").html(
+            "COVID course support - Your income increases by £500"
+          );
           currIncome = currIncome + 0.5;
           $(".current-income").html("Income: £" + currIncome * 1000);
           return;
@@ -475,7 +509,9 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
       if (nextSpace == 32) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html("Over prepare by buying 3 new monitors - Lose 1/2 your cash on hand");
+          $(".new-space-info>p").html(
+            "Over prepare by buying 3 new monitors - Lose 1/2 your cash on hand"
+          );
           currMoney = currMoney * 0.5;
           $(".current-dollar").html("Money: £" + currMoney * 1000);
           return;
@@ -485,9 +521,13 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
       if (nextSpace == 34) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html("Join a career support conference on Zoom");
+          $(".new-space-info>p").html(
+            "Join a career support conference on Zoom"
+          );
           currHappy = currHappy + 2;
-          $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+          $(".current-heart").html(
+            "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+          );
           return;
         }, 200);
       }
@@ -502,22 +542,30 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
         nextSpace == 43
       ) {
         currFollow = currFollow + 1;
-        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
+        $(".current-star").html(
+          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+        );
       }
 
       if (nextSpace == 37) {
         currHappy = currHappy + 3;
-        $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+        $(".current-heart").html(
+          "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+        );
       }
 
       if (nextSpace == 38) {
         currHappy = Math.ceil(currHappy * 0.5);
-        $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+        $(".current-heart").html(
+          "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+        );
       }
 
       if (nextSpace == 42) {
         currHappy = currHappy + 2;
-        $(".current-heart").html("Happiness: " + currHappy+ ' <i class="fas fa-heart"></i>');
+        $(".current-heart").html(
+          "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+        );
       }
 
       // Actions for CSS section of board spaces
@@ -529,26 +577,36 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
         nextSpace == 49
       ) {
         currFollow = currFollow + 1;
-        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
+        $(".current-star").html(
+          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+        );
       }
 
       if (nextSpace == 46) {
         currFollow = currFollow + 3;
         currIncome = currIncome + 1;
-        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
+        $(".current-star").html(
+          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+        );
         //   Need to display income somewhere!
       }
 
       if (nextSpace == 47) {
         currFollow = currFollow + 3;
-        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
+        $(".current-star").html(
+          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+        );
       }
 
       if (nextSpace == 50) {
         currFollow = currFollow + 2;
         currHappy = currHappy + 5;
-        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
-        $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+        $(".current-star").html(
+          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+        );
+        $(".current-heart").html(
+          "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+        );
       }
 
       // Actions for JavaScript section of board Spaces
@@ -561,20 +619,28 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
         nextSpace == 59
       ) {
         currFollow = currFollow + 1;
-        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
+        $(".current-star").html(
+          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+        );
       }
 
       if (nextSpace == 52) {
         currFollow = currFollow + 2;
         currHappy = currHappy + 4;
-        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
-        $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+        $(".current-star").html(
+          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+        );
+        $(".current-heart").html(
+          "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+        );
       }
 
       if (nextSpace == 54) {
         currFollow = currFollow + 4;
         currIncome = currIncome + 1;
-        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
+        $(".current-star").html(
+          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+        );
         //   Need to display income somewhere!
       }
 
@@ -585,7 +651,9 @@ $(".comp-three-star").html("Followers: " + currFollowC3 + '<i class="fas fa-star
 
       if (nextSpace == 58) {
         currFollow = currFollow + 4;
-        $(".current-star").html("Fame: " + currFollow + '<i class="fas fa-star"></i>');
+        $(".current-star").html(
+          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+        );
       }
     } else if (turn == "Comp1") {
       var diceRoll = Math.floor(Math.random() * 6) + 1;
