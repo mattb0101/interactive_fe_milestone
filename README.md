@@ -40,4 +40,6 @@ Javascript timing events to allow some gap between events - https://www.w3school
 * screen showing up when landing on a space - DONE
     * Make these screens do something
 * Computer scores
+* Opp Card Removed from screen but not from actual array! opposite of push needed in here
+* Issue Coming out of CSS from square 50! didnt appear again and then broke...
 

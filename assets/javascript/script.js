@@ -435,7 +435,7 @@ $(document).ready(function () {
             `<div class="player-opp-card${playerOppCards[0][0]}">Testing</div>`
           );
           $(".new-space-info-opp").slideToggle("slow").css("display", "flex");
-          if (randomOpp == 1) {
+          if (randomOpp == 0) {
             $(".new-space-info-opp>p").html("Do you want to build a snowman?!");
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow");
@@ -449,7 +449,7 @@ $(document).ready(function () {
               }, 1000);
               $(".roll-btn").attr("disabled", true);
             });
-          } else if (randomOpp == 2 || randomOpp == 3) {
+          } else if (randomOpp == 1 || randomOpp == 2) {
             $(".new-space-info-opp>p").html("You got an opportunity card!");
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow");
@@ -463,7 +463,7 @@ $(document).ready(function () {
               }, 1000);
               $(".roll-btn").attr("disabled", true);
             });
-          } else if (randomOpp == 4 || randomOpp == 5) {
+          } else if (randomOpp == 3 || randomOpp == 4) {
             $(".new-space-info-opp>p").html("You got an opportunity card!");
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow");
@@ -477,13 +477,13 @@ $(document).ready(function () {
               }, 1000);
               $(".roll-btn").attr("disabled", true);
             });
-          } else if (randomOpp == 6 || randomOpp == 7) {
+          } else if (randomOpp == 5 || randomOpp == 6) {
             $(".new-space-info-opp>p").html("You got an opportunity card!");
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow");
               $("div").remove(`.player-opp-card${playerOppCards[0][0]}`);
               $("#player-one").remove();
-              $("221>div").append(playerOne);
+              $("#23>div").append(playerOne);
               setTimeout(() => {
                 turn = "Comp1";
                 currTurn("Comp 1's turn now!");
@@ -491,7 +491,7 @@ $(document).ready(function () {
               }, 1000);
               $(".roll-btn").attr("disabled", true);
             });
-          } else if (randomOpp == 8) {
+          } else if (randomOpp ==7) {
             $(".new-space-info-opp>p").html("You got an opportunity card!");
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow");
@@ -662,31 +662,59 @@ $(document).ready(function () {
         nextSpace == 41 ||
         nextSpace == 43
       ) {
-        currFollow = currFollow + 1;
-        $(".current-star").html(
-          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
-        );
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currFollow = currFollow + 1;
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          );
+          return;
+        }, 200);
       }
 
       if (nextSpace == 37) {
-        currHappy = currHappy + 3;
-        $(".current-heart").html(
-          "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
-        );
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currHappy = currHappy + 3;
+          $(".current-heart").html(
+            "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+          );
+          return;
+        }, 200);
       }
 
       if (nextSpace == 38) {
-        currHappy = Math.ceil(currHappy * 0.5);
-        $(".current-heart").html(
-          "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
-        );
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currHappy = Math.ceil(currHappy * 0.5);
+          $(".current-heart").html(
+            "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+          );
+          return;
+        }, 200);
       }
 
       if (nextSpace == 42) {
-        currHappy = currHappy + 2;
-        $(".current-heart").html(
-          "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
-        );
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currHappy = currHappy + 2;
+          $(".current-heart").html(
+            "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+          );
+          return;
+        }, 200);
       }
 
       // Actions for CSS section of board spaces
@@ -697,37 +725,65 @@ $(document).ready(function () {
         nextSpace == 48 ||
         nextSpace == 49
       ) {
-        currFollow = currFollow + 1;
-        $(".current-star").html(
-          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
-        );
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currFollow = currFollow + 1;
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          );
+          return;
+        }, 200);
       }
 
       if (nextSpace == 46) {
-        currFollow = currFollow + 3;
-        currIncome = currIncome + 1;
-        $(".current-star").html(
-          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
-        );
-        //   Need to display income somewhere!
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currFollow = currFollow + 3;
+          currIncome = currIncome + 1;
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          );
+          $(".current-income").html("Income: £" + currIncome * 1000);
+          return;
+        }, 200);
       }
 
       if (nextSpace == 47) {
-        currFollow = currFollow + 3;
-        $(".current-star").html(
-          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
-        );
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currFollow = currFollow + 3;
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          );
+          return;
+        }, 200);
       }
 
       if (nextSpace == 50) {
-        currFollow = currFollow + 2;
-        currHappy = currHappy + 5;
-        $(".current-star").html(
-          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
-        );
-        $(".current-heart").html(
-          "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
-        );
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currFollow = currFollow + 2;
+          currHappy = currHappy + 5;
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          );
+          $(".current-heart").html(
+            "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+          );
+          return;
+        }, 200);
       }
 
       // Actions for JavaScript section of board Spaces
@@ -739,42 +795,77 @@ $(document).ready(function () {
         nextSpace == 56 ||
         nextSpace == 59
       ) {
-        currFollow = currFollow + 1;
-        $(".current-star").html(
-          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
-        );
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currFollow = currFollow + 1;
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          );
+          return;
+        }, 200);
       }
 
       if (nextSpace == 52) {
-        currFollow = currFollow + 2;
-        currHappy = currHappy + 4;
-        $(".current-star").html(
-          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
-        );
-        $(".current-heart").html(
-          "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
-        );
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currFollow = currFollow + 2;
+          currHappy = currHappy + 4;
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          );
+          $(".current-heart").html(
+            "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+          );
+          return;
+        }, 200);
       }
 
       if (nextSpace == 54) {
-        currFollow = currFollow + 4;
-        currIncome = currIncome + 1;
-        $(".current-star").html(
-          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
-        );
-        //   Need to display income somewhere!
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currFollow = currFollow + 4;
+          currIncome = currIncome + 1;
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          );
+          $(".current-income").html("Income: £" + currIncome * 1000);
+          return;
+        }, 200);
       }
 
       if (nextSpace == 57) {
-        currMoney = currMoney + 10;
-        $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currMoney = currMoney + 10;
+          $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
+          return;
+        }, 200);
       }
 
       if (nextSpace == 58) {
-        currFollow = currFollow + 4;
-        $(".current-star").html(
-          "Fame: " + currFollow + '<i class="fas fa-star"></i>'
-        );
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info>p").html(
+            "Space affect currently undefined so no information to show"
+          );
+          currFollow = currFollow + 4;
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          );
+          return;
+        }, 200);
       }
     } else if (turn == "Comp1") {
       var diceRoll = Math.floor(Math.random() * 6) + 1;
