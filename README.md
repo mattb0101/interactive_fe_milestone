@@ -39,7 +39,8 @@ Javascript timing events to allow some gap between events - https://www.w3school
 * Opportunity and Experience cards and using them
 * screen showing up when landing on a space - DONE
     * Make these screens do something
-* Computer scores
-* Opp Card Removed from screen but not from actual array! opposite of push needed in here
+* Computer scores - DONE
+* Opp Card Removed from screen but not from actual array! opposite of push needed in here - DONE
+    * Needs to not ask for enrolling if used a card - Change from outer to inner and dont let enrol pop up. 
 * Issue Coming out of CSS from square 50! didnt appear again and then broke...
 

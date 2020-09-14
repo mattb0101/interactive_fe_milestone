@@ -83,12 +83,15 @@ body {
     text-align: center;
 }
 
-.play-btn, .go-btn, .next-btn, .skip-btn, .reset-btn {
+.play-btn, .go-btn, .next-btn, .skip-btn, .reset-btn, .carry-on-btn {
     background-color: green;
     border-radius: 5px;
     font-size: 2rem;
     padding: 5px;
     margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight:  bold;
+    font-family: "Chelsea Market", cursive, sans-serif;
 }
 
 .player-formula {
@@ -181,6 +184,13 @@ td {
 /* https://stackoverflow.com/questions/5110249/wildcard-in-css-for-classes */
 
 [class^="player-opp-card"] {
+    height: 50px;
+    width: 50px;
+    background-color: #fff;
+    color: #000;
+}
+
+[class^="player-exp-card"] {
     height: 50px;
     width: 50px;
     background-color: #fff;
@@ -307,5 +317,44 @@ td {
     width: 20vw;
     border-radius: 20px;
     color: #fff;
+}
+
+.space-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 80%;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 3px solid #000;
+}
+
+.space-view>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 90%;
+    border-radius: 10px;
+}
+
+.space-view p {
+    color: #000;
+    text-align: center;
+}
+
+.space-view p h2 {
+    font-family: "Chelsea Market", cursive, sans-serif;
+    font-weight: bold;
+    font-size: 3vmin;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.carry-on-btn {
+    font-size: 2vmin;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 

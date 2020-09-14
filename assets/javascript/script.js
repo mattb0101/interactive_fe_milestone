@@ -9,6 +9,8 @@ $(document).ready(function () {
   var path = "outer";
 
   var gameWon = 0;
+  var covidRedundancy = false;
+  var hacked = false;
 
   var currFollow = 0;
   var currHappy = 0;
@@ -48,7 +50,7 @@ $(document).ready(function () {
   }
 
   $("#1>div").append(compOne, compTwo, compThree);
-  $("#1>div").append(playerOne);
+  $("#11>div").append(playerOne);
   $(".roll-btn").attr("disabled", true);
 
   $(".skip-btn").click(function () {
@@ -141,9 +143,16 @@ $(document).ready(function () {
     [8, "Holiday", "Yet unknown"],
   ];
 
-  console.log(oppCardArray);
-
   playerOppCards = [];
+
+  expCardArray = [
+    [1, "Move 1 Square"],
+    [2, "Move 2 Squares"],
+    [3, "Move 3 Squares"],
+    [4, "Move 4 Squares"],
+  ];
+
+  playerExpCards = [];
 
   //---------Setting Turn-----------//
 
@@ -206,6 +215,14 @@ $(document).ready(function () {
 
     $(".roll-btn").removeAttr("disabled");
     var currentSpace = $("#player-one").parent().parent().attr("id");
+
+    if (currentSpace != 13) {
+      covidRedundancy = false;
+    }
+
+    if (currentSpace != 7) {
+      hacked = false;
+    }
 
     if (currentSpace == 4) {
       setTimeout(() => {
@@ -319,7 +336,30 @@ $(document).ready(function () {
   $(".roll-btn").on("click", function () {
     if (turn == "Player") {
       var currentSpace = $("#player-one").parent().parent().attr("id");
-      var diceRoll = Math.floor(Math.random() * 6) + 1;
+      var diceRoll = 1;
+      // Math.floor(Math.random() * 6) + 1;
+
+      $("#die-one").html(diceRoll);
+
+      if ((covidRedundancy = true && diceRoll <= 4 && currentSpace == 13)) {
+        setTimeout(() => {
+          turn = "Comp1";
+          currTurn("Comp 1's turn now!");
+          compOneTurn();
+        }, 1000);
+        $(".roll-btn").attr("disabled", true);
+        return;
+      }
+
+      if ((hacked = true && diceRoll >= 3 && currentSpace == 7)) {
+        setTimeout(() => {
+          turn = "Comp1";
+          currTurn("Comp 1's turn now!");
+          compOneTurn();
+        }, 1000);
+        $(".roll-btn").attr("disabled", true);
+        return;
+      }
 
       if (path == "inner-e" && currentSpace == 4) {
         currentSpace = $("#player-one").parent().parent().attr("id");
@@ -355,8 +395,6 @@ $(document).ready(function () {
       console.log(playerOppCards);
       console.log(currentSpace);
       var nextSpace = Number(currentSpace) + Number(diceRoll);
-
-      $("#die-one").html(diceRoll);
 
       console.log(nextSpace);
 
@@ -432,14 +470,18 @@ $(document).ready(function () {
           playerOppCards.push(oppCardArray[randomOpp]);
           console.log(randomOpp);
           $(".opp-cards").append(
-            `<div class="player-opp-card${playerOppCards[0][0]}">Testing</div>`
+            `<div class="player-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">${randomOpp}</div>`
           );
           $(".new-space-info-opp").slideToggle("slow").css("display", "flex");
           if (randomOpp == 0) {
-            $(".new-space-info-opp>p").html("Do you want to build a snowman?!");
+            $(".new-space-info-opp p").html("Do you want to build a snowman?!");
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow");
-              $("div").remove(`.player-opp-card${playerOppCards[0][0]}`);
+              var oppCard = playerOppCards.length - 1;
+              $("div").remove(`.player-opp-card${playerOppCards[oppCard][0]}`);
+
               $("#player-one").remove();
               $("#4>div").append(playerOne);
               setTimeout(() => {
@@ -447,13 +489,16 @@ $(document).ready(function () {
                 currTurn("Comp 1's turn now!");
                 compOneTurn();
               }, 1000);
+              console.log(playerOppCards);
+              playerOppCards.pop();
               $(".roll-btn").attr("disabled", true);
             });
           } else if (randomOpp == 1 || randomOpp == 2) {
-            $(".new-space-info-opp>p").html("You got an opportunity card!");
+            $(".new-space-info-opp p").html("You got an opportunity card!");
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow");
-              $("div").remove(`.player-opp-card${playerOppCards[0][0]}`);
+              var oppCard = playerOppCards.length - 1;
+              $("div").remove(`.player-opp-card${playerOppCards[oppCard][0]}`);
               $("#player-one").remove();
               $("#11>div").append(playerOne);
               setTimeout(() => {
@@ -461,13 +506,17 @@ $(document).ready(function () {
                 currTurn("Comp 1's turn now!");
                 compOneTurn();
               }, 1000);
+              console.log(playerOppCards);
+              playerOppCards.pop();
               $(".roll-btn").attr("disabled", true);
             });
           } else if (randomOpp == 3 || randomOpp == 4) {
-            $(".new-space-info-opp>p").html("You got an opportunity card!");
+            $(".new-space-info-opp p").html("You got an opportunity card!");
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow");
-              $("div").remove(`.player-opp-card${playerOppCards[0][0]}`);
+              var oppCard = playerOppCards.length - 1;
+              $("div").remove(`.player-opp-card${playerOppCards[oppCard][0]}`);
+
               $("#player-one").remove();
               $("#17>div").append(playerOne);
               setTimeout(() => {
@@ -475,13 +524,17 @@ $(document).ready(function () {
                 currTurn("Comp 1's turn now!");
                 compOneTurn();
               }, 1000);
+              console.log(playerOppCards);
+              playerOppCards.pop();
               $(".roll-btn").attr("disabled", true);
             });
           } else if (randomOpp == 5 || randomOpp == 6) {
-            $(".new-space-info-opp>p").html("You got an opportunity card!");
+            $(".new-space-info-opp p").html("You got an opportunity card!");
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow");
-              $("div").remove(`.player-opp-card${playerOppCards[0][0]}`);
+              var oppCard = playerOppCards.length - 1;
+              $("div").remove(`.player-opp-card${playerOppCards[oppCard][0]}`);
+
               $("#player-one").remove();
               $("#23>div").append(playerOne);
               setTimeout(() => {
@@ -489,13 +542,16 @@ $(document).ready(function () {
                 currTurn("Comp 1's turn now!");
                 compOneTurn();
               }, 1000);
+              console.log(playerOppCards);
+              playerOppCards.pop();
               $(".roll-btn").attr("disabled", true);
             });
-          } else if (randomOpp ==7) {
-            $(".new-space-info-opp>p").html("You got an opportunity card!");
+          } else if (randomOpp == 7) {
+            $(".new-space-info-opp p").html("You got an opportunity card!");
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow");
-              $("div").remove(`.player-opp-card${playerOppCards[0][0]}`);
+              var oppCard = playerOppCards.length - 1;
+              $("div").remove(`.player-opp-card${playerOppCards[oppCard][0]}`);
               $("#player-one").remove();
               $("#19>div").append(playerOne);
               setTimeout(() => {
@@ -503,6 +559,8 @@ $(document).ready(function () {
                 currTurn("Comp 1's turn now!");
                 compOneTurn();
               }, 1000);
+              console.log(playerOppCards);
+              playerOppCards.pop();
               $(".roll-btn").attr("disabled", true);
             });
           }
@@ -510,7 +568,6 @@ $(document).ready(function () {
       }
 
       if (
-        nextSpace == 3 ||
         nextSpace == 6 ||
         nextSpace == 12 ||
         nextSpace == 16 ||
@@ -519,7 +576,7 @@ $(document).ready(function () {
       ) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currMoney = currMoney * 0.9;
@@ -527,11 +584,30 @@ $(document).ready(function () {
         }, 200);
       }
 
+      if (nextSpace == 3) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            "TAXES! <br> If you income is less than £3000, pay 10%. If your income is £3001 - £9999, pay 50%, if your income is more than £10,000 pay 90% of one rounds income"
+          );
+          if (currIncome <= 3) {
+            currMoney = currMoney - currIncome * 0.1;
+            $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
+          } else if (currIncome > 3 && currIncome < 10) {
+            currMoney = currMoney - currIncome * 0.5;
+            $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
+          } else if (currIncome >= 10) {
+            currMoney = currMoney - currIncome * 0.9;
+            $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
+          }
+        }, 200);
+      }
+
       if (nextSpace == 9) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
-            "Space affect currently undefined so no information to show"
+          $(".new-space-info p").html(
+            "New Tech! <br> Spend 1/4 of your cash on hand to update!"
           );
           currMoney = currMoney * 0.75;
           $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
@@ -541,8 +617,8 @@ $(document).ready(function () {
       if (nextSpace == 14) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
-            "Space affect currently undefined so no information to show"
+          $(".new-space-info p").html(
+            "Fees Due <br>Pay 1/2 your annual income"
           );
           currMoney = currMoney - currIncome * 0.5;
           $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
@@ -550,14 +626,13 @@ $(document).ready(function () {
       }
 
       if (
-        nextSpace == 1 ||
+        // Moving to inner route spaces and these will be addressed at the start of next turn.
         nextSpace == 4 ||
-        nextSpace == 7 ||
         nextSpace == 11 ||
-        nextSpace == 13 ||
         nextSpace == 17 ||
-        nextSpace == 19 ||
-        nextSpace == 22
+        nextSpace == 23 ||
+
+        nextSpace == 19
       ) {
         setTimeout(() => {
           turn = "Comp1";
@@ -567,23 +642,56 @@ $(document).ready(function () {
         $(".roll-btn").attr("disabled", true);
       }
 
-      // Actions for Enroll section of board spaces
-      if (
-        nextSpace == 25 ||
-        nextSpace == 27 ||
-        nextSpace == 28 ||
-        nextSpace == 30 ||
-        nextSpace == 33 ||
-        nextSpace == 35
-      ) {
+      if (nextSpace == 1) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
-            "Space affect currently undefined so no information to show"
+          $(".new-space-info p").html(
+            `<h2>Pay Day!</h2>Get your income for passing here, but double if you land here!`
           );
-          currFollow = currFollow + 1;
-          $(".current-star").html(
-            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
+          $(".space-view>div").css("background-color", "#36adab");
+          currMoney = currMoney + currIncome;
+          $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
+        }, 200);
+      }
+
+      if (nextSpace == 7) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            `<h2>HACKED!</h2>Roll 2 or less, or pay ½ cash to move.`
+          );
+          $(".space-view>div").css("background-color", "#36adab");
+          //   Need to put payment option in here!
+          hacked = true;
+        }, 200);
+      }
+
+      if (nextSpace == 13) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            `<h2>COVID Redundancy!</h2>Roll 5 or more, or pay ½ cash to move.`
+          );
+          $(".space-view>div").css("background-color", "#36adab");
+          //   Need to put payment option in here!
+          covidRedundancy = true;
+        }, 200);
+      }
+
+      // Actions for Enroll section of board spaces
+      if (nextSpace == 25) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            "Changing Career - Draw one Experience Card"
+          );
+          var randomExp = Math.floor(Math.random() * expCardArray.length);
+          playerExpCards.push(expCardArray[randomExp]);
+          console.log(randomExp);
+          $(".exp-cards").append(
+            `<div class="player-exp-card${
+              playerExpCards[playerExpCards.length - 1][0]
+            }">${randomExp}</div>`
           );
           return;
         }, 200);
@@ -592,7 +700,7 @@ $(document).ready(function () {
       if (nextSpace == 26) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             `Make a friend with someone on the course - Gain 2 <i class="fas fa-heart"></i>'s `
           );
           currHappy = currHappy + 2;
@@ -603,11 +711,63 @@ $(document).ready(function () {
         }, 200);
       }
 
+      if (nextSpace == 27) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(`Plagiarism!! - Go straight to Hacked!`);
+          $("#player-one").remove();
+          $("#7>div").append(playerOne);
+          path = "outer";
+          hacked = true;
+          return;
+        }, 200);
+      }
+
+      if (nextSpace == 28) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            `Start the course during a special offer time - Draw 2 opportunity cards`
+          );
+          var randomOpp = Math.floor(Math.random() * oppCardArray.length);
+          playerOppCards.push(oppCardArray[randomOpp]);
+          console.log(randomOpp);
+          $(".opp-cards").append(
+            `<div class="player-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">${randomOpp}</div>`
+          );
+          var randomOpp = Math.floor(Math.random() * oppCardArray.length);
+          playerOppCards.push(oppCardArray[randomOpp]);
+          console.log(randomOpp);
+          $(".opp-cards").append(
+            `<div class="player-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">${randomOpp}</div>`
+          );
+          return;
+        }, 200);
+      }
+
       if (nextSpace == 29) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html("Your new mentor is cute");
+          $(".new-space-info p").html("Your new mentor is cute");
           currHappy = currHappy + 4;
+          $(".current-heart").html(
+            "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+          );
+          return;
+        }, 200);
+      }
+
+      if (nextSpace == 30) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            `Support from careers team to help you decide the best route for you - Gain 2 <i class="fas fa-heart"></i>'s `
+          );
+          currHappy = currHappy + 2;
           $(".current-heart").html(
             "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
           );
@@ -618,7 +778,7 @@ $(document).ready(function () {
       if (nextSpace == 31) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "COVID course support - Your income increases by £500"
           );
           currIncome = currIncome + 0.5;
@@ -630,7 +790,7 @@ $(document).ready(function () {
       if (nextSpace == 32) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Over prepare by buying 3 new monitors - Lose 1/2 your cash on hand"
           );
           currMoney = currMoney * 0.5;
@@ -639,10 +799,22 @@ $(document).ready(function () {
         }, 200);
       }
 
+      if (nextSpace == 33) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            "A Company supportsyour course and help you with finance - Get £2000"
+          );
+          currMoney = currMoney + 2;
+          $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
+          return;
+        }, 200);
+      }
+
       if (nextSpace == 34) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Join a career support conference on Zoom"
           );
           currHappy = currHappy + 2;
@@ -653,18 +825,40 @@ $(document).ready(function () {
         }, 200);
       }
 
-      // Actions for HTML section of board spaces
-
-      if (
-        nextSpace == 36 ||
-        nextSpace == 39 ||
-        nextSpace == 40 ||
-        nextSpace == 41 ||
-        nextSpace == 43
-      ) {
+      if (nextSpace == 35) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
+            `Happily get enrolled with great support and lots of learning - Income up £500 and draw 2 Experience cards`
+          );
+          currIncome = currIncome + 0.5;
+          $(".current-income").html("Income: £" + currIncome * 1000);
+          var randomExp = Math.floor(Math.random() * expCardArray.length);
+          playerExpCards.push(expCardArray[randomExp]);
+          console.log(randomExp);
+          $(".exp-cards").append(
+            `<div class="player-exp-card${
+              playerExpCards[playerExpCards.length - 1][0]
+            }">${randomExp}</div>`
+          );
+          var randomExp = Math.floor(Math.random() * expCardArray.length);
+          playerExpCards.push(expCardArray[randomExp]);
+          console.log(randomExp);
+          $(".exp-cards").append(
+            `<div class="player-exp-card${
+              playerExpCards[playerExpCards.length - 1][0]
+            }">${randomExp}</div>`
+          );
+          return;
+        }, 200);
+      }
+
+      // Actions for HTML section of board spaces
+
+      if (nextSpace == 40) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 1;
@@ -675,11 +869,29 @@ $(document).ready(function () {
         }, 200);
       }
 
+      if (nextSpace == 36) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            `..........draw 1 experience card`
+          );
+          var randomExp = Math.floor(Math.random() * expCardArray.length);
+          playerExpCards.push(expCardArray[randomExp]);
+          console.log(randomExp);
+          $(".exp-cards").append(
+            `<div class="player-exp-card${
+              playerExpCards[playerExpCards.length - 1][0]
+            }">${randomExp}</div>`
+          );
+          return;
+        }, 200);
+      }
+
       if (nextSpace == 37) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
-            "Space affect currently undefined so no information to show"
+          $(".new-space-info p").html(
+            `Make and awesome Email layout for a friends company - Gain 3 <i class="fas fa-heart"></i>'s `
           );
           currHappy = currHappy + 3;
           $(".current-heart").html(
@@ -692,8 +904,8 @@ $(document).ready(function () {
       if (nextSpace == 38) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
-            "Space affect currently undefined so no information to show"
+          $(".new-space-info p").html(
+            `Break down trying to figure it out! - Lose 1/2 your <i class="fas fa-heart"></i>'s `
           );
           currHappy = Math.ceil(currHappy * 0.5);
           $(".current-heart").html(
@@ -703,15 +915,61 @@ $(document).ready(function () {
         }, 200);
       }
 
+      if (nextSpace == 39) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            "..............income up £1000"
+          );
+          currIncome = currIncome + 1;
+          $(".current-income").html("Income: £" + currIncome * 1000);
+          return;
+        }, 200);
+      }
+
+      if (nextSpace == 41) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            `Watch Youtube and learn some new tricks - Gain 2 <i class="fas fa-heart"></i>'s and draw 1 experience card `
+          );
+          currHappy = currHappy + 2;
+          $(".current-heart").html("Happiness: " + currHappy + ' <i class="fas fa-heart"></i>');
+          var randomExp = Math.floor(Math.random() * expCardArray.length);
+          playerExpCards.push(expCardArray[randomExp]);
+          console.log(randomExp);
+          $(".exp-cards").append(
+            `<div class="player-exp-card${
+              playerExpCards[playerExpCards.length - 1][0]
+            }">${randomExp}</div>`
+          );
+          return;
+        }, 200);
+      }
+
       if (nextSpace == 42) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
-            "Space affect currently undefined so no information to show"
+          $(".new-space-info p").html(
+            `Complete the module quickly with no issues -Gain 2 <i class="fas fa-heart"></i>'s`
           );
           currHappy = currHappy + 2;
           $(".current-heart").html(
             "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+          );
+          return;
+        }, 200);
+      }
+
+      if ( nextSpace == 43) {
+        setTimeout(() => {
+          $(".new-space-info").slideToggle("slow").css("display", "flex");
+          $(".new-space-info p").html(
+            `Help another student on slack with a problem and get noticed - Gain 2 <i class="fas fa-star"></i>'s `
+          );
+          currFollow = currFollow + 2;
+          $(".current-star").html(
+            "Fame: " + currFollow + '<i class="fas fa-star"></i>'
           );
           return;
         }, 200);
@@ -727,7 +985,7 @@ $(document).ready(function () {
       ) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 1;
@@ -741,7 +999,7 @@ $(document).ready(function () {
       if (nextSpace == 46) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 3;
@@ -757,7 +1015,7 @@ $(document).ready(function () {
       if (nextSpace == 47) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 3;
@@ -771,7 +1029,7 @@ $(document).ready(function () {
       if (nextSpace == 50) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 2;
@@ -797,7 +1055,7 @@ $(document).ready(function () {
       ) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 1;
@@ -811,7 +1069,7 @@ $(document).ready(function () {
       if (nextSpace == 52) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 2;
@@ -829,7 +1087,7 @@ $(document).ready(function () {
       if (nextSpace == 54) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 4;
@@ -845,7 +1103,7 @@ $(document).ready(function () {
       if (nextSpace == 57) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currMoney = currMoney + 10;
@@ -857,7 +1115,7 @@ $(document).ready(function () {
       if (nextSpace == 58) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info>p").html(
+          $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
           currFollow = currFollow + 4;
