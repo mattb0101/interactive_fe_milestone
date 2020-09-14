@@ -50,7 +50,7 @@ $(document).ready(function () {
   }
 
   $("#1>div").append(compOne, compTwo, compThree);
-  $("#1>div").append(playerOne);
+  $("#4>div").append(playerOne);
   $(".roll-btn").attr("disabled", true);
 
   $(".skip-btn").click(function () {
@@ -240,48 +240,48 @@ $(document).ready(function () {
       }, 1750);
     }
     if (currentSpace == 11) {
-        setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
-      $("#choose-html").slideToggle("slow").css("display", "flex");
-      $(".html-no").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-html").fadeOut("slow");
-      });
-      $(".html-yes").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-html").fadeOut("slow");
-        path = "inner-h";
-      });
+      setTimeout(() => {
+        $(".roll-btn").attr("disabled", true);
+        $("#choose-html").slideToggle("slow").css("display", "flex");
+        $(".html-no").on("click", function () {
+          $(".roll-btn").removeAttr("disabled");
+          $("#choose-html").fadeOut("slow");
+        });
+        $(".html-yes").on("click", function () {
+          $(".roll-btn").removeAttr("disabled");
+          $("#choose-html").fadeOut("slow");
+          path = "inner-h";
+        });
       }, 1750);
     }
     if (currentSpace == 17) {
-        setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
-      $("#choose-css").slideToggle("slow").css("display", "flex");
-      $(".css-no").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-css").fadeOut("slow");
-      });
-      $(".css-yes").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-css").fadeOut("slow");
-        path = "inner-c";
-      });
+      setTimeout(() => {
+        $(".roll-btn").attr("disabled", true);
+        $("#choose-css").slideToggle("slow").css("display", "flex");
+        $(".css-no").on("click", function () {
+          $(".roll-btn").removeAttr("disabled");
+          $("#choose-css").fadeOut("slow");
+        });
+        $(".css-yes").on("click", function () {
+          $(".roll-btn").removeAttr("disabled");
+          $("#choose-css").fadeOut("slow");
+          path = "inner-c";
+        });
       }, 1750);
     }
     if (currentSpace == 23) {
-        setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
-      $("#choose-javascript").slideToggle("slow").css("display", "flex");
-      $(".javascript-no").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-javascript").fadeOut("slow");
-      });
-      $(".javascript-yes").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-javascript").fadeOut("slow");
-        path = "inner-j";
-      });
+      setTimeout(() => {
+        $(".roll-btn").attr("disabled", true);
+        $("#choose-javascript").slideToggle("slow").css("display", "flex");
+        $(".javascript-no").on("click", function () {
+          $(".roll-btn").removeAttr("disabled");
+          $("#choose-javascript").fadeOut("slow");
+        });
+        $(".javascript-yes").on("click", function () {
+          $(".roll-btn").removeAttr("disabled");
+          $("#choose-javascript").fadeOut("slow");
+          path = "inner-j";
+        });
       }, 1750);
     }
   }
@@ -342,7 +342,8 @@ $(document).ready(function () {
   $(".roll-btn").on("click", function () {
     if (turn == "Player") {
       var currentSpace = $("#player-one").parent().parent().attr("id");
-      var diceRoll = Math.floor(Math.random() * 6) + 1;
+      var diceRoll = 1;
+      //    Math.floor(Math.random() * 6) + 1;
 
       $("#die-one").html(diceRoll);
 
@@ -684,41 +685,37 @@ $(document).ready(function () {
 
       // Actions for Enroll section of board spaces
       if (nextSpace == 25) {
-        setTimeout(() => {
-          $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info p").html(
-            "Changing Career - Draw one Experience Card"
-          );
-          var randomExp = Math.floor(Math.random() * expCardArray.length);
-          playerExpCards.push(expCardArray[randomExp]);
-          console.log(randomExp);
-          $(".exp-cards").append(
-            `<div class="player-exp-card${
-              playerExpCards[playerExpCards.length - 1][0]
-            }">${randomExp}</div>`
-          );
-          return;
-        }, 200);
+        innerEnrolOne();
+        // setTimeout(() => {
+        //   $(".new-space-info").slideToggle("slow").css("display", "flex");
+        //   $(".new-space-info p").html(
+        //     "Changing Career - Draw one Experience Card"
+        //   );
+        //   $(".space-view").css("background", "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9)");
+        //   var randomExp = Math.floor(Math.random() * expCardArray.length);
+        //   playerExpCards.push(expCardArray[randomExp]);
+        //   console.log(randomExp);
+        //   $(".exp-cards").append(
+        //     `<div class="player-exp-card${
+        //       playerExpCards[playerExpCards.length - 1][0]
+        //     }">${randomExp}</div>`
+        //   );
+        //   return;
+        // }, 200);
       }
 
       if (nextSpace == 26) {
-        setTimeout(() => {
-          $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info p").html(
-            `Make a friend with someone on the course - Gain 2 <i class="fas fa-heart"></i>'s `
-          );
-          currHappy = currHappy + 2;
-          $(".current-heart").html(
-            "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
-          );
-          return;
-        }, 200);
+        innerEnrolTwo();
       }
 
       if (nextSpace == 27) {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(`Plagiarism!! - Go straight to Hacked!`);
+          $(".space-viewiv").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           $("#player-one").remove();
           $("#7>div").append(playerOne);
           path = "outer";
@@ -732,6 +729,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `Start the course during a special offer time - Draw 2 opportunity cards`
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           var randomOpp = Math.floor(Math.random() * oppCardArray.length);
           playerOppCards.push(oppCardArray[randomOpp]);
@@ -757,6 +758,10 @@ $(document).ready(function () {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html("Your new mentor is cute");
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currHappy = currHappy + 4;
           $(".current-heart").html(
             "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
@@ -770,6 +775,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `Support from careers team to help you decide the best route for you - Gain 2 <i class="fas fa-heart"></i>'s `
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currHappy = currHappy + 2;
           $(".current-heart").html(
@@ -785,6 +794,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             "COVID course support - Your income increases by £500"
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currIncome = currIncome + 0.5;
           $(".current-income").html("Income: £" + currIncome * 1000);
           return;
@@ -796,6 +809,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             "Over prepare by buying 3 new monitors - Lose 1/2 your cash on hand"
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currMoney = currMoney * 0.5;
           $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
@@ -809,6 +826,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             "A Company supportsyour course and help you with finance - Get £2000"
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currMoney = currMoney + 2;
           $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
           return;
@@ -820,6 +841,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             "Join a career support conference on Zoom"
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currHappy = currHappy + 2;
           $(".current-heart").html(
@@ -834,6 +859,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `Happily get enrolled with great support and lots of learning - Income up £500 and draw 2 Experience cards`
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currIncome = currIncome + 0.5;
           $(".current-income").html("Income: £" + currIncome * 1000);
@@ -865,6 +894,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currFollow = currFollow + 1;
           $(".current-star").html(
             "Fame: " + currFollow + '<i class="fas fa-star"></i>'
@@ -877,6 +910,10 @@ $(document).ready(function () {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(`..........draw 1 experience card`);
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           var randomExp = Math.floor(Math.random() * expCardArray.length);
           playerExpCards.push(expCardArray[randomExp]);
           console.log(randomExp);
@@ -895,6 +932,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             `Make and awesome Email layout for a friends company - Gain 3 <i class="fas fa-heart"></i>'s `
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currHappy = currHappy + 3;
           $(".current-heart").html(
             "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
@@ -909,6 +950,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             `Break down trying to figure it out! - Lose 1/2 your <i class="fas fa-heart"></i>'s `
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currHappy = Math.ceil(currHappy * 0.5);
           $(".current-heart").html(
             "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
@@ -921,6 +966,10 @@ $(document).ready(function () {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html("..............income up £1000");
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currIncome = currIncome + 1;
           $(".current-income").html("Income: £" + currIncome * 1000);
           return;
@@ -932,6 +981,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `Watch Youtube and learn some new tricks - Gain 2 <i class="fas fa-heart"></i>'s and draw 1 experience card `
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currHappy = currHappy + 2;
           $(".current-heart").html(
@@ -955,6 +1008,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             `Complete the module quickly with no issues -Gain 2 <i class="fas fa-heart"></i>'s`
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currHappy = currHappy + 2;
           $(".current-heart").html(
             "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
@@ -968,6 +1025,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `Help another student on slack with a problem and get noticed - Gain 2 <i class="fas fa-star"></i>'s `
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currFollow = currFollow + 2;
           $(".current-star").html(
@@ -985,6 +1046,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currFollow = currFollow + 1;
           $(".current-star").html(
             "Fame: " + currFollow + '<i class="fas fa-star"></i>'
@@ -998,6 +1063,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `Bootstrap genius! - Gain 2 <i class="fas fa-star"></i>'s, 3 <i class="fas fa-heart"></i>'s and increase your income by £500 `
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currFollow = currFollow + 2;
           currHappy = currHappy + 3;
@@ -1019,6 +1088,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             `Do some freelance projects for friends - Gain 3 <i class="fas fa-star"></i>'s and increase your income by £1000`
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currFollow = currFollow + 3;
           currIncome = currIncome + 1;
           $(".current-star").html(
@@ -1035,6 +1108,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             `Project is noticed by people - Gain 3 <i class="fas fa-star"></i>'s`
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currFollow = currFollow + 3;
           $(".current-star").html(
             "Fame: " + currFollow + '<i class="fas fa-star"></i>'
@@ -1049,6 +1126,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             `Learn some cool tricks for styling from course members on slack - Gain 4 <i class="fas fa-heart"></i>'s `
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currHappy = currHappy + 4;
           $(".current-heart").html(
             "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
@@ -1062,6 +1143,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `Get 90% on your project! - Gain 2 <i class="fas fa-star"></i>'s and 5 <i class="fas fa-heart"></i>'s `
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currFollow = currFollow + 2;
           currHappy = currHappy + 5;
@@ -1083,6 +1168,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             "Space affect currently undefined so no information to show"
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currFollow = currFollow + 1;
           $(".current-star").html(
             "Fame: " + currFollow + '<i class="fas fa-star"></i>'
@@ -1096,6 +1185,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `Skills from a previous job help make something awesome! - Gain 2 <i class="fas fa-star"></i>'s and 4 <i class="fas fa-heart"></i>'s`
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currFollow = currFollow + 2;
           currHappy = currHappy + 4;
@@ -1113,6 +1206,10 @@ $(document).ready(function () {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(`.......Draw 2 Experience Cards`);
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           var randomExp = Math.floor(Math.random() * expCardArray.length);
           playerExpCards.push(expCardArray[randomExp]);
           console.log(randomExp);
@@ -1139,6 +1236,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             `Job opportunity as your project is noticed - Increase your income by £1000 and gain 4 <i class="fas fa-star"></i>'s`
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currFollow = currFollow + 4;
           currIncome = currIncome + 1;
           $(".current-star").html(
@@ -1154,6 +1255,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `.................- Draw 2 opportunity cards`
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           var randomOpp = Math.floor(Math.random() * oppCardArray.length);
           playerOppCards.push(oppCardArray[randomOpp]);
@@ -1181,6 +1286,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             `Forget that you are rubbish at maths and can't do it! - Lose 1/2 your <i class="fas fa-heart"></i>'s `
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currHappy = Math.ceil(currHappy * 0.5);
           $(".current-heart").html(
             "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
@@ -1195,6 +1304,10 @@ $(document).ready(function () {
           $(".new-space-info p").html(
             "Javascript app you make gets sold on app store - Earn £10,000"
           );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
+          );
           currMoney = currMoney + 10;
           $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
           return;
@@ -1206,6 +1319,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `Build something that is usable by other people easily - Gain 4 <i class="fas fa-star"></i>'s`
+          );
+          $(".space-view>div").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currFollow = currFollow + 4;
           $(".current-star").html(
@@ -1220,6 +1337,10 @@ $(document).ready(function () {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
             `Finish the course sucessfully! - Gain 5 <i class="fas fa-star"></i>'s, 5 <i class="fas fa-heart"></i>'s and increase your income by £2000 `
+          );
+          $(".space-view").css(
+            "background",
+            "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
           currFollow = currFollow + 5;
           currHappy = currHappy + 5;
