@@ -37,6 +37,19 @@
     border-radius: 10px;
 }
 
+.enrol-yes, .enrol-no, .html-yes, .html-no,
+.css-yes, .css-no, .javascript-yes, .javascript-no {
+    background-color: green;
+    border-radius: 5px;
+    font-size: 2vmin;
+    padding: 5px;
+    margin: 1vmin;
+    text-transform: uppercase;
+    font-weight:  bold;
+    font-family: "Chelsea Market", cursive, sans-serif;
+    
+}
+
 
 /*---------------Choosing Route-------*/
 
@@ -64,10 +77,24 @@
     justify-content: center;
     align-items: center;
     background-color: #000763;
-    height: 40vh;
-    width: 40vw;
+    height: 30vh;
+    width: 30vw;
     border-radius: 20px;
 }
+
+.enrol-content>h2, .html-content>h2,
+.css-content>h2, .javascript-content>h2 {
+    font-family: "Chelsea Market", cursive, sans-serif;
+    text-transform: uppercase;
+    font-size: 5vmin;
+}
+
+.enrol-btn-container, .html-btn-container,
+.javascript-btn-container, .css-btn-container {
+    display: flex;
+    flex-direction: row;
+}
+
 
 /*----------------------------------Dice---------------*/
 
@@ -93,7 +120,7 @@
     box-shadow: 3px 3px darkred;
 }
 
-.dice-roll button {
+.roll-btn, .pay-btn {
     height: 40px;
     width: 75px;
     margin-top: 50px;
@@ -103,6 +130,10 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.2rem;
+}
+.pay-btn {
+    grid-area: 4 / 2 / span 1 / span 2;
+    justify-self: center;
 }
 
 .current-turn {

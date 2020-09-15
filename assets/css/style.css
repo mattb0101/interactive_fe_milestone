@@ -57,33 +57,41 @@ body {
     color: #fff;
 }
 
-#rules-content, #players, #formula, #winner {
+#intro-content, #rules, #formula, #winner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #000763;
-    height: 40vh;
+    height: 60vh;
     width: 40vw;
     border-radius: 20px;
+    padding: 2vmin;
 }
 
-#players, #formula, #winner {
+#rules, #formula, #winner {
     display: none;
 }
 
-#rules-content>h2, #players>h2, #formula>h2 {
+#intro-content>h1 {
+    font-family: "Chelsea Market", cursive, sans-serif;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+#intro-content>h2, #rules>h2, #formula>h2 {
     margin-top: 10px;
 }
 
-#rules-content>p, #players>p, #formula>p {
+#intro-content>p, #rules>p, #formula>p {
     height: 75%;
     margin: 10px;
     width: 100%;
     text-align: center;
 }
 
-.play-btn, .go-btn, .next-btn, .skip-btn, .reset-btn, .carry-on-btn {
+.play-btn, .go-btn, .next-btn, .skip-btn,
+.reset-btn, .carry-on-btn, .opp-use-now-btn {
     background-color: green;
     border-radius: 5px;
     font-size: 2rem;
@@ -110,7 +118,7 @@ body {
     height: 70vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, auto);
+    grid-template-rows: repeat(3, 1fr);
     background-color: #000;
     border-radius: 10px;
     border: 2px solid greenyellow;
@@ -172,11 +180,11 @@ td {
 
 .opp-cards, .exp-cards {
     display: inline-block;
-    height: 35%;
+    height: 32%;
+    max-height: 32%;
     width: 80%;
     border: 2px dashed #fff;
     margin-left: 1vw;
-    margin-bottom: 1vh;
     overflow: scroll;
 }
 
@@ -198,10 +206,14 @@ td {
 }
 
 [class^="player-exp-card"] {
-    height: 50px;
-    width: 50px;
+    display: inline-block;
+    height: 50%;
+    width: 25%;
     background-color: #fff;
+    border-radius: 5px;
+    border: 2px solid #ce8321;
     color: #000;
+    margin-left: 2px;
 }
 
 #opp-cards-container {
@@ -222,9 +234,12 @@ td {
 }
 
 [class^="player-check-opp-card"] {
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
     height: 100px;
     min-width: 200px;
+    width: 200px;
+    max-width: 200px;
     background-color: #fff;
     border-radius: 5px;
     border: 2px solid #ad4139;
@@ -379,6 +394,10 @@ td {
     text-align: center;
 }
 
+.space-view span {
+    font-weight: bold;
+}
+
 .space-view p h2 {
     font-family: "Chelsea Market", cursive, sans-serif;
     font-weight: bold;
@@ -387,7 +406,12 @@ td {
     text-decoration: underline;
 }
 
-.carry-on-btn {
+.opp-btn-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.carry-on-btn, .opp-use-now-btn {
     font-size: 2vmin;
     font-weight: bold;
     margin-bottom: 5px;

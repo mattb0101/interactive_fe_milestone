@@ -44,3 +44,14 @@ Javascript timing events to allow some gap between events - https://www.w3school
     * Needs to not ask for enrolling if used a card - Change from outer to inner and dont let enrol pop up. 
 * Issue Coming out of CSS from square 50! didnt appear again and then broke...
 * Opp Cards dissapearing all and not just specific one...thought id sorted this....
+
+* Reqs to get into studies
+* Code Success - Square 19!! sort this!
+* Card to Javascript seems broken...stops dice roll on toggle. -  had to edit in console to carry on testing
+* Opp card issue, couldnt read property of 0...
+* size of Opp and Exp card containers
+* Check rounding or toFix on all values! - DONE
+* Enrol screen sometimes bounced..
+* flex wrap to add to opp card viewer
+* square 29 full text - add "Gain 4  hearts" - Look at 34 too!
+* Javascript moved there and went to HTML - then enrol screen flashed 4 times - Got rid of all cards.

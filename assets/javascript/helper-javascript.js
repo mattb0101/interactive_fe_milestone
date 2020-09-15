@@ -2,16 +2,13 @@ function innerJavaScriptOne() {
   setTimeout(() => {
     $(".new-space-info").slideToggle("slow").css("display", "flex");
     $(".new-space-info p").html(
-      "Space affect currently undefined so no information to show"
+      "Chicken out of doing course for a week - Miss a Turn"
     );
-    $(".space-view").css(
+    $(".space-view>div").css(
       "background",
       "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
     );
-    currFollow = currFollow + 1;
-    $(".current-star").html(
-      "Fame: " + currFollow + '<i class="fas fa-star"></i>'
-    );
+    missTurn = true;
     return;
   }, 200);
 }
@@ -22,7 +19,7 @@ function innerJavaScriptTwo() {
     $(".new-space-info p").html(
       `Skills from a previous job help make something awesome! - Gain 2 <i class="fas fa-star"></i>'s and 4 <i class="fas fa-heart"></i>'s`
     );
-    $(".space-view").css(
+    $(".space-view>div").css(
       "background",
       "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
     );
@@ -42,7 +39,7 @@ function innerJavaScriptThree() {
   setTimeout(() => {
     $(".new-space-info").slideToggle("slow").css("display", "flex");
     $(".new-space-info p").html(`.......Draw 2 Experience Cards`);
-    $(".space-view").css(
+    $(".space-view>div").css(
       "background",
       "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
     );
@@ -72,7 +69,7 @@ function innerJavaScriptFour() {
     $(".new-space-info p").html(
       `Job opportunity as your project is noticed - Increase your income by £1000 and gain 4 <i class="fas fa-star"></i>'s`
     );
-    $(".space-view").css(
+    $(".space-view>div").css(
       "background",
       "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
     );
@@ -90,7 +87,7 @@ function innerJavaScriptFive() {
   setTimeout(() => {
     $(".new-space-info").slideToggle("slow").css("display", "flex");
     $(".new-space-info p").html(`.................- Draw 2 opportunity cards`);
-    $(".space-view").css(
+    $(".space-view>div").css(
       "background",
       "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
     );
@@ -120,7 +117,7 @@ function innerJavaScriptSix() {
     $(".new-space-info p").html(
       `Forget that you are rubbish at maths and can't do it! - Lose 1/2 your <i class="fas fa-heart"></i>'s `
     );
-    $(".space-view").css(
+    $(".space-view>div").css(
       "background",
       "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
     );
@@ -138,7 +135,7 @@ function innerJavaScriptSeven() {
           $(".new-space-info p").html(
             "Javascript app you make gets sold on app store - Earn £10,000"
           );
-          $(".space-view").css(
+          $(".space-view>div").css(
             "background",
             "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
@@ -172,7 +169,7 @@ function innerJavaScriptNine() {
           $(".new-space-info p").html(
             `Finish the course sucessfully! - Gain 5 <i class="fas fa-star"></i>'s, 5 <i class="fas fa-heart"></i>'s and increase your income by £2000 `
           );
-          $(".space-view").css(
+          $(".space-view>div").css(
             "background",
             "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
           );
