@@ -120,7 +120,7 @@
     box-shadow: 3px 3px darkred;
 }
 
-.roll-btn, .pay-btn {
+.roll-btn, .pay-btn, .roll-square-btn {
     height: 40px;
     width: 75px;
     margin-top: 50px;

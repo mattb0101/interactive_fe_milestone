@@ -61,3 +61,5 @@ Javascript timing events to allow some gap between events - https://www.w3school
 * Think i have this - Auto Enroll after using card.
 * Remove style on squares when moved
 * Cards Moving to the first one it seems!
+* clicking no on enrol moved me forward 1 space?
+* opportunity cards very annoying!!!!

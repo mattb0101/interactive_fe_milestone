@@ -47,7 +47,7 @@ $(".reset-btn").on("click", function () {
 });
 
 $("#1>div").append(compOne, compTwo, compThree);
-$("#1>div").append(playerOne);
+$("#11>div").append(playerOne);
 $(".roll-btn").attr("disabled", true);
 
 $(".skip-btn").click(function () {
@@ -371,7 +371,7 @@ function compThreeTurn() {
 
 //   Button when next space moved into to pause the code before carrying on
 $(".carry-on-btn").on("click", function () {
-  $(".new-space-info, .new-space-info-opp").fadeOut("slow");
+  $(".new-space-info, .new-space-info-opp, .new-space-info-dice").fadeOut("slow");
   setTimeout(() => {
     turn = "Comp1";
     currTurn("Comp 1's turn now!");
@@ -384,7 +384,8 @@ $(".carry-on-btn").on("click", function () {
 $(".roll-btn").on("click", function () {
   if (turn == "Player") {
     var currentSpace = $("#player-one").parent().parent().attr("id");
-    var diceRoll = Math.floor(Math.random() * 6) + 1;
+    var diceRoll = 1;
+    // Math.floor(Math.random() * 6) + 1;
 
     $("#die-one").html(diceRoll);
 
@@ -429,7 +430,7 @@ $(".roll-btn").on("click", function () {
     } else if (path == "inner-j") {
       currentSpace = $("#player-one").parent().attr("id");
     }
-    console.log(playerOppCards);
+
     var nextSpace = Number(currentSpace) + Number(diceRoll);
 
     if (path == "outer") {
@@ -522,6 +523,10 @@ $(".roll-btn").on("click", function () {
 
     if (nextSpace == 3) {
       outerThree();
+    }
+
+     if (nextSpace == 12) {
+      outerTwelve();
     }
 
     if (nextSpace == 9) {

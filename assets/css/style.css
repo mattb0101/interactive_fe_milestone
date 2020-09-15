@@ -378,7 +378,7 @@ td {
 
 /* ----------------Next Space Info--------------- */
 
-.new-space-info, .new-space-info-opp {
+.new-space-info, .new-space-info-opp, .new-space-info-dice {
     display: none;
     flex-direction: column;
     z-index: 999;
@@ -393,7 +393,19 @@ td {
     color: #fff;
 }
 
-.space-view {
+.new-space-info-dice {
+    width: 30vw;
+}
+.new-space-info-dice>div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    width: 90%;
+    height: 90%;
+}
+
+.space-view, .space-view-dice {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -404,7 +416,12 @@ td {
     border: 3px solid #000;
 }
 
-.space-view>div {
+.space-view-dice {
+    height: 100%;
+    width: 70%;
+}
+
+.space-view>div, .space-view-dice>div {
     display: flex;
     justify-content: center;
     align-items: center;
