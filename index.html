@@ -12,7 +12,7 @@
 		rel="icon" type="image/x-icon" />
 	<link rel="stylesheet" href="assets/css/board-spaces.css" type="text/css" />
 	<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-    <script src="https://kit.fontawesome.com/8f7d2474b3.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/8f7d2474b3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -36,24 +36,24 @@
 				<input class="money" type="number" placeholder="Money">
 				<input class="happiness" type="number" placeholder="Happiness">
             </div>
-			<span class="check-message"></span>
-			<button class="next-btn">Next</button>
+				<span class="check-message"></span>
+				<button class="next-btn">Next</button>
+			</div>
+			<div id="winner">
+				<h1>YOU WIN!</h1>
+				<button class="reset-btn">Play Again?</button>
+			</div>
 		</div>
-        <div id="winner">
-            <h1>YOU WIN!</h1>
-            <button class="reset-btn">Play Again?</button>       
-        </div>
-	</div>
 
-        
+
 
 		<h1 class="game-title">Time for a change!</h1>
 
 		<div class="ie-container">
 			<div class="payday-income">
-                <h2>Income</h2>
-                <div class="current-income"></div>
-            </div>
+				<h2>Income</h2>
+				<div class="current-income"></div>
+			</div>
 
 			<div class="study">
 				<h2>Study Record</h2>
@@ -101,10 +101,17 @@
 				</table>
 			</div>
 
+
+<!-- https://stackoverflow.com/questions/113640/which-css-tag-creates-a-box-like-this-with-title -->
+
 			<div class="cards">
-                <h2>Cards</h2>
-				<div class="opp-cards">Opportunity Cards</div>
-				<div class="exp-cards">Experience Cards</div>
+				<h2>Cards</h2>
+				<fieldset class="opp-cards">
+					<legend>Opportunity Cards</legend>
+				</fieldset>
+				<fieldset class="exp-cards">
+					<legend>Experience Cards</legend>
+				</fieldset>
 			</div>
 
 			<div class="success-formula">
@@ -127,26 +134,26 @@
 		<div class="comp-container">
 			<h2>Computers</h2>
 			<div class="comp-one-record">
-                <h2>Computer One</h2>
-                <div class="comp-one-star"></div>
-                <div class="comp-one-dollar"></div>
-                <div class="comp-one-heart"></div>
-                <div class="comp-one-income"></div>
-            </div>
+				<h2>Computer One</h2>
+				<div class="comp-one-star"></div>
+				<div class="comp-one-dollar"></div>
+				<div class="comp-one-heart"></div>
+				<div class="comp-one-income"></div>
+			</div>
 			<div class="comp-two-record">
-                <h2>Computer Two</h2>
-                <div class="comp-two-star"></div>
-                <div class="comp-two-dollar"></div>
-                <div class="comp-two-heart"></div>
-                <div class="comp-two-income"></div>
-            </div>
+				<h2>Computer Two</h2>
+				<div class="comp-two-star"></div>
+				<div class="comp-two-dollar"></div>
+				<div class="comp-two-heart"></div>
+				<div class="comp-two-income"></div>
+			</div>
 			<div class="comp=three-record">
-                <h2>Computer Three</h2>
-                <div class="comp-three-star"></div>
-                <div class="comp-three-dollar"></div>
-                <div class="comp-three-heart"></div>
-                <div class="comp-three-income"></div>
-            </div>
+				<h2>Computer Three</h2>
+				<div class="comp-three-star"></div>
+				<div class="comp-three-dollar"></div>
+				<div class="comp-three-heart"></div>
+				<div class="comp-three-income"></div>
+			</div>
 		</div>
 
 		<div class="container">
@@ -158,7 +165,7 @@
 					<button class="enrol-no">No</button>
 				</div>
 			</div>
-            <div id="choose-html">
+			<div id="choose-html">
 				<div class="html-content">
 					<h2>HTML</h2>
 					<p>Would you Like to Enrol?</p>
@@ -166,7 +173,7 @@
 					<button class="html-no">No</button>
 				</div>
 			</div>
-            <div id="choose-css">
+			<div id="choose-css">
 				<div class="css-content">
 					<h2>CSS</h2>
 					<p>Would you Like to Enrol?</p>
@@ -174,7 +181,7 @@
 					<button class="css-no">No</button>
 				</div>
 			</div>
-            <div id="choose-javascript">
+			<div id="choose-javascript">
 				<div class="javascript-content">
 					<h2>JavaScript</h2>
 					<p>Would you Like to Enrol?</p>
@@ -183,27 +190,32 @@
 				</div>
 			</div>
 
-            <div class="player-turn-notice">
-                <h1>Your Turn!</h1>
-            </div>
+			<div class="player-turn-notice">
+				<h1>Your Turn!</h1>
+			</div>
 
-            <div class="new-space-info">
-                <div class="space-view">
-                    <div>
-                        <p></p>
-                    </div>
-                </div>
-                <button class="carry-on-btn">OK</button>
-            </div>
+			<div class="new-space-info">
+				<div class="space-view">
+					<div>
+						<p></p>
+					</div>
+				</div>
+				<button class="carry-on-btn">OK</button>
+			</div>
 
-            <div class="new-space-info-opp">
-                <div class="space-view">
-                    <div>
-                        <p></p>
-                    </div>
-                </div>
-                <button class="opp-use-now-btn">Use Now</button>
-                <button class="carry-on-btn">Save</button>
+			<div class="new-space-info-opp">
+				<div class="space-view">
+					<div>
+						<p></p>
+					</div>
+				</div>
+				<button class="opp-use-now-btn">Use Now</button>
+				<button class="carry-on-btn">Save</button>
+			</div>
+
+            <div id="opp-cards-container">
+                <h1>Opportunity Cards</h1>
+                <div class="opp-cards-content"></div>
             </div>
 
 			<div class="board">
@@ -280,11 +292,11 @@
 					<div>24</div>
 				</div>
 
-                <div class="dice-roll">
-				    <div id="die-one" class="dice">0</div>
-				    <button class="roll-btn">Roll</button>
-                    <div class="current-turn"></div>
-			    </div>
+				<div class="dice-roll">
+					<div id="die-one" class="dice">0</div>
+					<button class="roll-btn">Roll</button>
+					<div class="current-turn"></div>
+				</div>
 
 				<div id="inner-enrol">
 					<div id="25" class="inner-move-space"></div>
@@ -336,13 +348,13 @@
 		</div>
 		<script src="https://code.jquery.com/jquery-3.5.1.js"
 			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-            
+
 		<script src="assets/javascript/script.js"></script>
-        <script src="assets/javascript/helper-outer.js"></script>
-        <script src="assets/javascript/helper-enrol.js"></script>
-        <script src="assets/javascript/helper-html.js"></script>
-        <script src="assets/javascript/helper-css.js"></script>
-        <script src="assets/javascript/helper-javascript.js"></script>
+		<script src="assets/javascript/helper-outer.js"></script>
+		<script src="assets/javascript/helper-enrol.js"></script>
+		<script src="assets/javascript/helper-html.js"></script>
+		<script src="assets/javascript/helper-css.js"></script>
+		<script src="assets/javascript/helper-javascript.js"></script>
 </body>
 
 </html>

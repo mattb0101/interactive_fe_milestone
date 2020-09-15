@@ -139,6 +139,13 @@
 
   playerOppCards = [];
 
+
+        // Gameplay Choose Card
+        $(".opp-cards").on("click", function() {
+            $("#opp-cards-container").slideToggle("slow").css("display", "flex");
+        });
+
+
   expCardArray = [
     [1, "Move 1 Square"],
     [2, "Move 2 Squares"],
@@ -336,7 +343,8 @@
   $(".roll-btn").on("click", function () {
     if (turn == "Player") {
       var currentSpace = $("#player-one").parent().parent().attr("id");
-      var diceRoll = Math.floor(Math.random() * 6) + 1;
+      var diceRoll = 1;
+    //    Math.floor(Math.random() * 6) + 1;
 
       $("#die-one").html(diceRoll);
 

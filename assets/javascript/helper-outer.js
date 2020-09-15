@@ -97,30 +97,56 @@ function outerOppCard() {
           $(".opp-cards").append(
             `<div class="player-opp-card${
               playerOppCards[playerOppCards.length - 1][0]
-            }">${randomOpp}</div>`
+            }">Opp</div>`
           );
           $(".new-space-info-opp").slideToggle("slow").css("display", "flex");
           if (randomOpp == 0) {
             $(".new-space-info-opp p").html(`Opportunity to enter<span>Enrollment</span> meet the normal requirments to enter. `);
+            $(".opp-cards-content").append(`<div class="player-check-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">Opportunity to enter<span>Enrollment</span> meet the normal requirments to enter.</div>`);
           } else if (randomOpp == 1) {
               $(".new-space-info-opp p").html(`Opportunity to enter<span>HTML</span> You've been helped by your parents and all expenses are paid!`);
+              $(".opp-cards-content").append(`<div class="player-check-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">Opportunity to enter<span>HTML</span> You've been helped by your parents and all expenses are paid!</div>`);
           } else if (randomOpp == 2) {
               $(".new-space-info-opp p").html(`Opportunity to enter<span>HTML</span> meet the normal requirments to enter.`);
+              $(".opp-cards-content").append(`<div class="player-check-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">Opportunity to enter<span>HTML</span> meet the normal requirments to enter.</div>`);
           } else if (randomOpp == 3) {
               $(".new-space-info-opp p").html(`Opportunity to enter<span>CSS</span> You've been helped by your parents and all expenses are paid!`);
+              $(".opp-cards-content").append(`<div class="player-check-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">Opportunity to enter<span>CSS</span> You've been helped by your parents and all expenses are paid!</div>`);
           } else if (randomOpp == 4) {
               $(".new-space-info-opp p").html(`Opportunity to enter<span>CSS</span> meet the normal requirments to enter.`);
+              $(".opp-cards-content").append(`<div class="player-check-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">Opportunity to enter<span>CSS</span> meet the normal requirments to enter.</div>`);
           } else if (randomOpp == 5) {
               $(".new-space-info-opp p").html(`Opportunity to enter<span>JavaScript</span> You've been helped by your parents and all expenses are paid!`);
+              $(".opp-cards-content").append(`<div class="player-check-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">Opportunity to enter<span>JavaScript</span> You've been helped by your parents and all expenses are paid!</div>`);
           } else if (randomOpp == 6) {
               $(".new-space-info-opp p").html(`Opportunity to enter<span>JavaScript</span> meet the normal requirments to enter.`);
+              $(".opp-cards-content").append(`<div class="player-check-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">Opportunity to enter<span>Enrollment</span> meet the normal requirments to enter.</div>`);
           } else if (randomOpp == 7) {
               $(".new-space-info-opp p").html(`Opportunity to move to<span>Code Success!</span> `);
+              $(".opp-cards-content").append(`<div class="player-check-opp-card${
+              playerOppCards[playerOppCards.length - 1][0]
+            }">Opportunity to move to<span>Code Success!</span></div>`);
           }
             $(".opp-use-now-btn").on("click", function () {
               $(".new-space-info-opp").fadeOut("slow").css("display", "none");
               var oppCard = playerOppCards.length - 1;
               $("div").remove(`.player-opp-card${playerOppCards[oppCard][0]}`);
+            //   This Needs Fixing!!!
+              playerOppCards.pop();
               $("#player-one").remove();
             if (randomOpp == 0) {
               $("#4>div").append(playerOne);
@@ -139,7 +165,6 @@ function outerOppCard() {
                 compOneTurn();
               }, 1000);
               console.log(playerOppCards);
-              playerOppCards.pop();
               $(".roll-btn").attr("disabled", true);
             });
           

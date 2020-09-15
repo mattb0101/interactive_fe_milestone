@@ -37,10 +37,11 @@
     border-radius: 10px;
 }
 
+
 /*---------------Choosing Route-------*/
 
 #choose-enrol, #choose-html,
-#choose-css, #choose-javascript {
+#choose-css, #choose-javascript, #opp-cards-container {
     display: none;
     position: absolute;
     justify-content: center;

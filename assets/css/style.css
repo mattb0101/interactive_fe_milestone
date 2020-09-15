@@ -171,23 +171,30 @@ td {
 }
 
 .opp-cards, .exp-cards {
-    display: flex;
-    flex-direction: row;
+    display: inline-block;
     height: 35%;
     width: 80%;
     border: 2px dashed #fff;
     margin-left: 1vw;
     margin-bottom: 1vh;
-    justify-content: center;
+    overflow: scroll;
+}
+
+.cards>h2 {
+    text-decoration: underline;
 }
 
 /* https://stackoverflow.com/questions/5110249/wildcard-in-css-for-classes */
 
 [class^="player-opp-card"] {
-    height: 50px;
-    width: 50px;
+    display: inline-block;
+    height: 50%;
+    width: 25%;
     background-color: #fff;
+    border-radius: 5px;
+    border: 2px solid #ad4139;
     color: #000;
+    margin-left: 2px;
 }
 
 [class^="player-exp-card"] {
@@ -196,6 +203,36 @@ td {
     background-color: #fff;
     color: #000;
 }
+
+#opp-cards-container {
+    display: none;
+    flex-direction: column;
+}
+
+#opp-cards-container>h1 {
+    /* align-self: flex-start; */
+    margin-top: 2vmin;
+}
+
+.opp-cards-content {
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+    height: 90%;
+}
+
+[class^="player-check-opp-card"] {
+    display: inline-block;
+    height: 100px;
+    min-width: 200px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 2px solid #ad4139;
+    color: #000;
+    margin-left: 5vmin;
+}
+
+
 
 /*-----------------------Succession Formula----------*/
 
@@ -206,8 +243,8 @@ td {
 }
 
 .success-formula> h2, .study> h2,
-.focus> h2, .payday-income>h2,
-.cards>h2 {
+.focus> h2, .payday-income>h2
+ {
     margin-bottom: 10px;
     text-decoration: underline;
 }
@@ -270,14 +307,12 @@ td {
 
 #player-one, #comp-one, #comp-two, #comp-three {
     display: inline-block;
-    /* position: fixed; */
     top: 25%;
     left: 55%;
     height: 3vmin;
     width: 3vmin;
     font-size: 2vmin;
     background-color: #000;
-    z-index: 99;
     border-radius: 50%;
     color: #fff;
     text-align: center;
