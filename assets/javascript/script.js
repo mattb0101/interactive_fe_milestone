@@ -47,7 +47,7 @@ $(".reset-btn").on("click", function () {
 });
 
 $("#1>div").append(compOne, compTwo, compThree);
-$("#4>div").append(playerOne);
+$("#1>div").append(playerOne);
 $(".roll-btn").attr("disabled", true);
 
 $(".skip-btn").click(function () {
@@ -384,9 +384,7 @@ $(".carry-on-btn").on("click", function () {
 $(".roll-btn").on("click", function () {
   if (turn == "Player") {
     var currentSpace = $("#player-one").parent().parent().attr("id");
-    var diceRoll = 1;
-    
-    // Math.floor(Math.random() * 6) + 1;
+    var diceRoll = Math.floor(Math.random() * 6) + 1;
 
     $("#die-one").html(diceRoll);
 

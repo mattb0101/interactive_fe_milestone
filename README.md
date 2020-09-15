@@ -55,3 +55,9 @@ Javascript timing events to allow some gap between events - https://www.w3school
 * flex wrap to add to opp card viewer
 * square 29 full text - add "Gain 4  hearts" - Look at 34 too!
 * Javascript moved there and went to HTML - then enrol screen flashed 4 times - Got rid of all cards.
+
+* Square 2 layout of space info
+* sometimes enrollment screen dissapears?
+* Think i have this - Auto Enroll after using card.
+* Remove style on squares when moved
+* Cards Moving to the first one it seems!
