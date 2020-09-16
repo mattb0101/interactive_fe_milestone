@@ -81,7 +81,7 @@ function innerEnrolOne() {
     function innerEnrolFive() {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
-          $(".new-space-info p").html("Your new mentor is cute");
+          $(".new-space-info p").html(`Your new mentor is cute - Gain 4 <i class="fas fa-heart"></i>'s `);
           $(".space-view").css(
             "background",
             "linear-gradient(45deg, #fafafa, #fafafa, #aca9a9);"
@@ -148,7 +148,7 @@ function innerEnrolOne() {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
-            "A Company supportsyour course and help you with finance - Get £2000"
+            "A Company supports your course and help you with finance - Get £2000"
           );
           $(".space-view").css(
             "background",
@@ -164,7 +164,7 @@ function innerEnrolOne() {
         setTimeout(() => {
           $(".new-space-info").slideToggle("slow").css("display", "flex");
           $(".new-space-info p").html(
-            "Join a career support conference on Zoom"
+            `Join a career support conference on Zoom - Gain 2 <i class="fas fa-heart"></i>'s `
           );
           $(".space-view").css(
             "background",

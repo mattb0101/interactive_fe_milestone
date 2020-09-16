@@ -136,9 +136,19 @@
     justify-self: center;
 }
 
+.stay-btn {
+    display: none;
+}
+
 .current-turn {
     color: #000;
     font-weight: bold;
+}
+
+
+.new-space-btn-container {
+    display: flex;
+    flex-direction: row
 }
 
 

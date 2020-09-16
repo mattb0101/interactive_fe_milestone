@@ -15,7 +15,7 @@ function outerThree() {
   setTimeout(() => {
     $(".new-space-info").slideToggle("slow").css("display", "flex");
     $(".new-space-info p").html(
-      "TAXES! <br> If you income is less than £3000, pay 10%. If your income is £3001 - £9999, pay 50%, if your income is more than £10,000 pay 90% of one rounds income"
+      `<h2>TAXES!</h2>Income <= £3000, pay 10%. Income is £3001 - £9999, pay 50%. Income > £10,000 pay 90% of one rounds income`
     );
     $(".space-view>div").css("background-color", "#5aad39");
     if (currIncome <= 3) {
@@ -56,13 +56,20 @@ function outerNine() {
 
 function outerTwelve() {
   setTimeout(() => {
+    if (currMoney < 1) {
+      $(".roll-square-btn").attr("disabled", "true");
+    }
     $(".new-space-info-dice").slideToggle("slow").css("display", "flex");
-    $(".new-space-info-dice p").html(`<h2>New!</h2>Not Defined Yet.`);
+    $(".new-space-info-dice p").html(
+      `<h2>Hobby</h2>You may buy equpiment for £1000 to create youtube video's and gain <i class="fas fa-star"></i>'s x roll of one dice. <br>(Optional so may just press ok and carry on) `
+    );
     $(".space-view-dice>div").css("background-color", "#5aad39");
     $(".roll-square-btn").on("click", function () {
       var diceRollSquare = Math.floor(Math.random() * 6) + 1;
       $("#die-one-square").html(diceRollSquare);
       currFollow = currFollow + Number(diceRollSquare);
+      currMoney = currMoney - 1;
+      $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
       $(".current-star").html(
         "Followers: " + currFollow + '<i class="fas fa-star"></i>'
       );
@@ -89,6 +96,39 @@ function outerFourteen() {
     $(".new-space-info p").html("Fees Due <br>Pay 1/2 your annual income");
     currMoney = currMoney - currIncome * 0.5;
     $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
+  }, 200);
+}
+
+function outerSixteen() {
+  setTimeout(() => {
+    $(".new-space-info-dice").slideToggle("slow").css("display", "flex");
+    $(".new-space-info-dice p").html(
+      `<h2>Spending Spree!</h2>Spend 10% of your cash x the roll of one dice. `
+    );
+    $(".space-view-dice>div").css("background-color", "#5aad39");
+    $(".roll-square-btn").on("click", function () {
+      var diceRollSquare = Math.floor(Math.random() * 6) + 1;
+      $("#die-one-square").html(diceRollSquare);
+      currFollow = currFollow + Number(diceRollSquare);
+      currMoney = currMoney - currMoney * 0.1 * diceRollSquare;
+      $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
+      $(".roll-square-btn").attr("disabled", "true");
+    });
+  }, 200);
+}
+
+function outerNineteen() {
+  setTimeout(() => {
+      $(".stay-btn").css("display", "inline-block");
+    $(".new-space-info").slideToggle("slow").css("display", "flex");
+    $(".new-space-info p").html(
+      `<h2>Code Success!</h2>Gain 4 <i class="fas fa-heart"></i>'s for landing here, earn 2 hearts each turn you stay. Roll 3 or less to stay.`
+    );
+    $(".space-view>div").css("background-color", "#36adab");
+    currHappy = currHappy + 4;
+    $(".current-heart").html(
+  "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+);
   }, 200);
 }
 

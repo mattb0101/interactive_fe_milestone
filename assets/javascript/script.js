@@ -13,6 +13,7 @@ let covidRedundancy = false;
 let hacked = false;
 let paid = false;
 let paidCovid = false;
+let stay = false;
 
 let currFollow = 0;
 let currHappy = 0;
@@ -47,7 +48,7 @@ $(".reset-btn").on("click", function () {
 });
 
 $("#1>div").append(compOne, compTwo, compThree);
-$("#11>div").append(playerOne);
+$("#2>div").append(playerOne);
 $(".roll-btn").attr("disabled", true);
 
 $(".skip-btn").click(function () {
@@ -75,6 +76,7 @@ $(".next-btn").click(function () {
     60
   ) {
     $(".check-message").html("Your formula doesnt equal 60!");
+    return;
   } else {
     $("#formula").css("display", "none");
     $("#game-start").fadeOut("slow");
@@ -244,6 +246,10 @@ function playerOneTurn() {
     paid = false;
   }
 
+  if (currentSpace != 19) {
+    stay = false;
+  }
+
   if (currentSpace == 7) {
     $(".pay-btn").removeAttr("disabled");
     $(".pay-btn").on("click", function () {
@@ -371,7 +377,9 @@ function compThreeTurn() {
 
 //   Button when next space moved into to pause the code before carrying on
 $(".carry-on-btn").on("click", function () {
-  $(".new-space-info, .new-space-info-opp, .new-space-info-dice").fadeOut("slow");
+  $(".new-space-info, .new-space-info-opp, .new-space-info-dice").fadeOut(
+    "slow"
+  );
   setTimeout(() => {
     turn = "Comp1";
     currTurn("Comp 1's turn now!");
@@ -380,21 +388,42 @@ $(".carry-on-btn").on("click", function () {
   $(".roll-btn").attr("disabled", true);
 });
 
+$(".stay-btn").on("click", function () {
+  stay = true;
+  $(".new-space-info, .new-space-info-opp, .new-space-info-dice").fadeOut(
+    "slow"
+  );
+  setTimeout(() => {
+    turn = "Comp1";
+    currTurn("Comp 1's turn now!");
+    compOneTurn();
+  }, 1000);
+});
+
 //   Dice Roll Button
 $(".roll-btn").on("click", function () {
   if (turn == "Player") {
     var currentSpace = $("#player-one").parent().parent().attr("id");
     var diceRoll = 1;
-    // Math.floor(Math.random() * 6) + 1;
+    //  Math.floor(Math.random() * 6) + 1;
 
     $("#die-one").html(diceRoll);
 
-    if ((covidRedundancy == true && diceRoll <= 4 && currentSpace == 13)) {
+    if (covidRedundancy == true && diceRoll <= 4 && currentSpace == 13) {
       outerNextPlayer();
       return;
     }
 
-    if ((hacked == true && diceRoll >= 3 && currentSpace == 7 )) {
+    if (hacked == true && diceRoll >= 3 && currentSpace == 7) {
+      outerNextPlayer();
+      return;
+    }
+
+    if (stay == true && diceRoll <= 3 && currentSpace == 19) {
+      currHappy = currHappy + 2;
+      $(".current-heart").html(
+        "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+      );
       outerNextPlayer();
       return;
     }
@@ -504,13 +533,7 @@ $(".roll-btn").on("click", function () {
       outerOppCard();
     }
 
-    if (
-      nextSpace == 6 ||
-      nextSpace == 12 ||
-      nextSpace == 16 ||
-      nextSpace == 20 ||
-      nextSpace == 22
-    ) {
+    if (nextSpace == 6 || nextSpace == 20 || nextSpace == 22) {
       setTimeout(() => {
         $(".new-space-info").slideToggle("slow").css("display", "flex");
         $(".new-space-info p").html(
@@ -525,7 +548,7 @@ $(".roll-btn").on("click", function () {
       outerThree();
     }
 
-     if (nextSpace == 12) {
+    if (nextSpace == 12) {
       outerTwelve();
     }
 
@@ -537,13 +560,16 @@ $(".roll-btn").on("click", function () {
       outerFourteen();
     }
 
+    if (nextSpace == 16) {
+      outerSixteen();
+    }
+
     if (
       // Moving to inner route spaces and these will be addressed at the start of next turn.
       nextSpace == 4 ||
       nextSpace == 11 ||
       nextSpace == 17 ||
-      nextSpace == 23 ||
-      nextSpace == 19
+      nextSpace == 23
     ) {
       outerNextPlayer();
     }
@@ -558,6 +584,10 @@ $(".roll-btn").on("click", function () {
 
     if (nextSpace == 13) {
       outerThirteen();
+    }
+
+    if (nextSpace == 19) {
+      outerNineteen();
     }
 
     // Actions for Enroll section of board spaces

@@ -108,7 +108,7 @@ body {
 }
 
 .play-btn, .go-btn, .next-btn, .skip-btn,
-.reset-btn, .carry-on-btn, .opp-use-now-btn {
+.reset-btn, .carry-on-btn, .opp-use-now-btn, .stay-btn {
     background-color: green;
     border-radius: 5px;
     font-size: 2rem;
@@ -390,7 +390,7 @@ td {
     height: 30vh;
     width: 20vw;
     border-radius: 20px;
-    color: #fff;
+    color: #000;
 }
 
 .new-space-info-dice {
@@ -430,7 +430,7 @@ td {
     border-radius: 10px;
 }
 
-.space-view p {
+.space-view p, .space-view-dice p {
     color: #000;
     text-align: center;
 }
@@ -439,7 +439,7 @@ td {
     font-weight: bold;
 }
 
-.space-view p h2 {
+.space-view p h2 .space-view-dice div p h2 {
     font-family: "Chelsea Market", cursive, sans-serif;
     font-weight: bold;
     font-size: 3vmin;
@@ -452,7 +452,7 @@ td {
     flex-direction: row;
 }
 
-.carry-on-btn, .opp-use-now-btn {
+.carry-on-btn, .opp-use-now-btn, .stay-btn{
     font-size: 2vmin;
     font-weight: bold;
     margin-bottom: 5px;
