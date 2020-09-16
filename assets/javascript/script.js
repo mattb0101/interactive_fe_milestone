@@ -52,7 +52,7 @@ $(".reset-btn").on("click", function () {
 
 // Players and computers seperated for testing and can start player on a different square. Dice roll button is disabled normally to stop someone pressing it over and over while they shouldnt.
 $("#1>div").append(compOne, compTwo, compThree);
-$("#1>div").append(playerOne);
+$("#11>div").append(playerOne);
 $(".roll-btn").attr("disabled", true);
 
 // Skip Button use during testing to go past the rules and straight to the game - Take this out before submission
@@ -155,6 +155,15 @@ oppCardArray = [
   [8, "Holiday", "Yet unknown"],
 ];
 
+let oppCardObject = {
+    1: "Enrol",
+    2: "HTML",
+    3: "CSS",
+    4: "JavaScript"
+};
+
+let playerOppCardsObj = {};
+
 playerOppCards = [];
 
 // Gameplay Choose Card - clicking on the Opportunity shows you what cards you have and what they do.
@@ -180,13 +189,13 @@ function playerOneTurn() {
 
   missTurnCheck();
 
+  $(".roll-btn").removeAttr("disabled");
+
   $(".player-turn-notice")
     .removeAttr("style")
     .animate({ left: "-=73%" }, 500)
     .delay(1000)
     .animate({ left: "-=100%" }, 500);
-
-  $(".roll-btn").removeAttr("disabled");
 
   currentSpaceCheck();
 }
@@ -230,9 +239,7 @@ function compThreeTurn() {
   }
 }
 
-// Rolling Dice so it affects correct player. Eventually this should be auto number rolling for the computers.
-
-//   Button when next space moved into to pause the code before carrying on
+//   After the Dice is rolled and the player moves, there will be a screen that pops up explaining what it happening on that square and if the player needs to do anything. This button closes this and carries on with the game, moving to the next players turn.
 $(".carry-on-btn").on("click", function () {
   $(".new-space-info, .new-space-info-opp, .new-space-info-dice").fadeOut(
     "slow"
@@ -249,8 +256,10 @@ $(".carry-on-btn").on("click", function () {
   $(".roll-btn").attr("disabled", true);
 });
 
+// Square 19 has an option to stay if the roll is less than 3 to gain more happiness. The player can choose to stay if the roll is < 3 or just press Ok and move as normal next turn
 $(".stay-btn").on("click", function () {
   stay = true;
+  $(".stay-btn").css("display", "none");
   $(".new-space-info, .new-space-info-opp, .new-space-info-dice").fadeOut(
     "slow"
   );
@@ -261,24 +270,27 @@ $(".stay-btn").on("click", function () {
   }, 1000);
 });
 
-//   Dice Roll Button
+//   Dice Roll. this is the main part of the game and the roll of the dice affects a lot of things (Will explain going down this code)
 $(".roll-btn").on("click", function () {
   if (turn == "Player") {
     let currentSpace = $("#player-one").parent().parent().attr("id");
-    let diceRoll = Math.floor(Math.random() * 6) + 1;
-
+    let diceRoll = 1;
+    //  Math.floor(Math.random() * 6) + 1;
     $("#die-one").html(diceRoll);
-
-    if (covidRedundancy == true && diceRoll <= 4 && currentSpace == 13) {
-      outerNextPlayer();
-      return;
-    }
-
+    
+    // Space 7 needs 1 or 2 to move, if the dice roll isnt that, then it moves to the next player
     if (hacked == true && diceRoll >= 3 && currentSpace == 7) {
       outerNextPlayer();
       return;
     }
 
+    // Space 13 needs 5 or 6 to move, if the dice roll isnt that, then it moves to the next player
+    if (covidRedundancy == true && diceRoll <= 4 && currentSpace == 13) {
+      outerNextPlayer();
+      return;
+    } 
+
+    // Space 19 allows you to stay and gain more happiness if the dice roll is 3 or less
     if (stay == true && diceRoll <= 3 && currentSpace == 19) {
       currHappy = currHappy + 2;
       $(".current-heart").html(
@@ -288,6 +300,7 @@ $(".roll-btn").on("click", function () {
       return;
     }
 
+    //  Spaces 4,11,17 and 23 might have you moving inside the board. This changes a variable and the squares have less html elements. Depending if they are moving in or staying out, the path to get the current space ID is different.
     if (path == "inner-e" && currentSpace == 4) {
       currentSpace = $("#player-one").parent().parent().attr("id");
     } else if (path == "inner-e" && currentSpace != 4) {
@@ -320,8 +333,11 @@ $(".roll-btn").on("click", function () {
       currentSpace = $("#player-one").parent().attr("id");
     }
 
-    var nextSpace = Number(currentSpace) + Number(diceRoll);
+    // This is where the id's of the spaces comes into play. The maths elements of JavaScript mean that taking the ID (a number) and adding the Dice Roll (a number), it can be determined what square is the next one to move to. 
+    let nextSpace = Number(currentSpace) + Number(diceRoll);
 
+
+    // The player will be moving in and out of the paths. The numbers on the outside go 1 - 24 so there is part of this function that adjusts the number to allow continuous movement. The rest of the code here deals with moving in and out of the centre paths. these range from 25 to 59 and so the numbers will often move from a high number to a low number or vice versa. This maths needed to be put in place to be able to move to the right space. See README for testing on how this was looked after. 
     if (path == "outer") {
       if (nextSpace > 24) {
         nextSpace = nextSpace - 24;
@@ -385,6 +401,8 @@ $(".roll-btn").on("click", function () {
       path = "outer";
     }
 
+    // This section deals with what happens on squares when you land on them. Most squares do different things so will have different functions. Most of the functions have been transferred to other helper java pages to keep the code tidy.
+    // These spaces are for when you land on a space that gets you an Opportunity Card and the function is the same for them all.
     if (
       nextSpace == 2 ||
       nextSpace == 5 ||
@@ -430,7 +448,7 @@ $(".roll-btn").on("click", function () {
     }
 
     if (
-      // Moving to inner route spaces and these will be addressed at the start of next turn.
+      // Moving to inner route spaces dont have a pop up screen and these will be addressed at the start of next turn, so moves straight to the next player.
       nextSpace == 4 ||
       nextSpace == 11 ||
       nextSpace == 17 ||
@@ -455,7 +473,7 @@ $(".roll-btn").on("click", function () {
       outerNineteen();
     }
 
-    // Actions for Enroll section of board spaces
+    // These functions cover the Enrollment inner section of the board
     if (nextSpace == 25) {
       innerEnrolOne();
     }
@@ -500,7 +518,7 @@ $(".roll-btn").on("click", function () {
       innerEnrolEleven();
     }
 
-    // Actions for HTML section of board spaces
+    // These functions cover the HTML inner section of the board
 
     if (nextSpace == 36) {
       innerHTMLOne();
@@ -534,7 +552,7 @@ $(".roll-btn").on("click", function () {
       innerHTMLEight();
     }
 
-    // Actions for CSS section of board spaces
+    // These functions cover the CSS inner section of the board
 
     if (nextSpace == 45) {
       innerCSSTwo();
@@ -564,7 +582,7 @@ $(".roll-btn").on("click", function () {
       innerCSSSix();
     }
 
-    // Actions for JavaScript section of board Spaces
+    // These functions cover the JavaScript inner section of the board
 
     if (nextSpace == 51) {
       innerJavaScriptOne();
@@ -601,6 +619,9 @@ $(".roll-btn").on("click", function () {
     if (nextSpace == 59) {
       innerJavaScriptNine();
     }
+
+
+    // Computers turns - Would be nice to be able to do some more things to these tonight!
   } else if (turn == "Comp1") {
     var diceRollC1 = Math.floor(Math.random() * 6) + 1;
     // use .this instead of the player and create an array of the players!

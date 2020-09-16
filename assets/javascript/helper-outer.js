@@ -1,22 +1,20 @@
-// Standard Outer Squares
+// Standard Outer Squares - They all shouw the next space info and then also may do something else.
+// Income is added to Money
 function outerOne() {
   setTimeout(() => {
     $(".new-space-info").slideToggle("slow").css("display", "flex");
-    $(".new-space-info p").html(
-      `<h2>Pay Day!</h2>Get your income for passing here, but double if you land here!`
-    );
+    $(".new-space-info p").html(`<h2>Pay Day!</h2>Get your income for passing here, but double if you land here!`);
     $(".space-view>div").css("background-color", "#36adab");
     currMoney = currMoney + currIncome;
     $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
   }, 200);
 }
 
+// Level of money is paid depending on income level
 function outerThree() {
   setTimeout(() => {
     $(".new-space-info").slideToggle("slow").css("display", "flex");
-    $(".new-space-info p").html(
-      `<h2>TAXES!</h2>Income <= £3000, pay 10%. Income is £3001 - £9999, pay 50%. Income > £10,000 pay 90% of one rounds income`
-    );
+    $(".new-space-info p").html(`<h2>TAXES!</h2>Income <= £3000, pay 10%. Income is £3001 - £9999, pay 50%. Income > £10,000 pay 90% of one rounds income`);
     $(".space-view>div").css("background-color", "#5aad39");
     if (currIncome <= 3) {
       currMoney = currMoney - currIncome * 0.1;
@@ -54,15 +52,17 @@ function outerNine() {
   }, 200);
 }
 
+// This involves a dice roll to determine how much money they have to pay. The dice Roll is built onto the info screen and they cant move on until they have rolled the Dice.
 function outerTwelve() {
   setTimeout(() => {
     if (currMoney < 1) {
-      $(".roll-square-btn").attr("disabled", "true");
+      $(".roll-square-btn").attr("disabled", true);
     }
     $(".new-space-info-dice").slideToggle("slow").css("display", "flex");
     $(".new-space-info-dice p").html(
       `<h2>Hobby</h2>You may buy equpiment for £1000 to create youtube video's and gain <i class="fas fa-star"></i>'s x roll of one dice. <br>(Optional so may just press ok and carry on) `
     );
+    
     $(".space-view-dice>div").css("background-color", "#5aad39");
     $(".roll-square-btn").on("click", function () {
       var diceRollSquare = Math.floor(Math.random() * 6) + 1;
@@ -70,10 +70,8 @@ function outerTwelve() {
       currFollow = currFollow + Number(diceRollSquare);
       currMoney = currMoney - 1;
       $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
-      $(".current-star").html(
-        "Followers: " + currFollow + '<i class="fas fa-star"></i>'
-      );
-      $(".roll-square-btn").attr("disabled", "true");
+      $(".current-star").html("Followers: " + currFollow + '<i class="fas fa-star"></i>');
+      $(".roll-square-btn").attr("disabled", true);
     });
   }, 200);
 }
@@ -132,8 +130,7 @@ function outerNineteen() {
   }, 200);
 }
 
-// Moving to inner Squares
-
+// Moving to inner Squares and when the player cant move or misses a go. This passes on to the next person.
 function outerNextPlayer() {
   setTimeout(() => {
     turn = "Comp1";
