@@ -15,65 +15,58 @@
 	<script src="https://kit.fontawesome.com/8f7d2474b3.js" crossorigin="anonymous"></script>
 </head>
 
+
 <body>
+
+<!-- This section looks at the start of the game, giving the intro, the rules and choosing the success formula -->
 	<div id="game-start" class="intro-container">
 		<div id="intro-content">
 			<h1>Time for a change!</h1>
 			<h2>Introduction</h2>
-			<p>After many years working in a dead end job that you really didn't enjoy, you deecided its time for a
-				career change!<br>
-        Working with computers has always been your passion, so you decide to get into Software and Web Development.<br>
-        This game takes you on an adventure through the Front-End development, working with the technologies and looking to earn Money, followers and happiness!
-        </p>
-				<button class="play-btn">PLAY!</button>
-				<button class="skip-btn">Skip</button>
+			<p>After many years working in a dead end job that you really didn't enjoy, you deecided its time for a career change!<br>
+            Working with computers has always been your passion, so you decide to get into Software and Web Development.<br>
+            This game takes you on an adventure through the Front-End development, working with the technologies and looking to earn Money, followers and happiness!
+            </p>
+			<button class="play-btn">PLAY!</button>
+			<button class="skip-btn">Skip</button>
 		</div>
 		<div id="rules">
 			<h2>Rules</h2>
 			<div class="rules-content">
-				<p>In this game, your aim is to move round the board collecting Money ( £ ), Followers (
-					<i class="fas fa-star"></i> ) and Happiness ( <i class="fas fa-heart"></i> ). You will
-					decide a success formula for these three that adds up to 60. When you reach this you win!</p>
-				<p>To gain Money, Followers and Happiness there are 4 paths to take, and these can be taken as many
-					times as you
-					want.<br>Enrollment is about signing on for the course and then there are the 3 streams for Front-End Web Development; HTML, CSS and Javascript</p>
-					<p>Each Space you land on has a different outcome. Some give you one of the three things and some
-						take it away. There are some spaces that grant you opportunity cards that can take you straight
-						to a certain stream. These can be used straight away, or saved for later.</p>
-					<p>You can go to any of the streams, but they will cost more unless you have enrolled first. There
-						will be choices to make as you move round the board, but dont worry! Everytime you go round the
-						board you get paid an income for doing side projects. This amount can be increased by going
-						through the streams.</p>
+				<p>In this game, your aim is to move round the board collecting Money ( £ ), Followers ( <i class="fas fa-star"></i> ) and Happiness ( <i class="fas fa-heart"></i> ). You will decide a success formula for these three that adds up to 60. When you reach this you win!</p>
+				<p>To gain Money, Followers and Happiness there are 4 paths to take, and these can be taken as many times as you want.<br>Enrollment is about signing on for the course and then there are the 3 streams for Front-End Web Development; HTML, CSS and Javascript</p>
+				<p>Each Space you land on has a different outcome. Some give you one of the three things and some take it away. There are some spaces that grant you opportunity cards that can take you straight to a certain stream. These can be used straight away, or saved for later.</p>
+				<p>You can go to any of the streams, but they will cost more unless you have enrolled first. There will be choices to make as you move round the board, but dont worry! Everytime you go round the board you get paid an income for doing side projects. This amount can be increased by going through the streams.</p>
 			</div>
 			<button class="go-btn">GO!</button>
 		</div>
 		<div id="formula">
 			<h2>Succession Formula</h2>
-			<p>Here you will create a formula for success. This needs to add up to 60, but can be made in any
-				combination. Would having Money or Followers make you happy in a job? Or are you mainly focused on being
-				happy?<br>Let's decide this and then start to see if you can reach your formula for success!<br> Good Luck!!</p>
-				<div class="player-formula">
-					<input class="fame" type="number" placeholder="Followers" />
-					<input class="money" type="number" placeholder="Money" />
-					<input class="happiness" type="number" placeholder="Happiness" />
-        </div>
-					<span class="check-message"></span>
-					<button class="next-btn">Start!</button>
-				</div>
-				<div id="winner">
-					<h1>YOU WIN!</h1>
-					<button class="reset-btn">Play Again?</button>
-				</div>
+			<p>Here you will create a formula for success. This needs to add up to 60, but can be made in any combination. Would having Money or Followers make you successful in a job? Or are you mainly focused on being happy?<br>Let's decide this and then start to see if you can reach your formula for success!<br> Good Luck!!</p>
+			<div class="player-formula">
+				<input class="fame" type="number" placeholder="Followers" />
+				<input class="money" type="number" placeholder="Money" />
+				<input class="happiness" type="number" placeholder="Happiness" />
+            </div>
+			<span class="check-message"></span>
+			<button class="next-btn">Start!</button>
+		</div>
+			<div id="winner">
+				<h1>YOU WIN!</h1>
+				<button class="reset-btn">Play Again?</button>
+			</div>
 		</div>
 
-		<h1 class="game-title">Time for a change!</h1>
+    <!-- This next part is about the layout of the board after the intro -->
 
+		<h1 class="game-title">Time for a change!</h1>
+        <!-- This container shows the scores and information for the player so they can easily keep on top of how they are doing in the game.-->
 		<div class="ie-container">
 			<div class="payday-income">
 				<h2>Income</h2>
+                <p>This is the amount of money the player receives when passing Pay Day.</p>
 				<div class="current-income"></div>
 			</div>
-
 			<div class="study">
 				<h2>Study Record</h2>
 				<table class="study-record">
@@ -97,7 +90,6 @@
 					</tr>
 				</table>
 			</div>
-
 			<div class="focus">
 				<h2>Focus</h2>
 				<table class="focus-chosen">
@@ -119,9 +111,7 @@
 					</tr>
 				</table>
 			</div>
-
-			<!-- https://stackoverflow.com/questions/113640/which-css-tag-creates-a-box-like-this-with-title -->
-
+            <!-- Used for seeing cards that have been collected during the game and being able to easily use them. -->
 			<div class="cards">
 				<h2>Cards</h2>
 				<fieldset class="opp-cards">
@@ -131,7 +121,7 @@
 					<legend>Experience Cards</legend>
 				</fieldset>
 			</div>
-
+            <!-- This is the main bit of the game, showing the target and then a live updating score for each of the items as the game is played -->
 			<div class="success-formula">
 				<h2>Succession Formula</h2>
 				<h3>Target</h3>
@@ -148,7 +138,7 @@
 				</div>
 			</div>
 		</div>
-
+        <!-- A similar grid for the scores of the computers to be able to see if the player is doing well compared to them or not -->
 		<div class="comp-container">
 			<h2>Computers</h2>
 			<div class="comp-one-record">
@@ -173,7 +163,7 @@
 				<div class="comp-three-income"></div>
 			</div>
 		</div>
-
+    <!-- These are a pop up that comes on the screen when you are at the start of one of the inner paths. The user can choose wether or not they should move into that path and this then affects variables in the Javascript code to make them move there instead of the outside -->
 		<div class="container">
 			<div id="choose-enrol">
 				<div class="enrol-content">
@@ -215,11 +205,11 @@
 					</div>
 				</div>
 			</div>
-
+        <!-- Notice to let the player know its their turn -->
 			<div class="player-turn-notice">
 				<h1>Your Turn!</h1>
 			</div>
-
+        <!-- Every Time the player lands on a space, there will be a pop up explaining what the game is doing by them landing here. sometimes there will be a button to click of a dice to roll, but this will pause the game so the user has a time to understand whats going on.  -->
 			<div class="new-space-info">
 				<div class="space-view">
 					<div>
@@ -231,7 +221,6 @@
 					<button class="stay-btn">Stay</button>
 				</div>
 			</div>
-
 			<div class="new-space-info-dice">
 				<div>
 					<div class="space-view-dice">
@@ -246,7 +235,6 @@
 				</div>
 				<button class="carry-on-btn">OK</button>
 			</div>
-
 			<div class="new-space-info-opp">
 				<div class="space-view">
 					<div>
@@ -258,12 +246,12 @@
 					<button class="carry-on-btn">Save</button>
 				</div>
 			</div>
-
+            <!-- When the user gets Opportunity Cards, they can use them or save them for later, if they get saved, this container can be used to view what they have that can be used on another turn -->
 			<div id="opp-cards-container">
 				<h1>Opportunity Cards</h1>
 				<div class="opp-cards-content"></div>
 			</div>
-
+            <!-- Board that is built around a css grid system as a board game is pretty much a grid. Built with a numeric ID to give the use of space numbers for moving pieces around the board-->
 			<div class="board">
 				<div id="1" class="move-space">
 					<div>Pay Day</div>
@@ -337,17 +325,15 @@
 				<div id="24" class="move-space">
 					<div>24</div>
 				</div>
-
+            <!-- Dice roll in the centre of the board which gives the player the ability of rolling the dice rather than just a random number being generated. -->
 				<div class="dice-roll">
 					<div id="die-one" class="dice">0</div>
 					<button class="roll-btn">Roll</button>
 					<div class="current-turn"></div>
 				</div>
-
+            <!-- Some spaces have the option of paying money to get away from them, this button is only functional when that possiblity is available -->
 				<button class="pay-btn" disabled>Pay</button>
-
-
-
+            <!-- The inner paths are built on the same kind of grid system, these are just smaller grids inside the main one with a continuing number based square moving system. -->
 				<div id="inner-enrol">
 					<div id="25" class="inner-move-space"></div>
 					<div id="26" class="inner-move-space"></div>
@@ -361,7 +347,6 @@
 					<div id="34" class="inner-move-space"></div>
 					<div id="35" class="inner-move-space"></div>
 				</div>
-
 				<div id="inner-html">
 					<div id="36" class="inner-move-space"></div>
 					<div id="37" class="inner-move-space"></div>
@@ -372,7 +357,6 @@
 					<div id="42" class="inner-move-space"></div>
 					<div id="43" class="inner-move-space"></div>
 				</div>
-
 				<div id="inner-css">
 					<div id="44" class="inner-move-space"></div>
 					<div id="45" class="inner-move-space"></div>
@@ -382,7 +366,6 @@
 					<div id="49" class="inner-move-space"></div>
 					<div id="50" class="inner-move-space"></div>
 				</div>
-
 				<div id="inner-java">
 					<div id="51" class="inner-move-space"></div>
 					<div id="52" class="inner-move-space"></div>
@@ -396,15 +379,15 @@
 				</div>
 			</div>
 		</div>
-		<script src="https://code.jquery.com/jquery-3.5.1.js"
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
 			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
-		<script src="assets/javascript/script.js"></script>
-		<script src="assets/javascript/helper-outer.js"></script>
-		<script src="assets/javascript/helper-enrol.js"></script>
-		<script src="assets/javascript/helper-html.js"></script>
-		<script src="assets/javascript/helper-css.js"></script>
-		<script src="assets/javascript/helper-javascript.js"></script>
+	<script src="assets/javascript/script.js"></script>
+	<script src="assets/javascript/helper-checks.js"></script>
+	<script src="assets/javascript/helper-outer.js"></script>
+	<script src="assets/javascript/helper-enrol.js"></script>
+	<script src="assets/javascript/helper-html.js"></script>
+	<script src="assets/javascript/helper-css.js"></script>
+	<script src="assets/javascript/helper-javascript.js"></script>
 </body>
 
 </html>

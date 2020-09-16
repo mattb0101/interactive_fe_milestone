@@ -135,7 +135,7 @@ Put computer turns to Auto - but instantly happening, will look at trying to get
 
 Lots of testing moving round and things that were happening on certain squares to stop play. Found it was certain squares didnt have a "Carry on" Button screen showing, so nothing moved this on to the next player! 
 
-
+CSS validation says backdrop-filter doesnt exist - but it does and does what i need it to do.
 
 Sources i used for things!
 
@@ -150,9 +150,14 @@ CSS Wildcards - https://stackoverflow.com/questions/5110249/wildcard-in-css-for-
 jQuery - Disable and enabled buttons, so cant be clicked randomly - https://stackoverflow.com/questions/1594952/jquery-disable-enable-submit-button
 jquery set Timeout between events - https://stackoverflow.com/questions/30107010/jquery-settimeout-function
 
+<!-- This was learning about fieldsets that include a title in the border -->
+https://stackoverflow.com/questions/113640/which-css-tag-creates-a-box-like-this-with-title 
 
+<!-- This Was to get wildcard on class selector in css -->
+https://stackoverflow.com/questions/5110249/wildcard-in-css-for-classes 
 
-
+<!-- Id cant start with a number in CSS, but they needed to, so this helped -->
+https://css-tricks.com/ids-cannot-start-with-a-number/
 
 <!-- Help with Rolling Dice -->
 https://codepen.io/_Billy_Brown/pen/bzwtJ
@@ -186,10 +191,19 @@ Javascript timing events to allow some gap between events - https://www.w3school
 * Javascript moved there and went to HTML - then enrol screen flashed 4 times - Got rid of all cards.
 
 * Square 3 layout of space info - DONE
-* sometimes enrollment screen dissapears?
+* sometimes enrollment screen dissapears? This is urgent
 * Think i have this - Auto Enroll after using card.
 * Remove style on squares when moved
 * Cards Moving to the first one it seems!
 * clicking no on enrol moved me forward 1 space?
 * opportunity cards very annoying!!!!
 * Scroll Bars on big screen size opp and exp boxes
+
+* Spending Spree needs to enable button
+* Money not to drop below 0!
+* stay button to dissapear after landing on 19 box goes away
+* Screen size now changing.....
+
+* Define Space 6 & 16 & 22
+
+* Check all times when screens toggle...they need a counter part toggle!

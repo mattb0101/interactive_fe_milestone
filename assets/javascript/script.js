@@ -1,13 +1,17 @@
 //------------------Global Variables----------------//
 
+// I did have a document ready function in here to handle and put all the JS together, but these variables need to be used accross all Javascript sheets so they need to load first and be accesiable
+
+// constant variables that make the counters move between squares
 const playerOne = '<div id="player-one">1</div>';
 const compOne = '<div id="comp-one">C1</div>';
 const compTwo = '<div id="comp-two">C2</div>';
 const compThree = '<div id="comp-three">C3</div>';
+
 let turn = "";
 let path = "outer";
 
-let gameWon = 0;
+let gameWon = false;
 let missTurn = false;
 let covidRedundancy = false;
 let hacked = false;
@@ -39,23 +43,25 @@ function currTurn(x) {
   return $(".current-turn").text(x);
 }
 
-// $(document).ready(function () {
-
-//---------------------Start Up--------------------//
-
+// This was a button to refresh the game back to normal - was used for testing but now used when someone wins to reset
 $(".reset-btn").on("click", function () {
   location.reload();
 });
 
+//---------------------Start Up--------------------//
+
+// Players and computers seperated for testing and can start player on a different square. Dice roll button is disabled normally to stop someone pressing it over and over while they shouldnt.
 $("#1>div").append(compOne, compTwo, compThree);
-$("#2>div").append(playerOne);
+$("#1>div").append(playerOne);
 $(".roll-btn").attr("disabled", true);
 
+// Skip Button use during testing to go past the rules and straight to the game - Take this out before submission
 $(".skip-btn").click(function () {
   $("#game-start").fadeOut("slow");
   setTurn();
 });
 
+// Buttons during game intro to move to hide the current window and more to the next
 $(".play-btn").click(function () {
   $("#intro-content").slideToggle("slow", function () {
     $("#rules").slideToggle("slow").css("display", "flex");
@@ -68,6 +74,7 @@ $(".go-btn").click(function () {
   });
 });
 
+// Checking to see if form inputs for succession formula equal 60, stops if it doesnt else moves to the game and populates the target elements on the score board
 $(".next-btn").click(function () {
   if (
     Number($(".fame").val()) +
@@ -88,11 +95,16 @@ $(".next-btn").click(function () {
     );
     $(".dollar").html("Money: £" + $(".money").val() * 1000);
   }
+
+  //   Time outs used a lot throughout the game. This makes everything flow a bit better at a pace of a board game rather than instantly doing everything and not letting the player see whats happening
   setTimeout(() => {
     setTurn();
   }, 500);
 });
 
+
+
+// Setting the currnt scores for all the players -  These are used throughout to update the scores.
 $(".current-star").html(
   "Followers: " + currFollow + '<i class="fas fa-star"></i>'
 );
@@ -131,6 +143,7 @@ $(".comp-three-income").html("Income: £" + currIncomeC3 * 1000);
 
 //---------------------Opportunity Cards --------------------//
 
+// Array of possible cards that can be got. a number from the array is taken at random and then added to the players blank array.
 oppCardArray = [
   [1, "Enrol", "Normal Reqs"],
   [2, "HTML", "Expenses Paid"],
@@ -144,7 +157,7 @@ oppCardArray = [
 
 playerOppCards = [];
 
-// Gameplay Choose Card
+// Gameplay Choose Card - clicking on the Opportunity shows you what cards you have and what they do.
 $(".opp-cards").on("click", function () {
   $("#opp-cards-container").slideToggle("slow").css("display", "flex");
 });
@@ -158,74 +171,14 @@ expCardArray = [
 
 playerExpCards = [];
 
-//---------Setting Turn-----------//
-
-function setTurn() {
-  var r = Math.floor(Math.random() * 4 + 1);
-  if (r == 1) {
-    turn = "Player";
-    currTurn("Player's turn now!");
-    $(".roll-btn").removeAttr("disabled");
-    playerOneTurn();
-  } else if (r == 2) {
-    turn = "Comp1";
-    currTurn("Comp 1's turn now!");
-    compOneTurn();
-  } else if (r == 3) {
-    turn = "Comp2";
-    currTurn("Comp 2's turn now!");
-    compTwoTurn();
-  } else if (r == 4) {
-    turn = "Comp3";
-    currTurn("Comp 3's turn now!");
-    compThreeTurn();
-  }
-}
-
-//---------------------Winning Check----------//
-
-function winCheck() {
-  if (turn == "Player") {
-    if (
-      currFollow == $(".fame").val() &&
-      currHappy == $(".happiness").val() &&
-      currMoney == $(".money").val()
-    ) {
-      $("#game-start").css({
-        display: "flex",
-        "background-color": "rgba(0,0,0,0)",
-        "backdrop-filter": "none",
-      });
-      $("#winner").slideToggle().css("display", "flex");
-      gameWon = 1;
-    }
-  }
-}
-
 //---------------------Game Play--------------------//
 
 function playerOneTurn() {
+  moneyCheck();
+
   winCheck();
 
-  if (gameWon == 1) {
-    console.log("Game Won");
-  }
-
-  if (missTurn == true) {
-    $(".player-turn-notice>h1").html("Miss Turn");
-    $(".player-turn-notice")
-      .removeAttr("style")
-      .animate({ left: "-=73%" }, 500)
-      .delay(1000)
-      .animate({ left: "-=100%" }, 500);
-    setTimeout(() => {
-      outerNextPlayer();
-    }, 1000);
-    missTurn = false;
-    return;
-  } else {
-    $(".player-turn-notice>h1").html("Your turn!");
-  }
+  missTurnCheck();
 
   $(".player-turn-notice")
     .removeAttr("style")
@@ -234,109 +187,13 @@ function playerOneTurn() {
     .animate({ left: "-=100%" }, 500);
 
   $(".roll-btn").removeAttr("disabled");
-  var currentSpace = $("#player-one").parent().parent().attr("id");
 
-  if (currentSpace != 13) {
-    covidRedundancy = false;
-    paidCovid = false;
-  }
-
-  if (currentSpace != 7) {
-    hacked = false;
-    paid = false;
-  }
-
-  if (currentSpace != 19) {
-    stay = false;
-  }
-
-  if (currentSpace == 7) {
-    $(".pay-btn").removeAttr("disabled");
-    $(".pay-btn").on("click", function () {
-      currMoney = currMoney - currIncome * 0.5;
-      $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
-      $(".pay-btn").attr("disabled", true);
-      hacked = false;
-      paid = true;
-    });
-  }
-
-  if (currentSpace == 13) {
-    $(".pay-btn").removeAttr("disabled");
-    $(".pay-btn").on("click", function () {
-      currMoney = currMoney - currIncome * 0.5;
-      $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
-      $(".pay-btn").attr("disabled", true);
-      covidRedundancy = false;
-      paidCovid = true;
-    });
-  }
-
-  if (currentSpace == 4) {
-    setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
-      $("#choose-enrol").slideToggle("slow").css("display", "flex");
-      $(".enrol-no").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-enrol").fadeOut("slow");
-      });
-      $(".enrol-yes").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-enrol").fadeOut("slow");
-        path = "inner-e";
-      });
-    }, 1750);
-  }
-  if (currentSpace == 11) {
-    setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
-      $("#choose-html").slideToggle("slow").css("display", "flex");
-      $(".html-no").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-html").fadeOut("slow");
-      });
-      $(".html-yes").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-html").fadeOut("slow");
-        path = "inner-h";
-      });
-    }, 1750);
-  }
-  if (currentSpace == 17) {
-    setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
-      $("#choose-css").slideToggle("slow").css("display", "flex");
-      $(".css-no").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-css").fadeOut("slow");
-      });
-      $(".css-yes").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-css").fadeOut("slow");
-        path = "inner-c";
-      });
-    }, 1750);
-  }
-  if (currentSpace == 23) {
-    setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
-      $("#choose-javascript").slideToggle("slow").css("display", "flex");
-      $(".javascript-no").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-javascript").fadeOut("slow");
-      });
-      $(".javascript-yes").on("click", function () {
-        $(".roll-btn").removeAttr("disabled");
-        $("#choose-javascript").fadeOut("slow");
-        path = "inner-j";
-      });
-    }, 1750);
-  }
+  currentSpaceCheck();
 }
 
 function compOneTurn() {
-  var currentSpace = $("#comp-one").parent().parent().attr("id");
-  if (currentSpace == 4) {
+  let currentSpaceC1 = $("#comp-one").parent().parent().attr("id");
+  if (currentSpaceC1 == 4) {
     $("#choose-enrol").slideToggle("slow").css("display", "flex");
     $(".enrol-no").on("click", function () {
       $("#choose-enrol").fadeOut("slow");
@@ -348,8 +205,8 @@ function compOneTurn() {
 }
 
 function compTwoTurn() {
-  var currentSpace = $("#comp-two").parent().parent().attr("id");
-  if (currentSpace == 4) {
+  let currentSpaceC2 = $("#comp-two").parent().parent().attr("id");
+  if (currentSpaceC2 == 4) {
     $("#choose-enrol").slideToggle("slow").css("display", "flex");
     $(".enrol-no").on("click", function () {
       $("#choose-enrol").fadeOut("slow");
@@ -361,8 +218,8 @@ function compTwoTurn() {
 }
 
 function compThreeTurn() {
-  var currentSpace = $("#comp-three").parent().parent().attr("id");
-  if (currentSpace == 4) {
+  let currentSpaceC3 = $("#comp-three").parent().parent().attr("id");
+  if (currentSpaceC3 == 4) {
     $("#choose-enrol").slideToggle("slow").css("display", "flex");
     $(".enrol-no").on("click", function () {
       $("#choose-enrol").fadeOut("slow");
@@ -380,6 +237,10 @@ $(".carry-on-btn").on("click", function () {
   $(".new-space-info, .new-space-info-opp, .new-space-info-dice").fadeOut(
     "slow"
   );
+  if (currMoney < 0) {
+    currMoney = 0;
+    $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
+  }
   setTimeout(() => {
     turn = "Comp1";
     currTurn("Comp 1's turn now!");
@@ -403,9 +264,8 @@ $(".stay-btn").on("click", function () {
 //   Dice Roll Button
 $(".roll-btn").on("click", function () {
   if (turn == "Player") {
-    var currentSpace = $("#player-one").parent().parent().attr("id");
-    var diceRoll = 1;
-    //  Math.floor(Math.random() * 6) + 1;
+    let currentSpace = $("#player-one").parent().parent().attr("id");
+    let diceRoll = Math.floor(Math.random() * 6) + 1;
 
     $("#die-one").html(diceRoll);
 
@@ -501,8 +361,13 @@ $(".roll-btn").on("click", function () {
     } else if (path == "inner-c" && nextSpace <= 50) {
       $("#player-one").remove();
       $("#" + nextSpace).append(playerOne);
-    } else if (path == "inner-c" && nextSpace > 50) {
+    } else if (path == "inner-c" && nextSpace > 50 && nextSpace < 55) {
       nextSpace = nextSpace - 30;
+      $("#player-one").remove();
+      $("#" + nextSpace + ">div").append(playerOne);
+      path = "outer";
+    } else if (path == "inner-c" && nextSpace >= 55) {
+      nextSpace = nextSpace - 54;
       $("#player-one").remove();
       $("#" + nextSpace + ">div").append(playerOne);
       path = "outer";
@@ -672,7 +537,7 @@ $(".roll-btn").on("click", function () {
     // Actions for CSS section of board spaces
 
     if (nextSpace == 45) {
-      innnerCSSTwo();
+      innerCSSTwo();
     }
 
     if (nextSpace == 44) {
@@ -737,20 +602,20 @@ $(".roll-btn").on("click", function () {
       innerJavaScriptNine();
     }
   } else if (turn == "Comp1") {
-    var diceRoll = Math.floor(Math.random() * 6) + 1;
+    var diceRollC1 = Math.floor(Math.random() * 6) + 1;
     // use .this instead of the player and create an array of the players!
-    var currentSpace = $("#comp-one").parent().parent().attr("id");
-    var nextSpace = Number(currentSpace) + Number(diceRoll);
+    var currentSpaceC1 = $("#comp-one").parent().parent().attr("id");
+    var nextSpaceC1 = Number(currentSpaceC1) + Number(diceRollC1);
 
-    $("#die-one").html(diceRoll);
-    if (nextSpace > 24) {
-      nextSpace = nextSpace - 24;
+    $("#die-one").html(diceRollC1);
+    if (nextSpaceC1 > 24) {
+      nextSpaceC1 = nextSpaceC1 - 24;
       currMoneyC1 = currMoneyC1 + currIncomeC1;
       $(".comp-one-dollar").html("Money: £" + currMoneyC1.toFixed(2) * 1000);
     }
     $("#comp-one").remove();
     setTimeout(() => {
-      $("#" + nextSpace + ">div").append(compOne);
+      $("#" + nextSpaceC1 + ">div").append(compOne);
     }, 300);
     setTimeout(() => {
       turn = "Comp2";
@@ -758,20 +623,20 @@ $(".roll-btn").on("click", function () {
       compTwoTurn();
     }, 2000);
   } else if (turn == "Comp2") {
-    var diceRoll = Math.floor(Math.random() * 6) + 1;
+    var diceRollC2 = Math.floor(Math.random() * 6) + 1;
     // use .this instead of the player and create an array of the players!
-    var currentSpace = $("#comp-two").parent().parent().attr("id");
-    var nextSpace = Number(currentSpace) + Number(diceRoll);
+    var currentSpaceC2 = $("#comp-two").parent().parent().attr("id");
+    var nextSpaceC2 = Number(currentSpaceC2) + Number(diceRollC2);
 
-    $("#die-one").html(diceRoll);
-    if (nextSpace > 24) {
-      nextSpace = nextSpace - 24;
+    $("#die-one").html(diceRollC2);
+    if (nextSpaceC2 > 24) {
+      nextSpaceC2 = nextSpaceC2 - 24;
       currMoneyC2 = currMoneyC2 + currIncomeC2;
       $(".comp-two-dollar").html("Money: £" + currMoneyC2.toFixed(2) * 1000);
     }
     $("#comp-two").remove();
     setTimeout(() => {
-      $("#" + nextSpace + ">div").append(compTwo);
+      $("#" + nextSpaceC2 + ">div").append(compTwo);
     }, 300);
     setTimeout(() => {
       turn = "Comp3";
@@ -779,20 +644,20 @@ $(".roll-btn").on("click", function () {
       compThreeTurn();
     }, 2000);
   } else if (turn == "Comp3") {
-    var diceRoll = Math.floor(Math.random() * 6) + 1;
+    var diceRollC3 = Math.floor(Math.random() * 6) + 1;
     // use .this instead of the player and create an array of the players!
-    var currentSpace = $("#comp-three").parent().parent().attr("id");
-    var nextSpace = Number(currentSpace) + Number(diceRoll);
+    var currentSpaceC3 = $("#comp-three").parent().parent().attr("id");
+    var nextSpaceC3 = Number(currentSpaceC3) + Number(diceRollC3);
 
-    $("#die-one").html(diceRoll);
-    if (nextSpace > 24) {
-      nextSpace = nextSpace - 24;
+    $("#die-one").html(diceRollC3);
+    if (nextSpaceC3 > 24) {
+      nextSpaceC3 = nextSpaceC3 - 24;
       currMoneyC3 = currMoneyC3 + currIncomeC3;
       $(".comp-three-dollar").html("Money: £" + currMoneyC3.toFixed(2) * 1000);
     }
     $("#comp-three").remove();
     setTimeout(() => {
-      $("#" + nextSpace + ">div").append(compThree);
+      $("#" + nextSpaceC3 + ">div").append(compThree);
     }, 300);
     setTimeout(() => {
       turn = "Player";
@@ -801,4 +666,3 @@ $(".roll-btn").on("click", function () {
     }, 1000);
   }
 });
-// }); // keep this as it closes full statement
