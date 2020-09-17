@@ -6,7 +6,7 @@ I decided to go for a board game rather than a memory game in the suggestions, a
 
 I took this game and added a twist that would set the idea of the game to be based on the Full Stack Web Developer Course. As I have only completed the first half, with front end, I am taking that, from Enrollment and then going through HTML, CSS and JavaScript.
 
-N.B. While there is still things to develop in the future, I have lowered the Success  Formula cap to 30 to give a quicker but more fun gameplay experience.
+N.B. While there is still things to develop in the future, I have lowered the Success Formula cap from 60 to 30 to give a quicker but more fun gameplay experience.
 
 ## **UX**
 
@@ -19,7 +19,12 @@ I have made the game use a player, but also 3 computers so that it is more like 
 
 ### **Wireframes**
 
-Put some in here?
+I used a bit of time sketching up what i could to how i wanted the game to look as it was only a single page there wasnt a lot of need for design. The main design was the board to get right, along with planning the things to do, and the process of how turns would work. 
+
+<img src="./assets/img/basic-wireframes.jpg" width="450" height="175">
+<img src="./assets/img/full-board-design.jpg" width="250" height="350">
+<img src="./assets/img/things-to-look-at.jpg" width="250" height="350">
+<img src="./assets/img/turn-process-flow.jpg" width="200" height="200">
 
 ## **Features**
 
@@ -55,8 +60,8 @@ Put some in here?
 * Experience cards functionality. After using too much time trying to sort out the Opportunity Cards, I havent had chance to look at the Experience Cards, but these are still to come.
 * Computers full turns. At the moment, the computers only move around the outside of the board and do not have all the functions set up to get all the same events as the player. There wasnt enough time to get this really looked into but its a feature I will get sorted soon!
 * Squares 6, 16 and 22 had a feature that i havent been able to put in yet. This involves more input from the player to get a desires result.
-* When using an opportunity card to move, it still asks if you want to enrol, but moving there means you are enrolling. Doesnt Stop the game at the moment, but would be good to get working in the future. 
-
+* When using an opportunity card to move, it still asks if you want to enrol, but moving there means you are enrolling. Doesnt Stop the game at the moment, but would be good to get working in the future.
+* Not really a feature, but I spent a lot of time working on the Javascript and the mechanics of the game. Currently the styling does not look as perfect as i would like and uses a lot of standard colours. I ran out of time for submission before being really able to fine tine the colouring and styling. It looks nice now, but the perfectionist in me would really like to make it pop and take it to the next level in the future. 
 
 ## Technologies Used
 
@@ -102,7 +107,7 @@ This was the main thing that required testing throughout. Initially I started wi
 
 The complicated bit of 2 dice was when moving to an inner path, these are between 7 and 10 spaces and a douable 6 would mean bypassing it but trying to figure out the movement sequence. Inner paths were the more complicated bit of the movement. Having played the inspiration boardgame a lot, I knew the functionality of this, but it was more difficult with a grid layout. I managed to get the player moving in and out of the paths with a lot of maths to work out where they should be and what needs to be done. 
 
-    insert pic here
+ <img src="./assets/img/maths.jpg" width="250" height="450">
 
 The difficult bits were coming out of an inner path to the outer and one has 2 different outcomes, as it came out and passed pay day, so went from 50 to 1 which made for a different sum. Testing every single eventuality was not easy so playing this game constantly throughout the development came up with bugs like that. 
 
@@ -141,7 +146,8 @@ As this is a boardgame, I have come to the conclusion very early on that it woul
 ## **Bugs and problems**
 
 * Opportunity Cards - This is now working easier and will not stop the game. Using the object was easier than using the array, but it is still removing all the elements in the array rather than just the targetted one. There is going to be functionality to use saved cards, but this is not yet built so it isnt affecting the gameplay.
-* Afterm moving space using an Opportunity card, the choose to enrol screen toggles multiple times. This is not a great issue, but if it toggles off the screen, the player will not go inside, but they can still roll and keep moving. 
+* Afterm moving space using an Opportunity card, the choose to enrol screen toggles multiple times. This is not a great issue, but if it toggles off the screen, the player will not go inside, but they can still roll and keep moving.
+* As mentioned, the validators not recognising the 'backdrop-filter' css property. Not sure what to do about it as its a property and it works? 
 
 
 ## Deployment
@@ -183,7 +189,6 @@ I have deployed this using GitHub Pages using the following process;
 
 ### ***Acknowledgements***
 - The game is based on [Careers](https://en.wikipedia.org/wiki/Careers_(board_game)#:~:text=Careers%20is%20a%20board%20game,produced%20by%20Winning%20Moves%20Games.&text=Players%20(from%20two%20to%20six,when%20only%20two%20are%20playing).), a board game published originally by Parker Brothers and most recently by Winning Moves Games.
-
 - My girlfriend Steph for putting up with me through all this but being really positive and supportive of my work. Obviously my cat Kyra....who decides to steal my mouse and re-write the code, but keeping me company most of the day too.
-- Other students on this course, helping and happy to share their projects for inspiration. 
+- Other students and tutors on th course, helping and happy to share their projects and support for inspiration and keeping me sane. 
 - My mentor Gerry McBride for the support, staying calm which helped me and even through all this current worldwide mess, being really helpful and there when needed even with his own work.
