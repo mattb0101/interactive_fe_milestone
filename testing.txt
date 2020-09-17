@@ -1,0 +1,40 @@
+<!-- Things needing to work on -->
+* Rules and intro texts -MOSTLY DONE, MIGHT NEED TO ADD MORE
+* Income level somewhere - DONE
+* Opportunity and Experience cards and using them
+* screen showing up when landing on a space - DONE
+    * Make these screens do something - DONE
+* Computer scores - DONE
+* Opp Card Removed from screen but not from actual array! opposite of push needed in here - DONE - Not working though
+    * Needs to not ask for enrolling if used a card - Change from outer to inner and dont let enrol pop up. 
+* Issue Coming out of CSS from square 50! didnt appear again and then broke... - DONE
+* Opp Cards dissapearing all and not just specific one...thought id sorted this....
+
+* Reqs to get into studies
+* Code Success - Square 19!! sort this! - DONE
+* Card to Javascript seems broken...stops dice roll on toggle. -  had to edit in console to carry on testing - AWARE AND SORTED 
+* Opp card issue, couldnt read property of 0... - THIS NO LONGER HAPPENS WITH OBJECT
+* size of Opp and Exp card containers - DONE
+* Check rounding or toFix on all values! - DONE
+* Enrol screen sometimes bounced.. -AWARE AND DICE ROLL ENABLED BEFORE THIS
+* flex wrap to add to opp card viewer
+* square 29 full text - add "Gain 4  hearts" - Look at 34 too! - DONE
+* Javascript moved there and went to HTML - then enrol screen flashed 4 times - Got rid of all cards.
+
+* Square 3 layout of space info - DONE
+* sometimes enrollment screen dissapears? This is urgent - DICE ROLL ENABLED AND AWARE OF BUG
+* Think i have this - Auto Enroll after using card. - FUTURE
+* Remove style on squares when moved
+* Cards Moving to the first one it seems!
+* clicking no on enrol moved me forward 1 space? - DONE
+* opportunity cards very annoying!!!!
+* Scroll Bars on big screen size opp and exp boxes - DONE
+
+* Spending Spree needs to enable button
+* Money not to drop below 0! - DONE
+* stay button to dissapear after landing on 19 box goes away
+* Screen size now changing.....
+
+* Define Space 6 & 16 & 22
+
+* Check all times when screens toggle...they need a counter part toggle!

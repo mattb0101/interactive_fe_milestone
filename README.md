@@ -6,6 +6,8 @@ I decided to go for a board game rather than a memory game in the suggestions, a
 
 I took this game and added a twist that would set the idea of the game to be based on the Full Stack Web Developer Course. As I have only completed the first half, with front end, I am taking that, from Enrollment and then going through HTML, CSS and JavaScript.
 
+N.B. While there is still things to develop in the future, I have lowered the Success  Formula cap to 30 to give a quicker but more fun gameplay experience.
+
 ## **UX**
 
 As this will be a game, the aim of this is for the user to enjoy playing, and maybe get a tiny bit of insight into the path I am going through with changing my career to coding. 
@@ -53,6 +55,7 @@ Put some in here?
 * Experience cards functionality. After using too much time trying to sort out the Opportunity Cards, I havent had chance to look at the Experience Cards, but these are still to come.
 * Computers full turns. At the moment, the computers only move around the outside of the board and do not have all the functions set up to get all the same events as the player. There wasnt enough time to get this really looked into but its a feature I will get sorted soon!
 * Squares 6, 16 and 22 had a feature that i havent been able to put in yet. This involves more input from the player to get a desires result.
+* When using an opportunity card to move, it still asks if you want to enrol, but moving there means you are enrolling. Doesnt Stop the game at the moment, but would be good to get working in the future. 
 
 
 ## Technologies Used
@@ -89,7 +92,9 @@ Put some in here?
 
 The testing of this is something i have done constanlty throughout the creation of the game as every square is different and has a different function that determines the action. This game involved a lto fo JavaScript, a new technology to me so I have done constant testing to try and get the correct outcomes, using the console to display values and results as events happened in the game.
 
-I have run the HTML, CSS and Javascript pages through validators with no errors on the HTML. On the CSS the validator is saying that 'backdrop-filter' is not a recognised property, but this is something i have looked into, so i know it exists and it gives the blue effect on the background and not the whole element. There were no errors on that JavaScript apart from some warnings about template literals not being reognised. 
+I have run the HTML, CSS and Javascript pages through validators with no errors on the HTML. On the CSS the validator is saying that 'backdrop-filter' is not a recognised property, but this is something i have looked into, so i know it exists and it gives the blue effect on the background and not the whole element. There were no errors on that JavaScript apart from some warnings about template literals not being reognised.
+
+Whilst testing I kept a record of things that were going wrong so i didnt forget them. These were stored in the testing.txt file so I could keep looking and notice when i have fixed them. 
 
 #### **Moving around the board**
 
@@ -115,6 +120,12 @@ With adding in the computers this gave a much better understanding of what thing
 
 #### **Opportunity Cards**
 
+This was one of the biggest issues with testing and took the most amount of time. The opportunity cards come from an array that the result needed to populate a div with a class relevant to the number in the array. This bit was getting sorted and as the cards would be chosen at random, I could refresh and run the game again, only moving one space to make sure all the cards populated properly.
+
+As the players can use these cards to move to one of the paths or save them, they needed to be added and removed from the Array with the effects of moving working properly. This was not working, with the array being populated fine and removing the card when there was only one in the array I was happy. When adding more cards, upon removing the new one, it would delete all from the array and post a bug in the console. I figured out that this was repeating the removal somehow and falling over once all the cards had been deleted. 
+
+After speaking with my mentor, we came to the conclusion that an object may be easier to let this happen than an array as its easier to add and remove items.
+
 ### ***Mentor Advice***
 
 The meetings i had with Gerry were always very helpful. The main thing was about splitting off the Javascript into multiple files to be able to navigate this and not have too much on the page at the same time. 
@@ -125,7 +136,12 @@ After my struggles with the opportunity cards, Gerry suggested using an object r
 
 ## **Responsive Design**
 
+As this is a boardgame, I have come to the conclusion very early on that it would not be suitable for mobile devices so I have only built it for desktops. Using a common laptop size as the base, i used viewport width, height and min as the main measurements to easily make the game suit for common laptop and desktop size screens.
+
 ## **Bugs and problems**
+
+* Opportunity Cards - This is now working easier and will not stop the game. Using the object was easier than using the array, but it is still removing all the elements in the array rather than just the targetted one. There is going to be functionality to use saved cards, but this is not yet built so it isnt affecting the gameplay.
+* Afterm moving space using an Opportunity card, the choose to enrol screen toggles multiple times. This is not a great issue, but if it toggles off the screen, the player will not go inside, but they can still roll and keep moving. 
 
 
 ## Deployment

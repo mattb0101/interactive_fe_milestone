@@ -3,7 +3,9 @@
 function outerOne() {
   setTimeout(() => {
     $(".new-space-info").slideToggle("slow").css("display", "flex");
-    $(".new-space-info p").html(`<h2>Pay Day!</h2>Get your income for passing here, but double if you land here!`);
+    $(".new-space-info p").html(
+      `<h2>Pay Day!</h2>Get your income for passing here, but double if you land here!`
+    );
     $(".space-view>div").css("background-color", "#36adab");
     currMoney = currMoney + currIncome;
     $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
@@ -14,7 +16,9 @@ function outerOne() {
 function outerThree() {
   setTimeout(() => {
     $(".new-space-info").slideToggle("slow").css("display", "flex");
-    $(".new-space-info p").html(`<h2>TAXES!</h2>Income <= £3000, pay 10%. Income is £3001 - £9999, pay 50%. Income > £10,000 pay 90% of one rounds income`);
+    $(".new-space-info p").html(
+      `<h2>TAXES!</h2>Income <= £3000, pay 10%. Income is £3001 - £9999, pay 50%. Income > £10,000 pay 90% of one rounds income`
+    );
     $(".space-view>div").css("background-color", "#5aad39");
     if (currIncome <= 3) {
       currMoney = currMoney - currIncome * 0.1;
@@ -62,7 +66,7 @@ function outerTwelve() {
     $(".new-space-info-dice p").html(
       `<h2>Hobby</h2>You may buy equpiment for £1000 to create youtube video's and gain <i class="fas fa-star"></i>'s x roll of one dice. <br>(Optional so may just press ok and carry on) `
     );
-    
+
     $(".space-view-dice>div").css("background-color", "#5aad39");
     $(".roll-square-btn").on("click", function () {
       var diceRollSquare = Math.floor(Math.random() * 6) + 1;
@@ -70,7 +74,9 @@ function outerTwelve() {
       currFollow = currFollow + Number(diceRollSquare);
       currMoney = currMoney - 1;
       $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
-      $(".current-star").html("Followers: " + currFollow + '<i class="fas fa-star"></i>');
+      $(".current-star").html(
+        "Followers: " + currFollow + '<i class="fas fa-star"></i>'
+      );
       $(".roll-square-btn").attr("disabled", true);
     });
   }, 200);
@@ -100,6 +106,7 @@ function outerFourteen() {
 function outerSixteen() {
   setTimeout(() => {
     $(".new-space-info-dice").slideToggle("slow").css("display", "flex");
+    $(".carry-on-btn").attr("disabled", true);
     $(".new-space-info-dice p").html(
       `<h2>Spending Spree!</h2>Spend 10% of your cash x the roll of one dice. `
     );
@@ -110,14 +117,15 @@ function outerSixteen() {
       currFollow = currFollow + Number(diceRollSquare);
       currMoney = currMoney - currMoney * 0.1 * diceRollSquare;
       $(".current-dollar").html("Money: £" + currMoney.toFixed(2) * 1000);
-      $(".roll-square-btn").attr("disabled", "true");
+      $(".roll-square-btn").attr("disabled", true);
+      $(".carry-on-btn").removeAttr("disabled");
     });
   }, 200);
 }
 
 function outerNineteen() {
   setTimeout(() => {
-      $(".stay-btn").css("display", "inline-block");
+    $(".stay-btn").css("display", "inline-block");
     $(".new-space-info").slideToggle("slow").css("display", "flex");
     $(".new-space-info p").html(
       `<h2>Code Success!</h2>Gain 4 <i class="fas fa-heart"></i>'s for landing here, earn 2 hearts each turn you stay. Roll 3 or less to stay.`
@@ -125,8 +133,8 @@ function outerNineteen() {
     $(".space-view>div").css("background-color", "#36adab");
     currHappy = currHappy + 4;
     $(".current-heart").html(
-  "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
-);
+      "Happiness: " + currHappy + ' <i class="fas fa-heart"></i>'
+    );
   }, 200);
 }
 
@@ -143,153 +151,72 @@ function outerNextPlayer() {
 // Opportunity Card Spaces
 
 function outerOppCard() {
-  //   setTimeout(() => {
-  var randomOpp = Math.floor(Math.random() * oppCardArray.length);
-  playerOppCards.push(oppCardArray[randomOpp]);
-  $(".opp-cards").append(
-    `<div class="player-opp-card${
-      playerOppCards[playerOppCards.length - 1][0]
-    }">Opp</div>`
-  );
+  let randomOpp = Math.floor(Math.random() * 4 + 1);
+  playerOppCardsObj[randomOpp] = oppCardObject[randomOpp];
+  $(".opp-cards").append(`<div class="player-opp-card${randomOpp}">Opp</div>`);
   $(".new-space-info-opp").slideToggle("slow").css("display", "flex");
-  if (randomOpp == 0) {
+
+  if (randomOpp == 1) {
     $(".new-space-info-opp p").html(
-      `Opportunity to enter <span>Enrollment</span> meet the normal requirments to enter. `
+      `Opportunity to enter <span>Enrollment</span> Either Move there now, or save it for later. `
     );
     $(".space-view>div").css("background-color", "#ad4139");
     $(".opp-cards-content").append(
-      `<div class="player-check-opp-card${
-        playerOppCards[playerOppCards.length - 1][0]
-      }">Opportunity to enter <span>Enrollment</span> meet the normal requirments to enter.</div>`
-    );
-  } else if (randomOpp == 1) {
-    $(".new-space-info-opp p").html(
-      `Opportunity to enter <span>HTML</span> You've been helped by your parents and all expenses are paid!`
-    );
-    $(".space-view>div").css("background-color", "#ad4139");
-    $(".opp-cards-content").append(
-      `<div class="player-check-opp-card${
-        playerOppCards[playerOppCards.length - 1][0]
-      }">Opportunity to enter <span>HTML</span> You've been helped by your parents and all expenses are paid!</div>`
+      `<div class="player-check-opp-card${randomOpp}">Opportunity to enter <span>Enrollment</span></div>`
     );
   } else if (randomOpp == 2) {
     $(".new-space-info-opp p").html(
-      `Opportunity to enter <span>HTML</span> meet the normal requirments to enter.`
+      `Opportunity to enter <span>HTML</span>Either Move there now, or save it for later.`
     );
     $(".space-view>div").css("background-color", "#ad4139");
     $(".opp-cards-content").append(
-      `<div class="player-check-opp-card${
-        playerOppCards[playerOppCards.length - 1][0]
-      }">Opportunity to enter <span>HTML</span> meet the normal requirments to enter.</div>`
+      `<div class="player-check-opp-card${randomOpp}">Opportunity to enter <span>HTML</span></div>`
     );
   } else if (randomOpp == 3) {
     $(".new-space-info-opp p").html(
-      `Opportunity to enter <span>CSS</span> You've been helped by your parents and all expenses are paid!`
+      `Opportunity to enter <span>CSS</span> Either Move there now, or save it for later.`
     );
     $(".space-view>div").css("background-color", "#ad4139");
     $(".opp-cards-content").append(
-      `<div class="player-check-opp-card${
-        playerOppCards[playerOppCards.length - 1][0]
-      }">Opportunity to enter <span>CSS</span> You've been helped by your parents and all expenses are paid!</div>`
+      `<div class="player-check-opp-card${randomOpp}">Opportunity to enter <span>CSS</span></div>`
     );
   } else if (randomOpp == 4) {
     $(".new-space-info-opp p").html(
-      `Opportunity to enter <span>CSS</span> meet the normal requirments to enter.`
+      `Opportunity to enter <span>JavaScript</span> Either Move there now, or save it for later.`
     );
     $(".space-view>div").css("background-color", "#ad4139");
     $(".opp-cards-content").append(
-      `<div class="player-check-opp-card${
-        playerOppCards[playerOppCards.length - 1][0]
-      }">Opportunity to enter <span>CSS</span> meet the normal requirments to enter.</div>`
-    );
-  } else if (randomOpp == 5) {
-    $(".new-space-info-opp p").html(
-      `Opportunity to enter <span>JavaScript</span> You've been helped by your parents and all expenses are paid!`
-    );
-    $(".space-view>div").css("background-color", "#ad4139");
-    $(".opp-cards-content").append(
-      `<div class="player-check-opp-card${
-        playerOppCards[playerOppCards.length - 1][0]
-      }">Opportunity to enter <span>JavaScript</span> You've been helped by your parents and all expenses are paid!</div>`
-    );
-  } else if (randomOpp == 6) {
-    $(".new-space-info-opp p").html(
-      `Opportunity to enter<span>JavaScript</span> meet the normal requirments to enter.`
-    );
-    $(".space-view>div").css("background-color", "#ad4139");
-    $(".opp-cards-content").append(
-      `<div class="player-check-opp-card${
-        playerOppCards[playerOppCards.length - 1][0]
-      }">Opportunity to enter <span>JavaScript</span> meet the normal requirments to enter.</div>`
-    );
-  } else if (randomOpp == 7) {
-    $(".new-space-info-opp p").html(
-      `Opportunity to move to<span>Code Success!</span> `
-    );
-    $(".space-view>div").css("background-color", "#ad4139");
-    $(".opp-cards-content").append(
-      `<div class="player-check-opp-card${
-        playerOppCards[playerOppCards.length - 1][0]
-      }">Opportunity to move to <span>Code Success!</span></div>`
+      `<div class="player-check-opp-card${randomOpp}">Opportunity to enter <span>JavaScript</span> </div>`
     );
   }
-  console.log(randomOpp);
   $(".opp-use-now-btn").on("click", function () {
-    $(".new-space-info-opp").fadeOut("slow").css("display", "none");
-    var oppCard = playerOppCards.length - 1;
-    $("div").remove(`.player-opp-card${playerOppCards[oppCard][0]}`);
-    //   This Needs Fixing!!!
-    //   playerOppCards.pop();
-    $("#player-one").remove();
-    if (playerOppCards[oppCard][0] == 1) {
-      $("#4>div").append(playerOne);
-      playerOppCards.pop();
-      console.log(playerOppCards);
-      outerNextPlayer();
-      return;
-    } else if (playerOppCards[oppCard][0] == 2) {
-      $("#11>div").append(playerOne);
-      playerOppCards.pop();
-      console.log(playerOppCards);
-      outerNextPlayer();
-      return;
-    } else if (playerOppCards[oppCard][0] == 3) {
-      $("#11>div").append(playerOne);
-      playerOppCards.pop();
-      console.log(playerOppCards);
-      outerNextPlayer();
-      return;
-    } else if (playerOppCards[oppCard][0] == 4) {
-      $("#17>div").append(playerOne);
-      playerOppCards.pop();
-      console.log(playerOppCards);
-      outerNextPlayer();
-      return;
-    } else if (playerOppCards[oppCard][0] == 5) {
-      $("#17>div").append(playerOne);
-      playerOppCards.pop();
-      console.log(playerOppCards);
-      outerNextPlayer();
-      return;
-    } else if (playerOppCards[oppCard][0] == 6) {
-      $("#23>div").append(playerOne);
-      playerOppCards.pop();
-      console.log(playerOppCards);
-      outerNextPlayer();
-      return;
-    } else if (playerOppCards[oppCard][0] == 7) {
-      $("#23>div").append(playerOne);
-      playerOppCards.pop();
-      console.log(playerOppCards);
-      outerNextPlayer();
-      return;
-    } else if (playerOppCards[oppCard][0] == 8) {
-      $("#19>div").append(playerOne);
-      playerOppCards.pop();
-      console.log(playerOppCards);
-      outerNextPlayer();
-      return;
+     $(".new-space-info-opp").fadeOut("slow").css("display", "none");
+     $("div").remove(`.player-opp-card${randomOpp}`);
+     $("#player-one").remove();
+     if (randomOpp == 1) {
+       $("#4>div").append(playerOne);
+       delete playerOppCardsObj[randomOpp]
+       outerNextPlayer();
+       return;
+     }
+    if (randomOpp == 2) {
+       $("#11>div").append(playerOne);
+       delete playerOppCardsObj[randomOpp]
+       outerNextPlayer();
+       return;
+     }
+     if (randomOpp == 3) {
+       $("#17>div").append(playerOne);
+       delete playerOppCardsObj[randomOpp]
+       outerNextPlayer();
+       return;
+     }
+     if (randomOpp == 4) {
+       $("#23>div").append(playerOne);
+       delete playerOppCardsObj[randomOpp]
+       outerNextPlayer();
+       return;
     }
-  });
-  //   }, 200);
+});
 }
+

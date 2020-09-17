@@ -103,7 +103,6 @@ function currentSpaceCheck() {
   }
   if (currentSpace == 4) {
     setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
       $("#choose-enrol").slideToggle("slow").css("display", "flex");
       $(".enrol-no").on("click", function () {
         $(".roll-btn").removeAttr("disabled");
@@ -111,14 +110,13 @@ function currentSpaceCheck() {
       });
       $(".enrol-yes").on("click", function () {
         $(".roll-btn").removeAttr("disabled");
-        $("#choose-enrol").fadeOut("slow");
+        $("#choose-enrol").fadeOut("slow").css("display", "none");
         path = "inner-e";
       });
     }, 1750);
   }
   if (currentSpace == 11) {
     setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
       $("#choose-html").slideToggle("slow").css("display", "flex");
       $(".html-no").on("click", function () {
         $(".roll-btn").removeAttr("disabled");
@@ -126,14 +124,13 @@ function currentSpaceCheck() {
       });
       $(".html-yes").on("click", function () {
         $(".roll-btn").removeAttr("disabled");
-        $("#choose-html").fadeOut("slow");
+        $("#choose-html").fadeOut("slow").css("display", "none");
         path = "inner-h";
       });
     }, 1750);
   }
   if (currentSpace == 17) {
     setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
       $("#choose-css").slideToggle("slow").css("display", "flex");
       $(".css-no").on("click", function () {
         $(".roll-btn").removeAttr("disabled");
@@ -141,14 +138,13 @@ function currentSpaceCheck() {
       });
       $(".css-yes").on("click", function () {
         $(".roll-btn").removeAttr("disabled");
-        $("#choose-css").fadeOut("slow");
+        $("#choose-css").fadeOut("slow").css("display", "none");
         path = "inner-c";
       });
     }, 1750);
   }
   if (currentSpace == 23) {
     setTimeout(() => {
-      $(".roll-btn").attr("disabled", true);
       $("#choose-javascript").slideToggle("slow").css("display", "flex");
       $(".javascript-no").on("click", function () {
         $(".roll-btn").removeAttr("disabled");
@@ -156,7 +152,7 @@ function currentSpaceCheck() {
       });
       $(".javascript-yes").on("click", function () {
         $(".roll-btn").removeAttr("disabled");
-        $("#choose-javascript").fadeOut("slow");
+        $("#choose-javascript").fadeOut("slow").css("display", "none");
         path = "inner-j";
       });
     }, 1750);

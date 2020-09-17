@@ -52,7 +52,7 @@ $(".reset-btn").on("click", function () {
 
 // Players and computers seperated for testing and can start player on a different square. Dice roll button is disabled normally to stop someone pressing it over and over while they shouldnt.
 $("#1>div").append(compOne, compTwo, compThree);
-$("#11>div").append(playerOne);
+$("#1>div").append(playerOne);
 $(".roll-btn").attr("disabled", true);
 
 // Skip Button use during testing to go past the rules and straight to the game - Take this out before submission
@@ -80,9 +80,9 @@ $(".next-btn").click(function () {
     Number($(".fame").val()) +
       Number($(".happiness").val()) +
       Number($(".money").val()) !=
-    60
+    30
   ) {
-    $(".check-message").html("Your formula doesnt equal 60!");
+    $(".check-message").html("Your formula doesnt equal 30!");
     return;
   } else {
     $("#formula").css("display", "none");
@@ -144,17 +144,6 @@ $(".comp-three-income").html("Income: £" + currIncomeC3 * 1000);
 //---------------------Opportunity Cards --------------------//
 
 // Array of possible cards that can be got. a number from the array is taken at random and then added to the players blank array.
-oppCardArray = [
-  [1, "Enrol", "Normal Reqs"],
-  [2, "HTML", "Expenses Paid"],
-  [3, "HTML", "Normal Reqs"],
-  [4, "CSS", "Expenses Paid"],
-  [5, "CSS", "Normal Reqs"],
-  [6, "JavaScript", "Expenses Paid"],
-  [7, "JavaScript", "Normal Reqs"],
-  [8, "Holiday", "Yet unknown"],
-];
-
 let oppCardObject = {
     1: "Enrol",
     2: "HTML",
@@ -164,9 +153,7 @@ let oppCardObject = {
 
 let playerOppCardsObj = {};
 
-playerOppCards = [];
-
-// Gameplay Choose Card - clicking on the Opportunity shows you what cards you have and what they do.
+// Gameplay Choose Card - clicking on the Opportunity shows you what cards you have and what they do. This only views at the moment, functionality to use them not built yet.
 $(".opp-cards").on("click", function () {
   $("#opp-cards-container").slideToggle("slow").css("display", "flex");
 });
@@ -204,10 +191,9 @@ function compOneTurn() {
   let currentSpaceC1 = $("#comp-one").parent().parent().attr("id");
   if (currentSpaceC1 == 4) {
     $("#choose-enrol").slideToggle("slow").css("display", "flex");
-    $(".enrol-no").on("click", function () {
+    $(".enrol-no").trigger("click");
       $("#choose-enrol").fadeOut("slow");
       $(".roll-btn").trigger("click");
-    });
   } else {
     $(".roll-btn").trigger("click");
   }
@@ -217,10 +203,9 @@ function compTwoTurn() {
   let currentSpaceC2 = $("#comp-two").parent().parent().attr("id");
   if (currentSpaceC2 == 4) {
     $("#choose-enrol").slideToggle("slow").css("display", "flex");
-    $(".enrol-no").on("click", function () {
+    $(".enrol-no").trigger("click");
       $("#choose-enrol").fadeOut("slow");
       $(".roll-btn").trigger("click");
-    });
   } else {
     $(".roll-btn").trigger("click");
   }
@@ -230,10 +215,9 @@ function compThreeTurn() {
   let currentSpaceC3 = $("#comp-three").parent().parent().attr("id");
   if (currentSpaceC3 == 4) {
     $("#choose-enrol").slideToggle("slow").css("display", "flex");
-    $(".enrol-no").on("click", function () {
+    $(".enrol-no").trigger("click");
       $("#choose-enrol").fadeOut("slow");
       $(".roll-btn").trigger("click");
-    });
   } else {
     $(".roll-btn").trigger("click");
   }
@@ -272,10 +256,10 @@ $(".stay-btn").on("click", function () {
 
 //   Dice Roll. this is the main part of the game and the roll of the dice affects a lot of things (Will explain going down this code)
 $(".roll-btn").on("click", function () {
+    $(".pay-btn").attr("disabled", true);
   if (turn == "Player") {
     let currentSpace = $("#player-one").parent().parent().attr("id");
-    let diceRoll = 1;
-    //  Math.floor(Math.random() * 6) + 1;
+    let diceRoll = Math.floor(Math.random() * 6) + 1;
     $("#die-one").html(diceRoll);
     
     // Space 7 needs 1 or 2 to move, if the dice roll isnt that, then it moves to the next player
